@@ -15,6 +15,7 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PetsComponent } from './pets/pets.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MessagesComponent,
     HeroSearchComponent,
     PetsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    LoginComponent
   ],
   bootstrap: [ AppComponent ]
 })
