@@ -14,6 +14,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PetsComponent } from './pets/pets.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { PetsComponent } from './pets/pets.component';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    PetsComponent
+    PetsComponent,
+    UserProfileComponent
   ],
   bootstrap: [ AppComponent ]
 })
