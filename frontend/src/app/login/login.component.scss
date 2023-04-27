@@ -1,0 +1,35 @@
+
+mat-card-title{
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 1em;
+}
+
+mat-form-field {
+  margin-bottom: 15px;
+}
+
+.login-card {
+  width: 25em;
+  height: 17em;
+  margin-left: auto;
+  margin-right: auto;
+  top: 5em;
+  background-color: #d5a835ac;
+  border-radius: 4px;
+}
+
+.full-width {
+  width: 100%;
+  min-height: 3em;
+}
+
+
+.login-sep {
+  height: 1em;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}

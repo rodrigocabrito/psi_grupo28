@@ -1,0 +1,11 @@
+<h2>My Pets</h2>
+
+<ul class="pets">
+  <li *ngFor="let pet of Pets">
+    <a routerLink="pets">
+      <span class="badge">{{pet.id}}</span> {{pet.name}}
+    </a>
+    <button type="button" class="delete" title="delete pet"
+      (click)="delete(pet)">x</button>
+  </li>
+</ul>
