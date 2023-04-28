@@ -1,7 +1,7 @@
 import { Pet } from "./pet";
 
-export interface Hero {
+export interface User {
   id: String;
   name: string;
-  petname : Pet
+  petname: Pet;
 }

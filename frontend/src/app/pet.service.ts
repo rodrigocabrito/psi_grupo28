@@ -7,14 +7,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Pet } from './pet';
 import { MessageService } from './message.service';
 
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import { User } from './user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
-  heroes: Hero[] = [];
+  users: User[] = [];
   private PetsUrl = 'http://localhost:3000/pets';
 
   httpOptions = {
@@ -24,13 +24,13 @@ export class PetService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private heroService: HeroService) { }
+    private userService: UserService) { }
 
 
   getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(this.PetsUrl)
       .pipe(
-        tap(_ => this.log('fetched Petes')),
+        tap(_ => this.log('fetched Pets')),
         catchError(this.handleError<Pet[]>('getPets', []))
       );
   }
@@ -40,8 +40,8 @@ export class PetService {
     const url = `${this.PetsUrl}/${id}`;
     debugger;
     var temp=[];
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.find(heroes, id) );
+    this.userService.getUsers()
+    .subscribe(users => this.find(users, id) );
     
     
 
@@ -51,13 +51,13 @@ export class PetService {
     );
   }
 
-  private find(h : Hero[], id : String){
+  private find(h : User[], id : String){
     for (let index = 0; index < h.length; index++) {
       if (h[index].petname.id === id) {
         h[index] = {id: h[index].id, name: h[index].name, petname:{id:'',name:''}};
 
       }
-      this.heroService.updateHero(h[index])
+      this.userService.updateUser(h[index])
         .subscribe();
     }
   }

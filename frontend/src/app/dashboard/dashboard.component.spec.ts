@@ -2,26 +2,26 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { HeroSearchComponent } from '../hero-search/hero-search.component';
-import { HeroService } from '../hero.service';
-import { HEROES } from '../mock-heroes';
+import { UserSearchComponent } from '../user-search/user-search.component';
+import { UserService } from '../user.service';
+import { USERS } from '../mock-users';
 
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let heroService;
-  let getHeroesSpy: jasmine.Spy;
+  let userService;
+  let getUsersSpy: jasmine.Spy;
 
   beforeEach(waitForAsync(() => {
-    heroService = jasmine.createSpyObj('HeroService', ['getHeroes']);
-    getHeroesSpy = heroService.getHeroes.and.returnValue(of(HEROES));
+    userService = jasmine.createSpyObj('UserService', ['getUsers']);
+    getUsersSpy = userService.getUsers.and.returnValue(of(USERS));
     TestBed
         .configureTestingModule({
-          declarations: [DashboardComponent, HeroSearchComponent],
+          declarations: [DashboardComponent, UserSearchComponent],
           imports: [RouterTestingModule.withRoutes([])],
-          providers: [{provide: HeroService, useValue: heroService}]
+          providers: [{provide: UserService, useValue: userService}]
         })
         .compileComponents();
 
@@ -34,12 +34,12 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display "Top Heroes" as headline', () => {
-    expect(fixture.nativeElement.querySelector('h2').textContent).toEqual('Top Heroes');
+  it('should display "Top Users" as headline', () => {
+    expect(fixture.nativeElement.querySelector('h2').textContent).toEqual('Top Users');
   });
 
-  it('should call heroService', waitForAsync(() => {
-       expect(getHeroesSpy.calls.any()).toBe(true);
+  it('should call userService', waitForAsync(() => {
+       expect(getUsersSpy.calls.any()).toBe(true);
      }));
 
   it('should display 4 links', waitForAsync(() => {

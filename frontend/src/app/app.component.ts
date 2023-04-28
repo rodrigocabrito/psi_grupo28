@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Oasis Gaming';
+
+  constructor(private router: Router) {}
+
+  // Add a method to check the current route
+  isRoute(route: string): boolean {
+    return this.router.url.includes(route);
+  }
 }

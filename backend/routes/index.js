@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const heroes_controller = require("../controller/heroController");
+const users_controller = require("../controller/userController");
 const pets_controller = require("../controller/petController");
 
 /* GET home page. */
@@ -9,17 +9,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/heroes', heroes_controller.hero_list);
+router.get('/users', users_controller.user_list);
 
-router.get('/hero/:id', heroes_controller.hero_detail);
+router.get('/user/:id', users_controller.user_detail);
 
-router.post('/hero', heroes_controller.create_hero);
+router.post('/user', users_controller.create_user);
 
-router.put('/hero/:id', heroes_controller.update_hero);
+router.put('/user/:id', users_controller.update_user);
 
-router.delete('/hero/:id', heroes_controller.delete_hero);
+router.delete('/user/:id', users_controller.delete_user);
 
-router.get('/hero/pet/:id', heroes_controller.pet_hero);
+router.get('/user/pet/:id', users_controller.pet_user);
 
 router.get('/pets', pets_controller.pet_list);
 

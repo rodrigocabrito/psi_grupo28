@@ -1,16 +1,16 @@
 #! /usr/bin/env node
 
 console.log(
-    'This script populates some test books, heros, pets and bookinstances to your database. Specified database as argument - e.g.: node populatedb "mongodb+srv://cooluser:coolpassword@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority"'
+    'This script populates some test books, users, pets and bookinstances to your database. Specified database as argument - e.g.: node populatedb "mongodb+srv://cooluser:coolpassword@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority"'
   );
   
   // Get arguments passed on command line
   const userArgs = process.argv.slice(2);
   
-  const Hero = require("./models/hero");
+  const User = require("./models/user");
   const Pet = require("./models/pet");
   
-  const heros = [];
+  const users = [];
   const pets = [];
   
   const mongoose = require("mongoose");
@@ -25,7 +25,7 @@ console.log(
     await mongoose.connect(mongoDB);
     console.log("Debug: Should be connected?");
     await createPets();
-    await createHeros();
+    await createUsers();
     console.log("Debug: Closing mongoose");
     mongoose.connection.close();
   }
@@ -37,14 +37,14 @@ console.log(
     console.log(`Added pet: ${name}`);
   }
   
-  async function heroCreate(name, pet) {
-    herodetail = { name : name , pet : pet};
+  async function userCreate(name, pet) {
+    userdetail = { name : name , pet : pet};
   
-    const hero = new Hero(herodetail);
+    const user = new User(userdetail);
   
-    await hero.save();
-    heros.push(hero);
-    console.log(`Added hero: ${name}`);
+    await user.save();
+    users.push(user);
+    console.log(`Added user: ${name}`);
   }
   
 
@@ -60,14 +60,14 @@ console.log(
     ]);
   }
   
-  async function createHeros() {
-    console.log("Adding heross");
+  async function createUsers() {
+    console.log("Adding userss");
     await Promise.all([
-      heroCreate("Patrick", pets[1]),
-      heroCreate("Ben", pets[2]),
-      heroCreate("Isaac", pets[0]),
-      heroCreate("Bob", pets[0]),
-      heroCreate("Jim", pets[0]),
+      userCreate("Patrick", pets[1]),
+      userCreate("Ben", pets[2]),
+      userCreate("Isaac", pets[0]),
+      userCreate("Bob", pets[0]),
+      userCreate("Jim", pets[0]),
     ]);
   }
   

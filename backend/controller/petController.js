@@ -1,5 +1,5 @@
 const Pet = require("../models/pet");
-var Hero = require('../models/hero');
+var User = require('../models/user');
 var async = require('async');
 
 
@@ -26,8 +26,8 @@ exports.pet_detail = function(req, res, next) {
               .exec(callback);
         },
 
-        pet_heroes: function(callback) {
-            Hero.find({ 'pet': req.params.id })
+        pet_users: function(callback) {
+            User.find({ 'pet': req.params.id })
             .exec(callback);
           },
 

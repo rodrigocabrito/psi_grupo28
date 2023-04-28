@@ -13,9 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UsersComponent } from './users/users.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PetsComponent } from './pets/pets.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -41,10 +41,10 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    HeroesComponent,
-    HeroDetailComponent,
+    UsersComponent,
+    UserDetailComponent,
     MessagesComponent,
-    HeroSearchComponent,
+    UserSearchComponent,
     PetsComponent,
     UserProfileComponent,
     LoginComponent

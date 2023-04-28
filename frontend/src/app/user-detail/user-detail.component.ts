@@ -2,30 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Hero } from '../hero';
+import { User } from '../user';
 import { Pet } from '../pet';
-import { HeroService } from '../hero.service';
+import { UserService } from '../user.service';
 import { PetService } from '../pet.service';
 
 @Component({
-  selector: 'app-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: [ './hero-detail.component.css' ]
+  selector: 'app-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: [ './user-detail.component.css' ]
 })
-export class HeroDetailComponent implements OnInit {
-  hero: Hero | undefined;
+export class UserDetailComponent implements OnInit {
+  user: User | undefined;
   Pets: Pet[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
+    private userService: UserService,
     private location: Location,
     private PetService: PetService
   ) {}
 
   ngOnInit(): void {
     this.getPets();
-    this.getHero();
+    this.getUser();
   }
 
   getPets(): void {
@@ -33,10 +33,10 @@ export class HeroDetailComponent implements OnInit {
     .subscribe(Pets => this.Pets = Pets);
   }
 
-  getHero(): void {
+  getUser(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
-    this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+    this.userService.getUser(id)
+      .subscribe(user => this.user = user);
   }
 
   goBack(): void {
@@ -45,8 +45,8 @@ export class HeroDetailComponent implements OnInit {
 
   save(): void {
 
-    if (this.hero) {
-      this.heroService.updateHero(this.hero)
+    if (this.user) {
+      this.userService.updateUser(this.user)
         .subscribe(() => this.goBack());
     }
   }
