@@ -52,6 +52,21 @@ export class UserService {
     );
   }
 
+  /** GET user by name. Will 404 if id not found */
+  searchUser(name: string): Observable<User> {
+    const url = `${this.usersUrl}/?name=${name}`;
+    return this.http.get<User[]>(url)
+      .pipe(
+        map(users => users[0]), // returns the first user whose name matches the search term
+        tap(user => {
+          const outcome = user ? 'fetched' : 'did not find';
+          this.log(`${outcome} user with name=${name}`);
+        }),
+        catchError(this.handleError<User>(`searchUser name=${name}`))
+      );
+  }
+  
+
   /* GET users whose name contains search term */
   searchUsers(term: string): Observable<User[]> {
     if (!term.trim()) {

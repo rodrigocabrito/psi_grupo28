@@ -3,9 +3,11 @@
 <button mat-raised-button color="primary">
   <a routerLink="/login">Home</a>
 </button>
+<button mat-raised-button color="primary">
+  <a routerLink="/login">Login</a>
+</button>  
 <div class="app-header" *ngIf="!isRoute('dashboard')">
   <nav>
-    <a routerLink="/login">Login</a>
     <a routerLink="/user-profile">Perfil</a>
     <a routerLink="/dashboard">Dashboard</a>
     <a routerLink="/users">Users</a>

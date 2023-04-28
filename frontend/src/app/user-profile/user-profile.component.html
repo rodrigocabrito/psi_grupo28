@@ -1,1 +1,6 @@
-<p>user-profile works!</p>
+<div class="profile">
+    <label>User Profile</label>
+    <div *ngIf="user">
+        <p>Name: {{ user.name }}</p>
+    </div>
+</div>

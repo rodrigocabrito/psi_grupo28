@@ -57,5 +57,14 @@ nav a.active {
 }
 
 button a{
+  border-radius: 2px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
   color: black;
+}
+
+button a:hover{
+  color: #9b7a25ac;
 }
