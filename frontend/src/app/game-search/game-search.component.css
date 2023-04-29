@@ -24,7 +24,6 @@ label {
     list-style-type: none;
   }
   .search-result li a, #alert {
-    position: absolute;
     background-color: white;
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
