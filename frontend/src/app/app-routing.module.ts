@@ -12,9 +12,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user-profile', component: UserProfileComponent},
+  { path: 'user-profile/:id', component: UserProfileComponent},
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
 ];

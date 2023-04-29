@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Game_search_DTO } from '../games/game_search_DTO';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { Game_search_DTO } from '../games/game_search_DTO';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
+  user:User |undefined
   followers: User[] = [];
   following: User[] = [];
   games: Game_search_DTO[] = [];
@@ -16,12 +18,13 @@ export class DashboardComponent implements OnInit {
   showAppC = false;
   id: string = ''; //TODO get self id
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getFollowers(this.id);
     this.getFollowing(this.id);
     this.getGamesLibrary(this.id);
+    this.getUser();
   }
 
   getFollowers(id: string): void {
@@ -37,5 +40,11 @@ export class DashboardComponent implements OnInit {
   getGamesLibrary(id: string): void {
     this.userService.getGamesLibrary(id)
     .subscribe(games => this.games = games);;
+  }
+
+  getUser(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.userService.getUser(id)
+      .subscribe(user => this.user = user);
   }
 }
