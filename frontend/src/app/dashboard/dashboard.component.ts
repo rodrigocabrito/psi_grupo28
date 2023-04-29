@@ -9,7 +9,6 @@ import { Game_search_DTO } from '../games/game_search_DTO';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  users: User[] = [];
   followers: User[] = [];
   following: User[] = [];
   games: Game_search_DTO[] = [];
@@ -20,15 +19,9 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUsers();
     this.getFollowers(this.id);
     this.getFollowing(this.id);
     this.getGamesLibrary(this.id);
-  }
-
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users.slice(1, 5));
   }
 
   getFollowers(id: string): void {
