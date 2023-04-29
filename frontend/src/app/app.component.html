@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+
+<button mat-raised-button color="primary">
+  <a routerLink="/login">Home</a>
+</button>
+<button mat-raised-button color="primary">
+  <a routerLink="/login">Login</a>
+</button>  
+<div class="app-header" *ngIf="!isRoute('dashboard')">
+  <nav>
+    <a routerLink="/user-profile">Perfil</a>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/users">Users</a>
+    <a routerLink="/pets">Pets</a>
+  </nav>
+</div>
+<router-outlet></router-outlet>
+<app-messages></app-messages>

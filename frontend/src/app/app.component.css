@@ -1,0 +1,70 @@
+/* AppComponent's private CSS styles */
+h1 {
+  text-align: center;
+  margin: auto;
+  max-width: 500px;
+
+  /* flexbox */
+  display: flex;
+  justify-content: space-around;
+  border-radius: 4px;
+}
+
+nav{
+  padding: 0;
+  margin: auto;
+  max-width: 1000px;
+
+  /* flexbox */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+nav a {
+  padding: 1rem;
+  text-decoration: none;
+  align-items: center;
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+  background-color: #d5a835ac;
+  color: #3d3d3d;
+  width: 15%;
+  min-width: 70px;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+}
+  
+  
+nav a:hover {
+  color: white;
+  background-color: #9b7a25ac;
+}
+nav a.active {
+  background-color: black;
+}
+
+button a{
+  border-radius: 2px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  color: black;
+}
+
+button a:hover{
+  color: #9b7a25ac;
+}
