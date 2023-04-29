@@ -5,6 +5,9 @@
   <body>
     <header>
       <h1 class="dashboard">Dashboard</h1>
+      <div *ngIf="user">
+        <a routerLink="/user-profile/{{user.id}}">PERFIL</a>
+      </div>
     </header>
     <main>
       <div class="menu">

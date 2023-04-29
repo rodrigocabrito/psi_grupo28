@@ -6,13 +6,8 @@ console.log(
   
   // Get arguments passed on command line
   const userArgs = process.argv.slice(2);
-  
-  const Hero = require("./models/hero");
-  const Pet = require("./models/pet");
   const Game = require("./models/game")
   
-  const heros = [];
-  const pets = [];
   const games = [];
   
   const mongoose = require("mongoose");
@@ -30,29 +25,12 @@ console.log(
     console.log("Debug: Closing mongoose");
     mongoose.connection.close();
   }
-  
-  async function petCreate(name) {
-    const pet = new Pet({ name: name });
-    await pet.save();
-    pets.push(pet);
-    console.log(`Added pet: ${name}`);
-  }
 
   async function gameCreate(name, type, description, supported_platform, supported_languages, price, rate, dlc, main_game) {
     const game = new Game({ name: name, type:type, description: description, supported_platform: supported_platform,supported_languages :supported_languages, price:price, rate:rate, dlc:dlc, main_game:main_game });
     await game.save();
     games.push(game);
     console.log(`Added game: ${name}`);
-  }
-  
-  async function heroCreate(name, pet) {
-    herodetail = { name : name , pet : pet};
-  
-    const hero = new Hero(herodetail);
-  
-    await hero.save();
-    heros.push(hero);
-    console.log(`Added hero: ${name}`);
   }
   
   async function createGames(){
@@ -82,28 +60,6 @@ console.log(
       gameCreate("ABCDE", "Learning", 
       "let learn!",
       ["Windows", "Linux", "MacOS"], ["ingles", "portugues", "frances", "alemao", "russo", "italinano", "espanhol"], 9.99, 0, undefined, undefined),
-    ]);
-  }
-
-  
-  async function createPets() {
-    console.log("Adding pets");
-    await Promise.all([
-      petCreate("Fantasy joke"),
-      petCreate("cat"),
-      petCreate("elpo"),
-      petCreate("hetelopdas"),
-    ]);
-  }
-  
-  async function createHeros() {
-    console.log("Adding heross");
-    await Promise.all([
-      heroCreate("Patrick", pets[1]),
-      heroCreate("Ben", pets[2]),
-      heroCreate("Isaac", pets[0]),
-      heroCreate("Bob", pets[0]),
-      heroCreate("Jim", pets[0]),
     ]);
   }
   

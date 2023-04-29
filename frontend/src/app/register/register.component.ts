@@ -39,6 +39,9 @@ export class RegisterComponent implements OnInit {
     let n =  this.userService.registerUser({username: this.username, password:this.password})
     .subscribe(user => {
       this.user = user;
+      if (this.user) {
+        this.router.navigate(['/dashboard', this.user.id]);
+      }
     });
   
 
