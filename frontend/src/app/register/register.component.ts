@@ -35,13 +35,17 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.username = this.registerForm.get('username')!.value;
-    this.userService.searchUser(this.username)
+    let n =  this.userService.registerUser({username: this.username, password:this.password})
     .subscribe(user => {
       this.user = user;
       if (this.user) {
         this.router.navigate(['/detail', this.user.id]);
       }
     });
+    if (n !== undefined) {
+      alert('Username already registered');
+    }
+
   }
 
   validateUsername(control: any) {

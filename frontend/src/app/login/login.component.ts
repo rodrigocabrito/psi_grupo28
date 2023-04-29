@@ -35,13 +35,16 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.username = this.loginForm.get('username')!.value;
-    this.userService.searchUser(this.username)
+    let n =  this.userService.loginUser({username: this.username, password:this.password})
     .subscribe(user => {
       this.user = user;
       if (this.user) {
         this.router.navigate(['/detail', this.user.id]);
       }
     });
+    if (n !== undefined) {
+      alert('Username or password incorrect');
+    }
   }
 
   validateUsername(control: any) {

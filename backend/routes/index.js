@@ -10,6 +10,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/user/register/:param1/:param2', users_controller.userRegister);
+
 router.get('/users', users_controller.user_list);
 
 router.get('/user/:id', users_controller.user_detail);

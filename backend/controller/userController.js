@@ -98,6 +98,17 @@ exports.delete_user = async function (req, res, next) {
     })
 }
 
+exports.registerUser = async function (req, res, next) {
+    User.find({ 'username': req.params.param1})
+    .exec(async function(err, user){
+      if (err) { return next(err); }
+      if (user.length !== 0) {res.json(undefined)}
+        const user = new User({username: req.params.param1, password: req.params.param2, follower:[], following:[], games:[], wallet:0});
+        await user.save();
+        res.json(user);
+    })
+}
+
 exports.pet_user = function(req, res, next){
     User.find({ 'pet': req.params.id })
     .exec(function (err, list_users) {

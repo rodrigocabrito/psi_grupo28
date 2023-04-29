@@ -7,6 +7,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user';
 import { MessageService } from './message.service';
 
+import { userRegister } from './userRegister';
+
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -86,6 +88,22 @@ export class UserService {
   /** POST: add a new user to the server */
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions).pipe(
+      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<User>('addUser'))
+    );
+  }
+
+  registerUser(user: userRegister): Observable<User> {
+    const url = '${this.userUrl}/${user.name}/${user.password}';
+    return this.http.get<User>(url).pipe(
+      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<User>('addUser'))
+    );
+  }
+
+  loginUser(user: userRegister): Observable<User> {
+    const url = '${this.heroUrl}/${user.name}/${user.password}';
+    return this.http.get<User>(url).pipe(
       tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('addUser'))
     );
