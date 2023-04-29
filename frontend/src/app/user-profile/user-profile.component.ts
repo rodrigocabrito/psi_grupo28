@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit{
 
+  user: User | undefined;
   followers: User[] = [];
   following: User[] = [];
   games: Game_search_DTO[] = [];
@@ -21,7 +22,9 @@ export class UserProfileComponent implements OnInit{
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    
+    //this.getFollowers(this.user.id);
+    //this.getFollowing(this.user.id);
+    //this.getGamesLibrary(this.user.id);
   }
 
   getFollowers(id: string): void {
