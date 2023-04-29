@@ -5,13 +5,6 @@
 </button>
 <button mat-raised-button color="primary">
   <a routerLink="/login">Login</a>
-</button>
-<div class="app-header" *ngIf="!isRoute('dashboard')">
-  <nav>
-    <a routerLink="/user-profile">Perfil</a>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/users">Users</a>
-  </nav>
-</div>
+</button>  
 <router-outlet></router-outlet>
 <app-messages></app-messages>
