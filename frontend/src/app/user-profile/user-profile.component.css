@@ -8,6 +8,8 @@ h1 {
     border: 1px solid #ccc;
     padding: 20px;
     margin: 20px;
+    border-color: rgba(157, 64, 2, 0.363);
+    background-color: rgba(167, 112, 76, 0.658);;
   }
 
   .profile-header img {
@@ -20,8 +22,9 @@ h1 {
 
   .profile-header h2 {
   margin: 0;
-  padding-left: 150px;
+  padding-left: 0.2em;
   padding-top: 20px;
+  color:rgb(121, 10, 10) ;
   }
 
   .profile-header p {
@@ -60,6 +63,11 @@ h1 {
 
   hr {
     margin-top: 20px;
+    border-color: rgba(157, 64, 2, 0.363);
+  }
+
+  h2 {
+    background-color: transparent;
   }
 
   .profile-container {
@@ -71,8 +79,15 @@ h1 {
     padding-left: 30px;
   }
 
-  #follow {
+  li button {
+    background-color: rgba(157, 64, 2, 0.276);
+    padding: 0.5rem;
+    color: rgb(121, 10, 10);
+  }
+
+ #dashboardBut{
     position: absolute;
     right: 2.5%;
     top: 3.5%;
-  }
+}
+

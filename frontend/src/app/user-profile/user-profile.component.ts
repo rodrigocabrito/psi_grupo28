@@ -19,9 +19,10 @@ export class UserProfileComponent implements OnInit{
   showAppC = false;
   id: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.getUser();
     //this.getFollowers(this.user.id);
     //this.getFollowing(this.user.id);
     //this.getGamesLibrary(this.user.id);
@@ -44,5 +45,11 @@ export class UserProfileComponent implements OnInit{
 
   getWishlish(id: string): void {
     
+  }
+
+  getUser(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.userService.getUser(id)
+      .subscribe(user => this.user = user);
   }
 }
