@@ -38,4 +38,8 @@ export class UserProfileComponent implements OnInit{
     this.userService.getGamesLibrary(id)
     .subscribe(games => this.games = games);;
   }
+
+  getWishlish(id: string): void {
+    
+  }
 }

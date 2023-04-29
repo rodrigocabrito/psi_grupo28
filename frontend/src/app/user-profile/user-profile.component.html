@@ -3,26 +3,26 @@
     <div>
         <div class="user-profile">
             <div class="profile-header">
-              <img src="profile-pic.jpg" alt="User Profile Picture">
-              <h2>John Doe</h2>
-              <p>john.doe@email.com</p>
+              <img src="{{User.profilepic}}" alt="User Profile Picture">
+              <h2>{{User.name}}</h2>
+              <p></p>
             </div>
             <hr>
             <div class="profile-container">
               <div class="profile-numbers">
-               <p>50 followers</p>
-               <p>43 follows</p>
+               <p>{{ followers?.length || '0' }} followers</p>
+               <p>{{ following?.length || '0' }} follows</p>
               </div>
               <hr style="width: 0,1px; height: 40px; display: inline-block;">
               <div class="profile-content">
                 <ul>
-                  <li><button>
+                  <li><button (click)="getGamesLibrary(id)">
                     <a href="#">My library</a>
                   </button></li>
                   <li><button>
                     <a href="#">Wishlist</a>
                   </button></li>
-                  <li><button>
+                  <li><button (click)="getFollowing(id)">
                     <a href="#">My follows</a>
                   </button></li>
                 </ul>
