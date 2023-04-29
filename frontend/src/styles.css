@@ -41,7 +41,7 @@ body, input[text] {
   font-family: Cambria, Georgia, serif;
 }
 body{
-  background-color: rgba(132, 69, 27, 0.265)
+  background-color: rgba(132, 69, 27, 0.265);
 }
 a {
   cursor: pointer;
