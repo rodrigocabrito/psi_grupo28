@@ -10,13 +10,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-//router.get('/user/register/:param1/:param2', users_controller.registerUser);
+router.get('/user/login/:param1/:param2', users_controller.loginUser);
 
 router.get('/users', users_controller.user_list);
 
 router.get('/user/:id', users_controller.user_detail);
 
-router.post('/user', users_controller.registerUser);
+router.post('/users', users_controller.registerUser);
 
 router.put('/user/:id', users_controller.update_user);
 

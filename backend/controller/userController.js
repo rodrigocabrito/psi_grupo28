@@ -39,6 +39,24 @@ exports.user_detail = function(req, res, next) {
 
 };
 
+exports.loginUser = function(req, res, next){
+  User.find({ 'username': req.params.param1})
+    .exec(async function(err, user){
+      if (err) { return next(err); }
+      if (user.length === 0) {
+        var err = new Error('User not found');
+        err.status = 404;
+        return next(err);
+      }
+       if (user[0].password !== req.params.param2) {
+        var err = new Error('User password error');
+        err.status = 401;
+        return next(err);
+       } 
+       res.send({id:user[0]._id ,username: user[0].username, followers: user[0].followers, following: user[0].following, games:[]})
+    })
+}
+
 
 exports.create_user = async function(req, res, next){
 
@@ -62,10 +80,17 @@ exports.delete_user = async function (req, res, next) {
 }
 
 exports.registerUser = async function (req, res, next) {
+  console.log(req.body.username)
     User.find({ 'username': req.body.username})
     .exec(async function(err, user){
       if (err) { return next(err); }
+      if (user.length === 0) {
         const user1 = new User({username: req.body.username, password: req.body.password, wallet:0});
+        console.log(user1)
         const user2 = await user1.save();
+        console.log(user2)
+        res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
+      }
+        
     })
 }

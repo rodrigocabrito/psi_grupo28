@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const UsersSchema = new Schema(
+const UserSchema = new Schema(
   {
     username: {type: String, unique:true, required: true, max: 100},
     password: {type: String, required: true, max: 100},
@@ -13,10 +13,10 @@ const UsersSchema = new Schema(
   }
 );
 
-UsersSchema
+UserSchema
   .virtual('url')
   .get(function () {
     return '/user/' + this._id;
   });
 
-  module.exports = mongoose.model('User', UsersSchema);
+  module.exports = mongoose.model('User', UserSchema);
