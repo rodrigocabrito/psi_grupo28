@@ -1,0 +1,17 @@
+<div id="search-component">
+    <label for="search-box">Game Search</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" (click)="clickEvent()"/>
+  
+    <ul class="search-result" >
+        <div id="show" ng-hide="myVar">
+            <li *ngFor="let game of games$ | async" >
+        <a routerLink="/detail/{{game.id}}">
+          {{game.name}}
+        </a>
+      </li>
+        <li *ngIf="!b" id="alert">nao encontrou </li>
+        </div>
+      
+
+    </ul>
+  </div>
