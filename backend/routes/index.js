@@ -3,6 +3,7 @@ var router = express.Router();
 
 const users_controller = require("../controller/userController");
 const pets_controller = require("../controller/petController");
+const game_controller = require("../controller/gameController");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,5 +25,7 @@ router.get('/user/pet/:id', users_controller.pet_user);
 router.get('/pets', pets_controller.pet_list);
 
 router.get('/pet/:id', pets_controller.pet_detail);
+
+router.get('/games/search/:param', game_controller.search);
 
 module.exports = router;
