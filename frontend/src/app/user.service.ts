@@ -125,15 +125,15 @@ export class UserService {
   }
 
   registerUser(user: userRegister): Observable<User> {
-    const url = '${this.userUrl}/${user.name}/${user.password}';
-    return this.http.get<User>(url).pipe(
+    const url = `${this.userUrl}/register/${user.username}/${user.password}`;
+    return this.http.post<User>(this.userUrl, {username:user.username, password:user.password}, this.httpOptions).pipe(
       tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
-      catchError(this.handleError<User>('addUser'))
+      catchError(this.handleError<User>('registerUser'))
     );
   }
 
   loginUser(user: userRegister): Observable<User> {
-    const url = '${this.heroUrl}/${user.name}/${user.password}';
+    const url = `${this.userUrl}/${user.username}/${user.password}`;
     return this.http.get<User>(url).pipe(
       tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('addUser'))

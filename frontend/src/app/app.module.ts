@@ -18,7 +18,6 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UsersComponent } from './users/users.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { MessagesComponent } from './messages/messages.component';
-import { PetsComponent } from './pets/pets.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -48,7 +47,6 @@ import { RegisterComponent } from './register/register.component';
     UserDetailComponent,
     MessagesComponent,
     UserSearchComponent,
-    PetsComponent,
     UserProfileComponent,
     LoginComponent,
     RegisterComponent

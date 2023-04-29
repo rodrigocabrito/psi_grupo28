@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.username = this.loginForm.get('username')!.value;
+    this.password = this.loginForm.get('password')!.value;
     let n =  this.userService.loginUser({username: this.username, password:this.password})
     .subscribe(user => {
       this.user = user;
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/detail', this.user.id]);
       }
     });
+    console.log(this.user?.id);
     if (n !== undefined) {
       alert('Username or password incorrect');
     }
