@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,9 +18,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UsersComponent } from './users/users.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { MessagesComponent } from './messages/messages.component';
-import { PetsComponent } from './pets/pets.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
+    MatFormFieldModule,
     MatIconModule
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -45,9 +47,9 @@ import { LoginComponent } from './login/login.component';
     UserDetailComponent,
     MessagesComponent,
     UserSearchComponent,
-    PetsComponent,
     UserProfileComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   bootstrap: [ AppComponent ]
 })

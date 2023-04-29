@@ -1,125 +1,126 @@
-/* DashboardComponent's private CSS styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-h2 {
-  text-align: center;
+header {
+  background-color: rgba(157, 64, 2, 0.363);
+}
+
+h1 {
+  color: rgb(121, 10, 10);
+  padding-left: 3rem;
+  font-size: 60px;
+}
+
+nav {
+  background-color: #ecf0f1;
+  border-bottom: 1px solid #bdc3c7;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 1rem;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #2c3e50;
+  padding: 1rem;
+}
+
+nav li a:hover {
+  background-color: #bdc3c7;
+}
+
+main {
+  margin: 1rem;
 }
 
 .menu {
-  padding: 0;
-  margin: auto;
-  max-width: 1000px;
-
-  /* flexbox */
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
+  flex-direction: column;
   align-items: flex-start;
 }
 
-.users {
-  border-radius: 2px;
-  font-size: 1.2rem;
-  text-decoration: none;
-  display: inline-block;
-  color: #fff;
-  text-align: center;
-  min-width: 100px;
-  margin: .5rem auto;
-  box-sizing: border-box;
-
-  /* flexbox */
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
+.menu h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.menu-title {
-  /* Add styles for the title */
-  font-weight: bold;
-  font-size: 1.2rem;  
-  color: #3d3d3d;
-  background-color: #43778fa2;
-}
-
-.users a{
-  width: max-content;
-}
-
-a {
-  background-color: #3f525c;
-  border-radius: 2px;
-  padding: 1rem;
-  font-size: 1.2rem;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  width: 100%;
-  min-width: 70px;
-  margin: .5rem auto;
-  box-sizing: border-box;
-
-  /* flexbox */
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-}
-
-@media (min-width: 600px) {
-  a {
-    width: 18%;
-    box-sizing: content-box;
-  }
-}
-
-a:hover {
-  background-color: black;
-}
-
-div a{
-  background-color: #74ccf4a2;
-  color: #3d3d3d;
-}
-
-div a:hover{
-  color: white;
-  background-color: #205b75;
-}
-
-button {
-  left: 430px;
-  top: 5px;
-  background-color: white;
-  color:  #525252;
-  font-size: 1.1rem;
+.menu ul {
+  align-items: center;
+  padding-left: 20rem;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
   margin: 0;
-  padding: 1px 10px 3px 10px;
+  padding: 0;
+  width: 100%;
+  justify-content: center;
 }
 
-button:hover {
-  background-color: #525252;
-  color: white;
+.menu li {
+  margin-bottom: 0.5rem;
 }
 
-.follower {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #405061;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 1.8em;
-  min-width: 16px;
-  text-align: right;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
-  width: 40%;
+.menu button {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  border: none;
+  background-color: rgb(157, 64, 2, 0.276);
+  color: rgb(121, 10, 10);
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 30px;
+  text-decoration: solid;
+
+  width: 250px;
+  transition: width 0.3s ease-in-out;
+}
+
+.menu button.active {
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.menu button:hover {
+  width: 270px;
+  background-color: rgba(0, 0, 0, 0.276);
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.content li {
+  width: calc(33.333% - 1rem);
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.content img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.content p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }

@@ -6,6 +6,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { User } from './user';
 import { MessageService } from './message.service';
+
+import { userRegister } from './userRegister';
 import { Game_search_DTO } from './games/game_search_DTO';
 
 
@@ -117,6 +119,22 @@ export class UserService {
   /** POST: add a new user to the server */
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions).pipe(
+      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<User>('addUser'))
+    );
+  }
+
+  registerUser(user: userRegister): Observable<User> {
+    const url = `${this.usersUrl}/register/${user.username}/${user.password}`;
+    return this.http.post<User>(this.usersUrl, {username:user.username, password:user.password}, this.httpOptions).pipe(
+      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<User>('registerUser'))
+    );
+  }
+
+  loginUser(user: userRegister): Observable<User> {
+    const url = `${this.userUrl}/login/${user.username}/${user.password}`;
+    return this.http.get<User>(url).pipe(
       tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('addUser'))
     );

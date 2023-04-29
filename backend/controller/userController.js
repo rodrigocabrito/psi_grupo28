@@ -1,94 +1,75 @@
 const User = require('../models/user');
-var Pet = require("../models/pet");
 var async = require('async');
 const { body,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
 
 
 exports.user_list = function(req, res)  {
-    let temp =[];
-    User.find()
-    .sort([['name', 'ascending']])
-    .exec( function (err, list_users) {
+  let temp =[];
+  User.find()
+  .sort([['username', 'ascending']])
+  .exec(function (err, list_users) {
       if (err) { return next(err); }
       //Successful, so render
       var count =0;
       for (let index = 0; index < list_users.length; index++) {
-        if (list_users[index].pet.length == 0) {
-          temp.push({id:list_users[index]._id, name:list_users[index].name, petname:list_users[index].pet});
+          temp.push({id:list_users[index]._id, username:list_users[index].username, followers:list_users[index].followers, following:list_users[index].following, games:list_users[index].games, wallet:list_users[index].wallet});
           count++;
-        }else{
-          Pet.findById(list_users[index].pet[0])
-          .exec( function (err, pet) {
-              if (err) { return next(err); }
-              if (pet==null) { // No results.
-                  var err = new Error('Book copy not found');
-                  err.status = 404;
-                  return next(err);
-                }
-                temp.push({id:list_users[index]._id, name:list_users[index].name, petname:{id:pet._id, name:pet.name}});
-                count++;
-                if(count == list_users.length){
-                  res.json(temp);
-                } 
-          })
-        }
+          if(count == list_users.length){
+              res.json(temp);
+          } 
       }
-      if(count == list_users.length){
-        res.json(temp);
-      } 
-    });
+  });
 };
+
 
 exports.user_detail = function(req, res, next) {
 
-    User.findById(req.params.id)
-    .populate('name')
-    .exec(function (err, user) {
-      if (err) { return next(err); }
-      if (user==null) { // No results.
-          var err = new Error('Book copy not found');
-          err.status = 404;
-          return next(err);
-        }
-      // Successful, so render.
-      if (user.pet.length == 0) {
-        res.json({id:user._id, name:user.name, petname:user.pet});
-      }else{
-        Pet.findById(user.pet[0])
-          .exec(function (err, pet) {
-              if (err) { return next(err); }
-              if (pet==null) { // No results.
-                  var err = new Error('Book copy not found');
-                  err.status = 404;
-                  return next(err);
-                }
-                res.json({id:user._id, name:user.name, petname:{id:pet._id, name:pet.name}});
-          })
+  User.findById(req.params.id)
+  .exec(function (err, user) {
+    if (err) { return next(err); }
+    if (user==null) { // No results.
+        var err = new Error('User not found');
+        err.status = 404;
+        return next(err);
       }
-      
-    })
+    // Successful, so render.
+    res.json({id:user._id, name:user.username, followers:user.followers, following:user.following, games:user.games, wallet:user.wallet});
+  })
 
 };
+
+exports.loginUser = function(req, res, next){
+  User.find({ 'username': req.params.param1})
+    .exec(async function(err, user){
+      if (err) { return next(err); }
+      if (user.length === 0) {
+        var err = new Error('User not found');
+        err.status = 404;
+        return next(err);
+      }
+       if (user[0].password !== req.params.param2) {
+        var err = new Error('User password error');
+        err.status = 401;
+        return next(err);
+       } 
+       res.send({id:user[0]._id ,username: user[0].username, followers: user[0].followers, following: user[0].following, games:[]})
+    })
+}
+
 
 exports.create_user = async function(req, res, next){
 
       const user = new User({name:req.body.name});
       const m = await user.save();
-      res.json({id: m._id ,name:m.name});  
+      res.json({id: m._id ,name:m.username});  
 }
 
 exports.update_user = async function(req, res, next) {
-    Pet.findById(req.body.petname)
-    .exec(async function (err, pet) {
-      if (err) { return next(err); }
-      if (pet==null) { // No results.
-        res.send(await User.findOneAndUpdate({_id:req.params.id}, {name: req.body.name}, { new : true}));
-        return;
-      }
-    res.send(await User.findOneAndUpdate({_id:req.params.id}, {name: req.body.name, pet: pet._id }, { new : true}));//{ name : req.params.name , pet : req.params.pe};
-    })
+  res.send(await User.findOneAndUpdate({_id:req.params.id}, {name: req.body.name}, { new : true}));
 }
+
+
 
 exports.delete_user = async function (req, res, next) {
     User.findByIdAndRemove(req.params.id, function deleteAuthor(err) {
@@ -98,12 +79,18 @@ exports.delete_user = async function (req, res, next) {
     })
 }
 
-exports.pet_user = function(req, res, next){
-    User.find({ 'pet': req.params.id })
-    .exec(function (err, list_users) {
-        if (err) { return next(err); }
-        //Successful, so render
+exports.registerUser = async function (req, res, next) {
+  console.log(req.body.username)
+    User.find({ 'username': req.body.username})
+    .exec(async function(err, user){
+      if (err) { return next(err); }
+      if (user.length === 0) {
+        const user1 = new User({username: req.body.username, password: req.body.password, wallet:0});
+        console.log(user1)
+        const user2 = await user1.save();
+        console.log(user2)
+        res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
+      }
         
-        res.json(list_users);
-      });
+    })
 }

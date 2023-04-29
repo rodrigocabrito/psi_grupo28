@@ -5,12 +5,12 @@ import { User } from '../user';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-register',
+  templateUrl: './register.component.html',
   styleUrls
-  : ['./login.component.scss'],
+  : ['./register.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   user: User | undefined;
   hide: boolean = true;
   username: string = "";
@@ -24,29 +24,24 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginForm: FormGroup = this.fb.group({
+  registerForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3), this.validateUsername.bind(this)]],
     password: ['', [Validators.required, Validators.minLength(8), this.validatePassword.bind(this)]]
   })
 
 
-  login() {
-    if (!this.loginForm.valid) {
+  register() {
+    if (!this.registerForm.valid) {
       return;
     }
-    this.username = this.loginForm.get('username')!.value;
-    this.password = this.loginForm.get('password')!.value;
-    let n =  this.userService.loginUser({username: this.username, password:this.password})
+    this.username = this.registerForm.get('username')!.value;
+    this.password = this.registerForm.get('password')!.value;
+    let n =  this.userService.registerUser({username: this.username, password:this.password})
     .subscribe(user => {
       this.user = user;
-      if (this.user) {
-        this.router.navigate(['/detail', this.user.id]);
-      }
     });
-    console.log(this.user?.id);
-    if (n !== undefined) {
-      alert('Username or password incorrect');
-    }
+  
+
   }
 
   validateUsername(control: any) {
