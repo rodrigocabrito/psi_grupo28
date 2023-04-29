@@ -67,3 +67,9 @@ h1 {
   .profile-numbers {
     padding-left: 30px;
   }
+
+  #follow {
+    position: absolute;
+    right: 2.5%;
+    top: 3.5%;
+  }
