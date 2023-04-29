@@ -1,32 +1,36 @@
-<h2>Dashboard</h2>
-
-<div class="menu">
-  <p>Listas</p>
-
-  <button (click)="getGamesLibrary(id)">Games Library</button>
-  <div class="games">
-    <ul>
-      <li *ngFor="let user of following">
-        <span class="game">{{user.id}}</span> {{user.name}}
-      </li>
-    </ul>
-  </div>
-
-  <button (click)="getFollowing(id)">A seguir</button>
-  <div class="following">
-    <ul>
-      <li *ngFor="let user of following">
-        <span class="followed">{{user.id}}</span> {{user.name}}
-      </li>
-    </ul>
-  </div>
-
-  <button (click)="getFollowers(id)">Seguidores</button>
-  <div class="followers">
-    <ul>
-      <li *ngFor="let user of followers">
-        <span class="follower">{{user.id}}</span> {{user.name}}
-      </li>
-    </ul>
-  </div>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="dashboard">Dashboard</h1>
+    </header>
+    <main>
+      <div class="menu">
+        <ul>
+          <li><button (click)="getFollowing(id)">Listas</button></li>
+          <li><button (click)="getGamesLibrary(id)">Games Library</button></li>
+          <li><button (click)="getFollowing(id)">A seguir</button></li>
+          <li><button (click)="getFollowers(id)">Seguidores</button></li>
+        </ul>
+        <div class="content">
+          <ul *ngIf="games">
+            <li *ngFor="let game of games">
+              <h3>{{game.name}}</h3>
+            </li>
+          </ul>
+          <ul *ngIf="following">
+            <li *ngFor="let user of following">
+              <h3>{{user.name}}</h3> {{user.id}}
+            </li>
+          </ul>
+          <ul *ngIf="followers">
+            <li *ngFor="let user of followers">
+              <h3>{{user.name}}</h3>{{user.id}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </body>
