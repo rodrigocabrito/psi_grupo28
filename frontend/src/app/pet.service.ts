@@ -40,8 +40,8 @@ export class PetService {
     const url = `${this.PetsUrl}/${id}`;
     debugger;
     var temp=[];
-    this.userService.getUsers()
-    .subscribe(users => this.find(users, id) );
+    //this.userService.getUsers()
+    //.subscribe(users => this.find(users, id) );
     
     
 
@@ -51,16 +51,16 @@ export class PetService {
     );
   }
 
-  private find(h : User[], id : String){
-    for (let index = 0; index < h.length; index++) {
-      if (h[index].petname.id === id) {
-        h[index] = {id: h[index].id, name: h[index].name, petname:{id:'',name:''}};
+//  private find(h : User[], id : String){
+    //for (let index = 0; index < h.length; index++) {
+      //if (h[index].petname.id === id) {
+       // h[index] = {id: h[index].id, name: h[index].name, petname:{id:'',name:''}};
 
-      }
-      this.userService.updateUser(h[index])
-        .subscribe();
-    }
-  }
+    //  }
+    //  this.userService.updateUser(h[index])
+     //   .subscribe();
+    //}
+  //}
 
   /**
    * Handle Http operation that failed.

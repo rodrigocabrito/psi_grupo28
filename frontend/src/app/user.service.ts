@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { User } from './user';
 import { MessageService } from './message.service';
+import { Game_search_DTO } from './games/game_search_DTO';
 
 
 @Injectable({ providedIn: 'root' })
@@ -78,6 +79,36 @@ export class UserService {
          this.log(`found users matching "${term}"`) :
          this.log(`no users matching "${term}"`)),
       catchError(this.handleError<User[]>('searchUsers', []))
+    );
+  }
+
+  /* GET user's followers */
+  getUserFollowers(id: string): Observable<User[]> {
+    const url = `${this.userUrl}/followers/${id}`;
+    return this.http.get<User>(url).pipe(
+      map(user => user.followers),
+      tap(_ => this.log(`fetched user's followers id=${id}`)),
+      catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
+    );
+  }
+  
+  /* GET users that the user with the given id is following*/
+  getUserFollowing(id: string): Observable<User[]> {
+    const url = `${this.userUrl}/following/${id}`;
+    return this.http.get<User>(url).pipe(
+      map(user => user.followers),
+      tap(_ => this.log(`fetched user's followers id=${id}`)),
+      catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
+    );
+  }
+
+  /* GET all games from the user with the given id*/
+  getGamesLibrary(id: string): Observable<Game_search_DTO[]> {
+    const url = `${this.userUrl}/gamesLibrary/${id}`;
+    return this.http.get<User>(url).pipe(
+      map(user => user.games),
+      tap(_ => this.log(`fetched user's games id=${id}`)),
+      catchError(this.handleError<User[]>(`getGamesLibrary id=${id}`))
     );
   }
 
