@@ -1,13 +1,32 @@
 <h2>Dashboard</h2>
 
 <div class="menu">
-  <a routerLink="/lista">Lista</a>
-  <a routerLink="/biblioteca-itens">Biblioteca Itens</a>
-  <div class="users">
-    <div class="menu-title">Users</div>
-    <a routerLink="/users/seguindo">Seguindo</a>
-    <a routerLink="/users/seguidores">Seguidores</a>
+  <p>Listas</p>
+
+  <button (click)="getGamesLibrary(id)">Games Library</button>
+  <div class="games">
+    <ul>
+      <li *ngFor="let user of following">
+        <span class="game">{{user.id}}</span> {{user.name}}
+      </li>
+    </ul>
+  </div>
+
+  <button (click)="getFollowing(id)">A seguir</button>
+  <div class="following">
+    <ul>
+      <li *ngFor="let user of following">
+        <span class="followed">{{user.id}}</span> {{user.name}}
+      </li>
+    </ul>
+  </div>
+
+  <button (click)="getFollowers(id)">Seguidores</button>
+  <div class="followers">
+    <ul>
+      <li *ngFor="let user of followers">
+        <span class="follower">{{user.id}}</span> {{user.name}}
+      </li>
+    </ul>
   </div>
 </div>
-
-<app-user-search></app-user-search>
