@@ -11,7 +11,7 @@ header {
 h1 {
   color: rgb(121, 10, 10);
   padding-left: 3rem;
-  font-size: 60px;
+  font-size: 45px;
 }
 
 nav {
@@ -72,16 +72,14 @@ main {
 }
 
 .menu button {
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
   border: none;
   background-color: rgb(157, 64, 2, 0.276);
   color: rgb(121, 10, 10);
-  padding: 0.5rem;
   cursor: pointer;
   font-size: 30px;
   text-decoration: solid;
-
   width: 250px;
   transition: width 0.3s ease-in-out;
 }
@@ -124,3 +122,4 @@ main {
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
+

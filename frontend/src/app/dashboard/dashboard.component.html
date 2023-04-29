@@ -9,27 +9,40 @@
     <main>
       <div class="menu">
         <ul>
-          <li><button (click)="getFollowing(id)">Listas</button></li>
-          <li><button (click)="getGamesLibrary(id)">Games Library</button></li>
-          <li><button (click)="getFollowing(id)">A seguir</button></li>
-          <li><button (click)="getFollowers(id)">Seguidores</button></li>
+          <li class="listas"><button class="listasButt" (click)="getFollowing(id); showListas()">Listas</button></li>
+          <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(id); showGames()">Games Library</button></li>
+          <li class="following"><button  class="followingButt"(click)="getFollowing(id); showFollowing()">A seguir</button></li>
+          <li class="followers"><button class="followersButt" (click)="getFollowers(id); showFollowers()">Seguidores</button></li>
         </ul>
         <div class="content">
-          <ul *ngIf="games">
-            <li *ngFor="let game of games">
-              <h3>{{game.name}}</h3>
-            </li>
-          </ul>
-          <ul *ngIf="following">
-            <li *ngFor="let user of following">
-              <h3>{{user.name}}</h3> {{user.id}}
-            </li>
-          </ul>
-          <ul *ngIf="followers">
-            <li *ngFor="let user of followers">
-              <h3>{{user.name}}</h3>{{user.id}}
-            </li>
-          </ul>
+          <div class="listasList" [hidden]="hideListas">
+            <ul *ngIf="games">
+              <li *ngFor="let game of games">
+                <h3>{{game.name}}</h3>
+              </li>
+            </ul>
+          </div>
+          <div class="gamesList" [hidden]="hideGames">
+            <ul *ngIf="games">
+              <li *ngFor="let game of games">
+                <h3>{{game.name}}</h3>
+              </li>
+            </ul>
+          </div>
+          <div class="followingList" [hidden]="hideFollowing">
+            <ul *ngIf="following">
+              <li *ngFor="let user of following">
+                <h3>{{user.name}}</h3> {{user.id}}
+              </li>
+            </ul>
+          </div>
+          <div class="followersList" [hidden]="hideFollowers">
+            <ul *ngIf="followers">
+              <li *ngFor="let user of followers">
+                <h3>{{user.name}}</h3>{{user.id}}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </main>

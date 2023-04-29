@@ -1,15 +1,11 @@
 <h1>{{title}}</h1>
 
-<button>
-  <img src="../imgs/home.ico">
-</button>
-
 <button mat-raised-button color="primary">
   <a routerLink="/login">Home</a>
 </button>
 <button mat-raised-button color="primary">
   <a routerLink="/login">Login</a>
-</button>  
+</button>
 <div class="app-header" *ngIf="!isRoute('dashboard')">
   <nav>
     <a routerLink="/user-profile">Perfil</a>

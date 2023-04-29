@@ -15,6 +15,10 @@ export class DashboardComponent implements OnInit {
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
   id: string = ''; //TODO get self id
+  hideListas = true;
+  hideGames = true;
+  hideFollowers = true;
+  hideFollowing = true;
 
   constructor(private userService: UserService) { }
 
@@ -37,5 +41,33 @@ export class DashboardComponent implements OnInit {
   getGamesLibrary(id: string): void {
     this.userService.getGamesLibrary(id)
     .subscribe(games => this.games = games);;
+  }
+
+  showListas(): void {
+    this.hideListas = false;
+    this.hideGames = true;
+    this.hideFollowers = true;
+    this.hideFollowing = true;
+  }
+
+  showGames(): void {
+    this.hideListas = true;
+    this.hideGames = false;
+    this.hideFollowers = true;
+    this.hideFollowing = true;
+  }
+
+  showFollowers(): void {
+    this.hideListas = true;
+    this.hideGames = true;
+    this.hideFollowers = false;
+    this.hideFollowing = true;
+  }
+
+  showFollowing(): void {
+    this.hideListas = true;
+    this.hideGames = true;
+    this.hideFollowers = true;
+    this.hideFollowing = false;
   }
 }
