@@ -8,4 +8,5 @@ export interface User {
   following: User[];
   games: Game_search_DTO[];
   petname: Pet;
+  profilepic: String;
 }
