@@ -68,3 +68,16 @@ button a{
 button a:hover{
   color: #9b7a25ac;
 }
+
+.palmeira1 {
+  position: absolute;
+  left: 670px;
+  width: 60px;
+}
+
+.palmeira2 {
+  position: absolute;
+  right: 670px;
+  top: 33px;
+  width: 60px;
+}
