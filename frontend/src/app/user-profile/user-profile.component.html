@@ -1,33 +1,33 @@
 <div class="profile">
     <label>User Profile</label>
     <div *ngIf="user">
+        <button mat-raised-button color="primary" id="dashboardBut"><a id="dashboard" routerLink="/dashboard/{{user.id}}">Dashboard</a></button>
         <div class="user-profile">
             <div class="profile-header">
-              <img src="profile-pic.jpg" alt="User Profile Picture">
-              <h2>John Doe</h2>
-              <p>john.doe@email.com</p>
+              <img src={{user.profilepic}} alt="User Profile Picture">
+              <h2>{{user.name}}</h2>
+              <p></p>
             </div>
             <hr>
             <div class="profile-container">
               <div class="profile-numbers">
-               <p>50 followers</p>
-               <p>43 follows</p>
+               <p>{{ user.followers?.length || '0' }} followers</p>
+               <p>{{ user.following?.length || '0' }} follows</p>
               </div>
               <hr style="width: 0,1px; height: 40px; display: inline-block;">
               <div class="profile-content">
                 <ul>
-                  <li><button>
-                    <a href="#">My library</a>
+                  <li><button (click)="getGamesLibrary(id)">
+                    My library
                   </button></li>
                   <li><button>
-                    <a href="#">Wishlist</a>
+                    Wishlist
                   </button></li>
-                  <li><button>
-                    <a href="#">My follows</a>
+                  <li><button (click)="getFollowing(id)">
+                    My follows
                   </button></li>
                 </ul>
               </div>
             </div>
-            <button id="follow">Follow</button>
           </div>
 </div>

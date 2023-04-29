@@ -1,9 +1,10 @@
 import { Game_search_DTO } from "./games/game_search_DTO";
 
 export interface User {
-  id: String;
+  id: string;
   name: string;
   followers: User[];
   following: User[];
   games: Game_search_DTO[];
+  profilepic: string;
 }

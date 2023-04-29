@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserService } from '../user.service';
+import { Game_search_DTO } from '../games/game_search_DTO';
 import { User } from '../user';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,14 +12,39 @@ import { UserService } from '../user.service';
 export class UserProfileComponent implements OnInit{
 
   user: User | undefined;
+  followers: User[] = [];
+  following: User[] = [];
+  games: Game_search_DTO[] = [];
+  lists: String[] = []; //TODO lists type & getter
+  showAppC = false;
+  id: string = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService,
-  ) {}
+  constructor(private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getUser();
+    //this.getFollowers(this.user.id);
+    //this.getFollowing(this.user.id);
+    //this.getGamesLibrary(this.user.id);
+  }
+
+  getFollowers(id: string): void {
+    this.userService.getUserFollowers(id)
+      .subscribe(followers => this.followers = followers);
+  }
+
+  getFollowing(id: string): void {
+    this.userService.getUserFollowing(id)
+      .subscribe(following => this.following = following);
+  }
+
+  getGamesLibrary(id: string): void {
+    this.userService.getGamesLibrary(id)
+    .subscribe(games => this.games = games);;
+  }
+
+  getWishlish(id: string): void {
+    
   }
 
   getUser(): void {
