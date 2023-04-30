@@ -40,12 +40,12 @@ export class LoginComponent implements OnInit {
     .subscribe(user => {
       this.user = user;
       if (this.user) {
-        this.router.navigate(['/dashboard', this.user.id]);
+        if (this.user.id === '0') {
+          alert('Username or password incorrect');
+        }else{this.router.navigate(['/dashboard', this.user.id]);}
       }
+      
     });
-    if (n !== undefined) {
-      alert('Username or password incorrect');
-    }
   }
 
   validateUsername(control: any) {
