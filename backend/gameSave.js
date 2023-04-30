@@ -19,7 +19,8 @@ console.log(
   
   async function main() {
     console.log("Debug: About to connect");
-    await mongoose.connect(mongoDB);
+    var mongoDB = 'mongodb://127.0.0.1/psi028';
+    await mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
     console.log("Debug: Should be connected?");
     await createGames();
     console.log("Debug: Closing mongoose");

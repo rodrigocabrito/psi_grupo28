@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
       this.user = user;
       if (this.user) {
         if (this.user.id === '0') {
-          alert('Username or password incorrect');
+          alert('Username is already taken');
         }else{this.router.navigate(['/dashboard', this.user.id]);}
       }
     });
