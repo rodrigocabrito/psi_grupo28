@@ -63,10 +63,26 @@ mat-card-title {
   font-size: 3em;
 }
 
+#buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
 #noacc {
-  margin-left: 30%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #registar {
   margin-left: 0.5em;
+  margin-right: 0.5em;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  //margin-left: 0.5em;
 }
