@@ -12,7 +12,7 @@ import { MessageService } from '../message.service';
 })
 export class GameService {
 
-  private gamesUrl = 'http://localhost:3028/games';
+  private gamesUrl = 'http://localhost:3078/games';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
