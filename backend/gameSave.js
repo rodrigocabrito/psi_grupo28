@@ -7,6 +7,7 @@ console.log(
   // Get arguments passed on command line
   const userArgs = process.argv.slice(2);
   const Game = require("./models/game")
+  const os = require('os');
   
   const games = [];
   
