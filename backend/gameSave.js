@@ -24,8 +24,6 @@ console.log(
         mongoDB = 'mongodb://psi028:psi028@localhost:27017/psi028?retryWrites=true&authSource=psi028';
     }
     await mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
-    var db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
     console.log("Debug: Should be connected?");
     await createGames();
     console.log("Debug: Closing mongoose");
