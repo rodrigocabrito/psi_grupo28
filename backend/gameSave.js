@@ -20,7 +20,12 @@ console.log(
   async function main() {
     console.log("Debug: About to connect");
     var mongoDB = 'mongodb://127.0.0.1/psi028';
-    await mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+    if (os.hostname() == "appserver.alunos.di.fc.ul.pt") {
+        mongoDB = 'mongodb://psi028:psi028@localhost:27017/psi028?retryWrites=true&authSource=psi028';
+    }
+    mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
     console.log("Debug: Should be connected?");
     await createGames();
     console.log("Debug: Closing mongoose");
