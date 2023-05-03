@@ -36,6 +36,17 @@ export class GameService {
    );
   }
 
+  /*
+  rateGame(gameName: string, rating: number) {
+    game = getGame(gameName); //TODO
+    game.rating.push(rating); // create game, create game.rating[]:number
+  }
+
+  addComment(gameName: string, comment: string) {
+    game = getGame(gameName); //TODO
+    game.comments.push(comment); // create game.comments[]:string
+  }
+  */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
