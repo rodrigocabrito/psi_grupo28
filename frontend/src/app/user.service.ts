@@ -159,6 +159,28 @@ export class UserService {
     );
   }
 
+  /*
+  removeItemsFromCart(user: User, items: string[]): void {
+    user.cart = user.cart.filter(item => !items.includes(item.name));
+  }
+
+  removeItemsFromWishlist(user: User, items: string[]): void {
+    user.wishlist = user.wishlist.filter(item => !items.includes(item.name));
+  }
+
+  addItemToLibrary(user: User, items: string[]): void {
+    const itemsToAdd: Game[] = [];
+    for (const item1 of items) {
+      const item = this.items.find((item) => item.name === item1);
+      if (!item) {
+        throw new Error(`Game with name ${itemName} not found`);
+      }
+      itemsToAdd.push(item);
+    }
+    user.cart.push(...itemsToAdd);
+  }
+  */
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

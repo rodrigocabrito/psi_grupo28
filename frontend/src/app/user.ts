@@ -7,4 +7,6 @@ export interface User {
   following: User[];
   games: Game_search_DTO[];
   profilepic: string;
+  //wishList: Game[];
+  //cart: Game[];
 }

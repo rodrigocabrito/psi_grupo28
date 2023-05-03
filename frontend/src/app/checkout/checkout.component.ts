@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -26,4 +30,19 @@ export class CheckoutComponent {
   generateRandomNumber(): number {
     return Math.floor(Math.random() * 100) + 1;
   }
+
+  /*
+  removeItensCarrinho(itens: string[]): void {
+    const user = this.userService.getUser(id); // get self id
+    this.userService.removeItemsFromCart(user, itens); // change to game, create game type
+  }
+
+  adicionaItensBiblioteca(itens: string[]): void {
+    this.userService.addItemToLibrary(itens);
+  }
+
+  removeItensWishlist(itens: string[]): void {
+    this.userService.removeItemsFromWishlist(itens);
+  }
+  */
 }
