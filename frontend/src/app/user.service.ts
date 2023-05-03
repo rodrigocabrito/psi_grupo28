@@ -14,8 +14,8 @@ import { Game_search_DTO } from './games/game_search_DTO';
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  private usersUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/users';  // URL to web api
-  private userUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/user';
+  private usersUrl = 'http://localhost:3000/users';  // URL to web api
+  private userUrl = 'http://localhost:3000/user';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

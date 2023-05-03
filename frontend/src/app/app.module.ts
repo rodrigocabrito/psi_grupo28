@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { GameSearchComponent } from './game-search/game-search.component';
 import { GamesComponent } from './games/games.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import { GamesComponent } from './games/games.component';
     LoginComponent,
     RegisterComponent,
     GameSearchComponent,
-    GamesComponent
+    GamesComponent,
+    CheckoutComponent
   ],
   bootstrap: [ AppComponent ]
 })

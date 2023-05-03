@@ -12,7 +12,7 @@ import { MessageService } from '../message.service';
 })
 export class GameService {
 
-  private gamesUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/games';
+  private gamesUrl = 'http://localhost:3000/games';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

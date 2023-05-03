@@ -1,0 +1,22 @@
+<div>
+    <form action="/checkout" method="POST">
+        <h2>Checkout</h2>
+        <label for="nif">*NIF:</label>
+            <input type="text" value="required" id="nif" name="nif" required>
+    
+        <label for="address">Morada:</label>
+            <input type="text" value="optional" id="address" name="address">
+
+        <label for="payment-method">*Método de pagamento:</label>
+            <select id="payment-method" name="payment-method">
+                <option value="credit-card">Cartão de Crédito</option>
+                <option value="paypal">PayPal</option>
+                <option value="apple-pay">Apple Pay</option>
+                <option value="google-pay">Google Pay</option>
+                <option value="cu">Cu</option>
+            </select>
+
+        <button type="cancel" routerLink="/carrinho">Voltar atrás</button>
+        <button type="submit" (click)="finalizeBuy()">Finalizar compra</button>
+    </form>
+</div>
