@@ -7,6 +7,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'user-profile/:id', component: UserProfileComponent},
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'game/:id', component: GameDetailComponent}
 ];
 
 @NgModule({

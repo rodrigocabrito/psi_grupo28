@@ -1,0 +1,49 @@
+<div *ngIf="game">
+    <h2>{{game.name | uppercase}} Details</h2>
+    <div class="slideshow-container">
+        <div class="mySlides fade" style="display: block;">
+            <img src='http://localhost:3000/images/{{game.img_p}}' style="width:100%">
+        </div>
+        <div class="mySlides fade" *ngIf="game.img_s.length >= 1">
+            <img src='http://localhost:3000/images/{{game.img_s[0]}}'style="width:100%">
+        </div>
+        <div class="mySlides fade" *ngIf="game.img_s.length >= 2">
+            <img src='http://localhost:3000/images/{{game.img_s[1]}}' style="width:100%">
+        </div>
+        <a class="prev" (click)="plusSlides(-1)">❮</a>
+        <a class="next" (click)="plusSlides(1)">❯</a>
+        <br>
+        <div style="text-align:center">
+            <span class="dot" (click)="currentSlide(1)" *ngIf="game.img_s.length >= 1"></span> 
+            <span class="dot" (click)="currentSlide(2)"></span> 
+            <span class="dot" (click)="currentSlide(3)" *ngIf="game.img_s.length >= 2"></span> 
+        </div>
+    </div>
+    <div>
+        <div>type: {{game.type}}</div>
+        <div>price: {{game.price}}</div>
+        <div>rate: {{game.rate}}</div>
+    </div>
+    <div>
+        <button>addWishList</button>
+        <br>
+        <button>addShopCar</button>
+        
+    </div>
+    <div class="description">
+        <h3>Descrição:</h3>
+        <p>{{game.description}}</p>
+    </div>
+    <div class="description">
+        <p>supported Platform: {{game.platform}}</p>
+        <p>supported Language: {{game.language}}</p>
+    </div>
+    <div>
+        <h3>Avaliação:</h3>
+        <ul class="avaliacao" *ngIf="game.comment.length > 0">
+            <li *ngFor="let comment of game.comment">
+              {{comment}}
+            </li>
+          </ul>
+    </div>
+  </div>

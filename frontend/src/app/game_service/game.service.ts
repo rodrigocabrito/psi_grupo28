@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Game_search_DTO } from '../games/game_search_DTO';
+import { Game_detail } from '../games/game_detail';
 import { MessageService } from '../message.service';
 
 @Injectable({
@@ -13,6 +14,8 @@ import { MessageService } from '../message.service';
 export class GameService {
 
   private gamesUrl = 'http://localhost:3000/games';
+  private gameUrl = 'http://localhost:3000/game';
+  
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -34,6 +37,14 @@ export class GameService {
         this.log(`no heroes matching "${term}"`)),
      catchError(this.handleError<Game_search_DTO[]>('searchHeroes', []))
    );
+  }
+
+  getGameDetail(id: String): Observable<Game_detail> {
+    const url = `${this.gameUrl}/${id}`;
+    return this.http.get<Game_detail>(url).pipe(
+      tap(_ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Game_detail>(`getGame id=${id}`))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

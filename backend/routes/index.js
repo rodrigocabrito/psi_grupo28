@@ -24,4 +24,6 @@ router.delete('/user/:id', users_controller.delete_user);
 
 router.get('/games/search/:param', game_controller.search);
 
+router.get('/game/:id', game_controller.game_detail);
+
 module.exports = router;

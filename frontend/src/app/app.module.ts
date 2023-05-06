@@ -21,6 +21,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { GamesComponent } from './games/games.component';
+import { GameSearchComponent } from './game-search/game-search.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
 
 @NgModule({
   imports: [
@@ -49,7 +52,10 @@ import { RegisterComponent } from './register/register.component';
     UserSearchComponent,
     UserProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    GamesComponent,
+    GameSearchComponent,
+    GameDetailComponent
   ],
   bootstrap: [ AppComponent ]
 })
