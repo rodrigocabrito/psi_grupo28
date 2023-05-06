@@ -138,3 +138,18 @@ main {
 #dashboardBut:hover {
   color: #9b7a25ac;
 }
+
+#perfil{
+  color: black;
+  text-decoration: none;
+}
+
+#cart{
+  transform: scale(1.5);
+  position: absolute;
+  right: 2.5%;
+  top: 3.5%;
+  color: black;
+}
+
+

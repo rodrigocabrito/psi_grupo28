@@ -26,6 +26,7 @@ import { GameSearchComponent } from './game-search/game-search.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RatingComponent } from './rating/rating.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { RatingComponent } from './rating/rating.component';
     GameSearchComponent,
     GameDetailComponent,
     CheckoutComponent,
-    RatingComponent
+    RatingComponent,
+    CartComponent
   ],
   bootstrap: [ AppComponent ]
 })

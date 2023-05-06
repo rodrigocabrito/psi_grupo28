@@ -43,7 +43,10 @@ export class RegisterComponent implements OnInit {
       if (this.user) {
         if (this.user.id === '0') {
           alert('Username is already taken');
-        }else{this.router.navigate(['/dashboard', this.user.id]);}
+        }else{
+          this.router.navigate(['/dashboard', this.user.id]);
+          alert('Register completed successfully');
+        }
       }
     });
   
