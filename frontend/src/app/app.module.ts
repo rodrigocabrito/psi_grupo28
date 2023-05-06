@@ -21,8 +21,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { GameSearchComponent } from './game-search/game-search.component';
 import { GamesComponent } from './games/games.component';
+import { GameSearchComponent } from './game-search/game-search.component';
+import { GameDetailComponent } from './game-detail/game-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { RatingComponent } from './rating/rating.component';
 
@@ -54,8 +55,9 @@ import { RatingComponent } from './rating/rating.component';
     UserProfileComponent,
     LoginComponent,
     RegisterComponent,
-    GameSearchComponent,
     GamesComponent,
+    GameSearchComponent,
+    GameDetailComponent,
     CheckoutComponent,
     RatingComponent
   ],
