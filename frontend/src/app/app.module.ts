@@ -21,9 +21,10 @@ import { MessagesComponent } from './messages/messages.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { GamesComponent } from './games/games.component';
 import { GameSearchComponent } from './game-search/game-search.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   imports: [
@@ -53,9 +54,10 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
     UserProfileComponent,
     LoginComponent,
     RegisterComponent,
-    GamesComponent,
     GameSearchComponent,
-    GameDetailComponent
+    GameDetailComponent,
+    WishlistComponent,
+    SafePipe,
   ],
   bootstrap: [ AppComponent ]
 })

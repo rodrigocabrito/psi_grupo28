@@ -1,6 +1,6 @@
-<div id="search-component">
+<div id="search-component" (click)="clickEvent()">
     <label for="search-box">Game Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" (click)="clickEvent()"/>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" />
   
     <ul class="search-result" >
         <div id="show" ng-hide="myVar">

@@ -40,6 +40,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(user => {
       this.user = user;
       if (this.user) {
+        window.localStorage.setItem('session', JSON.stringify(this.user?.id));
         this.router.navigate(['/dashboard', this.user.id]);
       }
     });

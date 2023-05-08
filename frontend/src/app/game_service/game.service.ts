@@ -7,14 +7,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Game_search_DTO } from '../games/game_search_DTO';
 import { Game_detail } from '../games/game_detail';
 import { MessageService } from '../message.service';
+import { Game_wishlist } from '../games/game_wishlist';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
 
-  private gamesUrl = 'http://localhost:3000/games';
-  private gameUrl = 'http://localhost:3000/game';
+  private gamesUrl = 'http://localhost:3078/games';
+  private gameUrl = 'http://localhost:3078/game';
   
 
   httpOptions = {
@@ -45,6 +46,16 @@ export class GameService {
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Game_detail>(`getGame id=${id}`))
     );
+  }
+
+  getWishList(id: string): Observable<Game_wishlist[]> {
+    return this.http.get<Game_wishlist[]>(`${this.gamesUrl}/wishlist/${id}`).pipe(
+     catchError(this.handleError<Game_wishlist[]>('wishlist', []))
+   );
+  }
+
+  addWishList(session: string, gameId: string): Observable<boolean>{
+    return this.http.post<boolean>(`${this.gameUrl}/towish`,{userId: session, gameId: gameId}, this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

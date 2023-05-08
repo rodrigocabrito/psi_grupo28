@@ -6,6 +6,10 @@
     <button class="perfilButt" mat-raised-button color="primary" id="dashboardBut"><a id="perfil"
       routerLink="/user-profile/{{user.id}}">Perfil</a></button>
   </div>
+  <div *ngIf="user">
+    <button class="perfilButt" mat-raised-button color="primary" id="dashboardBut"><a id="wish"
+      routerLink="/wishlist">Wishlist</a></button>
+  </div>
   <body>
     <header>
       <h1 class="dashboard">Dashboard</h1>
@@ -49,5 +53,6 @@
           </div>
         </div>
       </div>
+      <app-game-search></app-game-search>
     </main>
   </body>

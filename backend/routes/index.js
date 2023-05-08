@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 const users_controller = require("../controller/userController");
-const pets_controller = require("../controller/petController");
 const game_controller = require("../controller/gameController");
 
 /* GET home page. */
@@ -25,5 +24,9 @@ router.delete('/user/:id', users_controller.delete_user);
 router.get('/games/search/:param', game_controller.search);
 
 router.get('/game/:id', game_controller.game_detail);
+
+router.get('/games/wishlist/:id', game_controller.getwishlist);
+
+router.post('/game/towish', game_controller.addWishlist);
 
 module.exports = router;

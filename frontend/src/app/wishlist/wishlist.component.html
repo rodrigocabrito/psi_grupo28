@@ -1,0 +1,9 @@
+<ul class="heroes">
+    <li *ngFor="let game of wishlist">
+      <a routerLink="/game/{{game.id}}">
+        <span class="badge">{{game.image_p}}</span> {{game.name}}
+      </a>
+      <button type="button" class="delete" title="delete hero"
+        >x</button>
+    </li>
+</ul>

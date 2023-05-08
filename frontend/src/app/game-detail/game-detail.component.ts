@@ -13,6 +13,7 @@ import { GameService } from '../game_service/game.service';
 export class GameDetailComponent {
   game: Game_detail | undefined;
   slideIndex = 2;
+  session : string = "";
   url = "http://localhost:3000/images/";
 
   constructor(
@@ -22,6 +23,10 @@ export class GameDetailComponent {
   ) {}
   
   ngOnInit(): void {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.session = JSON.parse(session);
+    }
     this.getGame();
   }
 
@@ -41,6 +46,12 @@ export class GameDetailComponent {
   currentSlide(n : number) :void{
     this.slideIndex = n;
     this.showSlides(this.slideIndex);
+  }
+
+  addWish(){
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.GameService.addWishList(this.session, id)
+    .subscribe();
   }
   
   showSlides(n : number) : void {
