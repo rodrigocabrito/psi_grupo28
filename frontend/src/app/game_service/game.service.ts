@@ -14,13 +14,9 @@ import { Game_wishlist } from '../games/game_wishlist';
 })
 export class GameService {
 
-<<<<<<< HEAD
   private gamesUrl = 'http://localhost:3078/games';
   private gameUrl = 'http://localhost:3078/game';
   
-=======
-  private gamesUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/games';
->>>>>>> 3e83ca3a054341a60493d9c1c7bab72a4664e76f
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
