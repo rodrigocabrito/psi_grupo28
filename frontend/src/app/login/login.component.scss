@@ -17,7 +17,7 @@ mat-form-field {
   margin-left: auto;
   margin-right: auto;
   top: 5em;
-  background-color: #d5a835ac;
+  background-color: rgba(157, 64, 2, 0.363);
   border-radius: 4px;
 }
 
@@ -63,10 +63,26 @@ mat-card-title {
   font-size: 3em;
 }
 
+#buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
 #noacc {
-  margin-left: 30%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #registar {
   margin-left: 0.5em;
+  margin-right: 0.5em;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  //margin-left: 0.5em;
 }

@@ -46,11 +46,13 @@ exports.loginUser = function(req, res, next){
       if (user.length === 0) {
         var err = new Error('User not found');
         err.status = 404;
+        res.send({id:"0" ,username: "", followers: [], following: [], games:[]});
         return next(err);
       }
        if (user[0].password !== req.params.param2) {
         var err = new Error('User password error');
         err.status = 401;
+        res.send({id:"0" ,username: "", followers: [], following: [], games:[]});
         return next(err);
        } 
        res.send({id:user[0]._id ,username: user[0].username, followers: user[0].followers, following: user[0].following, games:[]})
@@ -90,6 +92,8 @@ exports.registerUser = async function (req, res, next) {
         const user2 = await user1.save();
         console.log(user2)
         res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
+      }else{
+        res.send({id:"0" ,username: "", followers: [], following: [], games:[]});
       }
         
     })

@@ -123,7 +123,7 @@ main {
   line-height: 1.2;
 }
 
-.perfilButt {
+#dashboardBut {
   position: absolute;
   right: 20px;
   top: 107px;
@@ -135,6 +135,6 @@ main {
   color: black;
 }
 
-.perfilButt:hover {
+#dashboardBut:hover {
   color: #9b7a25ac;
 }

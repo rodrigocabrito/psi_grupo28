@@ -2,7 +2,7 @@
 h1 {
   text-align: center;
   margin: auto;
-  max-width: 500px;
+  max-width: 650px;
 
   /* flexbox */
   display: flex;
@@ -69,15 +69,3 @@ button a:hover{
   color: #9b7a25ac;
 }
 
-.palmeira1 {
-  position: absolute;
-  left: 670px;
-  width: 60px;
-}
-
-.palmeira2 {
-  position: absolute;
-  right: 670px;
-  top: 33px;
-  width: 60px;
-}

@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   hide: boolean = true;
   username: string = "";
   password: string = "";
+  confirmPassword: string = "";
   usernameError: string = "";
   passwordError: string = "";
 
@@ -36,12 +37,15 @@ export class RegisterComponent implements OnInit {
     }
     this.username = this.registerForm.get('username')!.value;
     this.password = this.registerForm.get('password')!.value;
-    let n =  this.userService.registerUser({username: this.username, password:this.password})
+    this.userService.registerUser({username: this.username, password:this.password})
     .subscribe(user => {
       this.user = user;
       if (this.user) {
         window.localStorage.setItem('session', JSON.stringify(this.user?.id));
         this.router.navigate(['/dashboard', this.user.id]);
+        if (this.user.id === '0') {
+          alert('Username is already taken');
+        }else{this.router.navigate(['/dashboard', this.user.id]);}
       }
     });
   

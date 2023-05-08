@@ -1,5 +1,5 @@
-var os = require('os');
 var createError = require('http-errors');
+var os = require('os');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -11,22 +11,16 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-//const mongoose = require("mongoose");
-//var mongoDB = 'mongodb://127.0.0.1/psi028';
-//if (os.hostname() == "appserver.alunos.di.fc.ul.pt") {
-  //mongoDB = 'mongodb://psi028:psi028@localhost:27017/psi028?retryWrites=true&authSource=psi028';
-//}
-//mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
-//var db = mongoose.connection;
-//db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-const mongoose = require("mongoose");
-mongoose.set('strictQuery', false);
-const mongoDB = "mongodb+srv://1243613534:dGwal3uKkFX7KIzm@cluster0.ivd3p2m.mongodb.net/local_library?retryWrites=true&w=majority";
-
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
+var mongoose = require('mongoose');
+//Set up mongoose connection
+var mongoDB = 'mongodb://127.0.0.1/psi028';
+if (os.hostname() == "appserver.alunos.di.fc.ul.pt") {
+  mongoDB = 'mongodb://psi028:psi028@localhost:27017/psi028?retryWrites=true&authSource=psi028';
 }
+mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
 app.use(express.static('public'));
 app.use('/images', express.static('images'));

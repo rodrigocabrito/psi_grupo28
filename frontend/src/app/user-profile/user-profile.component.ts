@@ -23,9 +23,6 @@ export class UserProfileComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUser();
-    //this.getFollowers(this.user.id);
-    //this.getFollowing(this.user.id);
-    //this.getGamesLibrary(this.user.id);
   }
 
   getFollowers(id: string): void {
