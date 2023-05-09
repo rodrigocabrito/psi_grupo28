@@ -9,6 +9,7 @@
     <a routerLink="/cart/{{user.id}}">
       <mat-icon id="cart">shopping_cart</mat-icon>
     </a>
+    <ul>{{ user.cart.length }}</ul>
   </div>
   <body>
     <header>
@@ -53,6 +54,8 @@
           </div>
         </div>
       </div>
+      <app-game-search></app-game-search>
+      <a routerLink="/game/6456d56945ca97c3edb0cfd7">JOGO</a>
     </main>
   </body>
   <app-game-search></app-game-search>

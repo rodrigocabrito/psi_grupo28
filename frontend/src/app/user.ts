@@ -1,3 +1,4 @@
+import { Game_detail } from "./games/game_detail";
 import { Game_search_DTO } from "./games/game_search_DTO";
 
 export interface User {
@@ -8,5 +9,5 @@ export interface User {
   games: Game_search_DTO[];
   profilepic: string;
   //wishList: Game[];
-  //cart: Game[];
+  cart: Game_detail[];
 }

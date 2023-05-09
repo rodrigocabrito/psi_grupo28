@@ -9,9 +9,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  user:User |undefined
+  user:User | undefined;
 
-  constructor(private userService: UserService,private route: ActivatedRoute) { }
+  constructor(private userService: UserService,private route: ActivatedRoute) { 
+  }
 
   ngOnInit(): void {
     this.getUser();
@@ -21,6 +22,13 @@ export class CartComponent {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.userService.getUser(id)
       .subscribe(user => this.user = user);
+  }
+
+  getItemsInCart(): number {
+    if (this.user && this.user.cart) {
+      return this.user.cart.length;
+    }
+    return 0;
   }
 }
 

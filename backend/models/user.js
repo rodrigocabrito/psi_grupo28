@@ -9,7 +9,9 @@ const UserSchema = new Schema(
     followers: {type:[ Schema.Types.ObjectId], ref :"User"},
     following: {type:[ Schema.Types.ObjectId], ref :"User"},
     games: {type:[ Schema.Types.ObjectId], ref :"Game"},
-    wallet: {type: Number}
+    wishlist: {type: [Schema.Types.ObjectId], ref:"WishList"},
+    wallet: {type: Number},
+    cart: {type:[ Schema.Types.ObjectId], ref :"Game"}
   }
 );
 
