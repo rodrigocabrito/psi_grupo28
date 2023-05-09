@@ -31,7 +31,7 @@ router.post('/game/towish', game_controller.addWishlist);
 
 router.get('/games/cart/:id', game_controller.getcart);
 
-router.post('/games/tocart', game_controller.addCart);
+router.post('/game/tocart', game_controller.addCart);
 
 
 module.exports = router;

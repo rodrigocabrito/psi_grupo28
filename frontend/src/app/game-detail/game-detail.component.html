@@ -1,7 +1,7 @@
 <div *ngIf="game">
     <h2>{{game.name | uppercase}} Details</h2>
     <button mat-raised-button color="primary" id="dashboardBut">
-        <a id="dashboard" routerLink="/dashboard/{{ userId }}">Dashboard</a>
+        <a id="dashboard" routerLink="/dashboard/{{ session }}">Dashboard</a>
     </button>
     <div class="slideshow-container">
         <div class="mySlides fade" style="display: block;">

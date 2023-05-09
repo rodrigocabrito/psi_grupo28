@@ -13,7 +13,7 @@ exports.user_list = function(req, res)  {
       //Successful, so render
       var count =0;
       for (let index = 0; index < list_users.length; index++) {
-          temp.push({id:list_users[index]._id, username:list_users[index].username, followers:list_users[index].followers, following:list_users[index].following, games:list_users[index].games, wallet:list_users[index].wallet, cart:list_users[index].cart});
+          temp.push({id:list_users[index]._id, username:list_users[index].username, followers:list_users[index].followers, following:list_users[index].following, games:list_users[index].games, wallet:list_users[index].wallet});
           count++;
           if(count == list_users.length){
               res.json(temp);
@@ -34,7 +34,7 @@ exports.user_detail = function(req, res, next) {
         return next(err);
       }
     // Successful, so render.
-    res.json({id:user._id, name:user.username, followers:user.followers, following:user.following, games:user.games, wallet:user.wallet,cart:user.cart});
+    res.json({id:user._id, name:user.username, followers:user.followers, following:user.following, games:user.games, wallet:user.wallet});
   })
 
 };
@@ -46,16 +46,16 @@ exports.loginUser = function(req, res, next){
       if (user.length === 0) {
         var err = new Error('User not found');
         err.status = 404;
-        res.send({id:"0" ,username: "", followers: [], following: [], games:[],cart:[]});
+        res.send({id:"0" ,username: "", followers: [], following: [], games:[]});
         return next(err);
       }
        if (user[0].password !== req.params.param2) {
         var err = new Error('User password error');
         err.status = 401;
-        res.send({id:"0" ,username: "", followers: [], following: [], games:[], cart:[]});
+        res.send({id:"0" ,username: "", followers: [], following: [], games:[]});
         return next(err);
        } 
-       res.send({id:user[0]._id ,username: user[0].username, followers: user[0].followers, following: user[0].following, games:[], cart:[]})
+       res.send({id:user[0]._id ,username: user[0].username, followers: user[0].followers, following: user[0].following, games:[]})
     })
 }
 
@@ -93,7 +93,7 @@ exports.registerUser = async function (req, res, next) {
         console.log(user2)
         res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
       }else{
-        res.send({id:"0" ,username: "", followers: [], following: [], games:[], cart:[]});
+        res.send({id:"0" ,username: "", followers: [], following: [], games:[]});
       }
         
     })
