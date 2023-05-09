@@ -14,15 +14,14 @@ import { User } from '../user';
 })
 export class GameDetailComponent {
   game: Game_detail | undefined;
-  user: User | undefined;
   userId: string | null = sessionStorage.getItem('id');
+  session : string = "";
   slideIndex = 2;
   url = "http://localhost:3078/images/";
 
   constructor(
     private route: ActivatedRoute,
     private GameService: GameService,
-    private userService: UserService,
     private location: Location
   ) {}
   
@@ -32,7 +31,6 @@ export class GameDetailComponent {
       this.session = JSON.parse(session);
     }
     this.getGame();
-    this.getUser();
   }
 
   getGame(): void {
@@ -41,17 +39,6 @@ export class GameDetailComponent {
     .subscribe( (game)=>{this.game = game;
       console.log(this.game.description)} 
     );
-  }
-
-  getUser(): void {
-    if (this.userId === null) {
-      console.log('User is not logged in or registered');
-      return;
-    }
-    this.userService.getUser(this.userId).subscribe(user => {
-      this.user = user;
-      console.log('User fetched: ', this.user);
-    });
   }
   
   plusSlides(n: number) :void{
@@ -89,21 +76,9 @@ export class GameDetailComponent {
   }
 
   addCart() {
-    if (this.userId === null) {
-      console.log('User is not logged in or registered');
-      return;
-    }
-    if (this.game && this.user) {
-      this.userService.addGameToCart(this.user, this.game)
-        .subscribe(
-          user => {
-            this.user = user;
-          });
-          console.log('User fetched: ', this.user);
-          
-    } else {
-      console.log('Game or user is undefined');
-    }
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.GameService.addCart(this.session, id)
+    .subscribe();
   }
 
 }

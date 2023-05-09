@@ -47,7 +47,6 @@ export class RegisterComponent implements OnInit {
           alert('Username is already taken');
         }else{
           this.router.navigate(['/dashboard', this.user.id]);
-          sessionStorage.setItem('id', this.user.id);
           alert('Register completed successfully');
         }
       }

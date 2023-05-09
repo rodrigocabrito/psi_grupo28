@@ -29,7 +29,9 @@ router.get('/games/wishlist/:id', game_controller.getwishlist);
 
 router.post('/game/towish', game_controller.addWishlist);
 
-router.put('/user/:id/cart', users_controller.addGameToCart);
+router.get('/games/cart/:id', game_controller.getcart);
+
+router.post('/games/tocart', game_controller.addCart);
 
 
 module.exports = router;

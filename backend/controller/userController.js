@@ -98,19 +98,3 @@ exports.registerUser = async function (req, res, next) {
         
     })
 }
-
-exports.addGameToCart = async function(req, res, next) {
-  console.log(req.params.id);
-  console.log(req.body.cart);
-  try {
-    const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    user.cart = req.body.cart;
-    await user.save();
-    return res.json(user);
-  } catch (err) {
-    return next(err);
-  }
-};

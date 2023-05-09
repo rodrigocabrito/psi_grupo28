@@ -9,7 +9,6 @@ import { MessageService } from './message.service';
 
 import { userRegister } from './userRegister';
 import { Game_search_DTO } from './games/game_search_DTO';
-import { Game_detail } from './games/game_detail';
 
 
 @Injectable({ providedIn: 'root' })
@@ -181,21 +180,6 @@ export class UserService {
     user.cart.push(...itemsToAdd);
   }
   */
-
-  addGameToCart(user: User, game: Game_detail): Observable<User> {
-    if (!user || !user.id) {
-      throw new Error('User ID is undefined');
-    }
-  
-    // check if user has a cart array, if not initialize it
-    user.cart = user.cart || [];
-  
-    user.cart.push(game);
-    return this.http.put<User>(`${this.userUrl}/${user.id}`, user, this.httpOptions).pipe(
-      tap(() => this.log(`added game to cart of user w/ id=${user.id}`)),
-      catchError(this.handleError<User>('addGameToCart'))
-    );
-  }
 
   /**
    * Handle Http operation that failed.

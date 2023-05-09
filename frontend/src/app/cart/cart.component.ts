@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
+import { Game_wishlist } from '../games/game_wishlist';
+import { GameService } from '../game_service/game.service'; 
 
 @Component({
   selector: 'app-cart',
@@ -9,26 +11,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  user:User | undefined;
+  cart : Game_wishlist[] = [];
+  id : string = "";
 
-  constructor(private userService: UserService,private route: ActivatedRoute) { 
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private GameService: GameService
+  ) {}
 
   ngOnInit(): void {
-    this.getUser();
-  }
-
-  getUser(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
-    this.userService.getUser(id)
-      .subscribe(user => this.user = user);
-  }
-
-  getItemsInCart(): number {
-    if (this.user && this.user.cart) {
-      return this.user.cart.length;
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.id = JSON.parse(session);
     }
-    return 0;
+    console.log(this.id)
+    this.getCart();
+  }
+
+  getCart(): void {
+    this.GameService.getCart(this.id)
+    .subscribe( (cart1)=>{this.cart = cart1;} 
+    );
   }
 }
 

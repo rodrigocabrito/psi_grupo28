@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         if (this.user.id === '0') {
           alert('Username or password incorrect');
         }else{this.router.navigate(['/dashboard', this.user.id]);
-          sessionStorage.setItem('id', this.user.id);
         }
       }
       

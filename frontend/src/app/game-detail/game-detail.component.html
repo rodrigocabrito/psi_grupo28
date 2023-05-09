@@ -1,10 +1,8 @@
 <div *ngIf="game">
     <h2>{{game.name | uppercase}} Details</h2>
-    <div *ngIf="user">
-        <button mat-raised-button color="primary" id="dashboardBut">
-          <a id="dashboard" routerLink="/dashboard/{{ userId }}">Dashboard</a>
-        </button>
-    </div>
+    <button mat-raised-button color="primary" id="dashboardBut">
+        <a id="dashboard" routerLink="/dashboard/{{ userId }}">Dashboard</a>
+    </button>
     <div class="slideshow-container">
         <div class="mySlides fade" style="display: block;">
             <img src='http://localhost:3078/images/{{game.img_p}}' style="width:100%">

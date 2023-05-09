@@ -1,14 +1,12 @@
 <head>
     <title>Your Cart</title>
 </head>
-<div *ngIf="user">
-    <button mat-raised-button color="primary" id="dashboardBut">
-        <a id="voltar"routerLink="/dashboard/{{user.id}}">Voltar</a>
-    </button> 
-    <button mat-raised-button color="primary" id="checkoutBut">
-        <a id="checkout"routerLink="/checkout">Checkout</a>
-    </button> 
-    <div>Items in cart: {{getItemsInCart()}}</div>
-</div>
+<button mat-raised-button color="primary" id="dashboardBut">
+    <a id="voltar"routerLink="/dashboard/{{id}}">Voltar</a>
+</button> 
+<button mat-raised-button color="primary" id="checkoutBut">
+    <a id="checkout"routerLink="/checkout">Checkout</a>
+</button> 
+<div>Items in cart: {{cart.length}}</div>
 
 

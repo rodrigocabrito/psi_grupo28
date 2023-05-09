@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,8 @@ const routes: Routes = [
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
   { path: 'game/:id', component: GameDetailComponent},
-  { path: 'gam/wishlist', component: WishlistComponent}
+  { path: 'game/wishlist', component: WishlistComponent},
+  { path: 'game/cart', component: CartComponent},
 ];
 
 @NgModule({

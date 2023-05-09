@@ -11,7 +11,7 @@ const UserSchema = new Schema(
     games: {type:[ Schema.Types.ObjectId], ref :"Game"},
     wishlist: {type: [Schema.Types.ObjectId], ref:"WishList"},
     wallet: {type: Number},
-    cart: {type:[ Schema.Types.ObjectId], ref :"Game"}
+    cart: {type:[ Schema.Types.ObjectId], ref :"Cart"}
   }
 );
 

@@ -9,5 +9,5 @@ export interface User {
   games: Game_search_DTO[];
   profilepic: string;
   //wishList: Game[];
-  cart: Game_detail[];
+  //cart: Game_detail[];
 }

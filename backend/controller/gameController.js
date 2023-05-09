@@ -81,4 +81,37 @@ exports.search = function(req, res, next){
         res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{wishlist: user.wishlist}}, {}));
       })
     };
+
+    exports.getcart = function (req, res, next){
+      let cart = [];
+      console.log(req.params.id)
+      User.findById(req.params.id).exec(function (err, user){
+        if (err) {
+          return next(err);
+        }
+        console.log(req.params.id)
+        for (let index = 0; index < user.cart.length; index++) {
+          Game.findById(user.cart[index]).exec(function (err1, games){
+            console.log(games)
+            if (err1) {
+              return next(err1);
+            }
+              cart.push({id:games._id, name:games.name, img_p:games.image_p});
+              if (index === user.cart.length-1) {
+                res.send(cart);
+              }
+            
+          }); 
+          }
+            
+        });
+    };
+
+    exports.addCart = function (req, res, next){
+      User.findById(req.body.userId).exec(async function (err, user){
+        user.cart.push(req.body.gameId);
+        console.log(user.cart)
+        res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{cart: user.cart}}, {}));
+      })
+    };
   

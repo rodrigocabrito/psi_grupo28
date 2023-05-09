@@ -69,6 +69,16 @@ export class GameService {
     return this.http.post<boolean>(`${this.gameUrl}/towish`,{userId: session, gameId: gameId}, this.httpOptions);
   }
 
+  getCart(id: string): Observable<Game_wishlist[]> {
+    return this.http.get<Game_wishlist[]>(`${this.gamesUrl}/cart/${id}`).pipe(
+     catchError(this.handleError<Game_wishlist[]>('cart', []))
+   );
+  }
+
+  addCart(session: string, gameId: string): Observable<boolean>{
+    return this.http.post<boolean>(`${this.gameUrl}/tocart`,{userId: session, gameId: gameId}, this.httpOptions);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
