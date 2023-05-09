@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
   { path: 'game/:id', component: GameDetailComponent},
-  { path: 'gam/wishlist', component: WishlistComponent}
+  { path: 'wishlist', component: WishlistComponent}
 ];
 
 @NgModule({

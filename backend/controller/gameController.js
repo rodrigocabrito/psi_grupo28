@@ -51,31 +51,31 @@ exports.search = function(req, res, next){
 };
     exports.getwishlist = function (req, res, next){
       let wishlist = [];
-      console.log(req.params.id)
+      console.log("hellodsajk")
       User.findById(req.params.id).exec(function (err, user){
         if (err) {
           return next(err);
         }
-        console.log(req.params.id)
-        for (let index = 0; index < user.wishlist.length; index++) {
-          Game.findById(user.wishlist[index]).exec(function (err1, games){
+        console.log(user.wishlist)
+        
+          Game.find({ _id: { $in: user.wishlist } }).exec(function (err1, games){
             console.log(games)
             if (err1) {
               return next(err1);
             }
-              wishlist.push({id:games._id, name:games.name, img_p:games.image_p});
-              if (index === user.wishlist.length-1) {
-                res.send(wishlist);
-              }
-            
+            for (let index = 0; index < games.length; index++) {
+              wishlist.push({id:games[index]._id, name:games[index].name, img_p:games[index].image_p});
+            }
+            res.send(wishlist);
           }); 
-          }
-            
-        });
+          });
     };
 
     exports.addWishlist = function (req, res, next){
       User.findById(req.body.userId).exec(async function (err, user){
+        if(err){
+          res.send(false);
+        }
         user.wishlist.push(req.body.gameId);
         console.log(user.wishlist)
         res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{wishlist: user.wishlist}}, {}));
