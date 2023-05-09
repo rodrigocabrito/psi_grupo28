@@ -18,11 +18,16 @@ export class UserProfileComponent implements OnInit{
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
   id: string = '';
+  visitorid: string = '';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getUser();
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.visitorid = JSON.parse(session);
+    }
   }
 
   getFollowers(id: string): void {

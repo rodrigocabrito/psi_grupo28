@@ -7,7 +7,9 @@
             <div class="profile-header">
               <img src={{user.profilepic}} alt="User Profile Picture">
               <h2>{{user.name}}</h2>
-              <p></p>
+              <button id="follow">
+                Follow
+              </button>
             </div>
             <hr>
             <div class="profile-container">
@@ -27,8 +29,12 @@
                   <li><button (click)="getFollowing(id)">
                     My follows
                   </button></li>
+                  <li><button (click)="getFollowers(id)">
+                    My followers
+                  </button></li>
                 </ul>
               </div>
+              
             </div>
           </div>
 </div>
