@@ -23,6 +23,10 @@ export class UserProfileComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUser();
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.id = JSON.parse(session);
+    }
   }
 
   getFollowers(id: string): void {
