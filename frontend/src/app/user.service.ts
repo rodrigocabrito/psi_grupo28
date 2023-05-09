@@ -93,6 +93,14 @@ export class UserService {
       catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
     );
   }
+
+  followerHandler(userSelf: User, userToFollow: User): Observable<User> {
+    userToFollow.followers.push(userSelf);
+    return this.http.post<User>(`${this.userUrl}/${userToFollow.id}`, userToFollow, this.httpOptions).pipe(
+      tap((user: User) => this.log(`added a user to the followers of user w/ id=${user.id}`)),
+      catchError(this.handleError<User>('registerUser'))
+    );
+  }
   
   /* GET users that the user with the given id is following*/
   getUserFollowing(id: string): Observable<User[]> {
@@ -101,6 +109,14 @@ export class UserService {
       map(user => user.followers),
       tap(_ => this.log(`fetched user's followers id=${id}`)),
       catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
+    );
+  }
+
+  followerHandler2(userSelf: User, userToFollow: User): Observable<User> {
+    userSelf.following.push(userToFollow);
+    return this.http.post<User>(`${this.userUrl}/${userSelf.id}`, userSelf, this.httpOptions).pipe(
+      tap((user: User) => this.log(`added a user to the following of user w/ id=${user.id}`)),
+      catchError(this.handleError<User>('registerUser'))
     );
   }
 

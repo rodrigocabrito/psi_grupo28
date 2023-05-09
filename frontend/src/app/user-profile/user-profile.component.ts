@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit{
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
   id: string = '';
+  visitorid: string = '';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {}
 
@@ -25,7 +26,7 @@ export class UserProfileComponent implements OnInit{
     this.getUser();
     const session = window.localStorage.getItem("session");
     if (session) {
-      this.id = JSON.parse(session);
+      this.visitorid = JSON.parse(session);
     }
   }
 
