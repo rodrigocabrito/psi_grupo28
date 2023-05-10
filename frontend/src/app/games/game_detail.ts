@@ -6,7 +6,8 @@ export interface Game_detail {
   platform: string;
   language: string;
   price: Number;
-  rate: Number;
+  rates: number[];
+  rating: number;
   dlc: string[];
   main: string;
   img_p: string;
