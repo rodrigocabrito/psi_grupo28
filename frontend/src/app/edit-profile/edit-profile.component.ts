@@ -46,7 +46,10 @@ export class EditProfileComponent implements OnInit {
     }
   
     getUser(): void {
-      const id = this.route.snapshot.paramMap.get('id')!;
+      const session = window.localStorage.getItem("session");
+    if (session) {
+      this.id = JSON.parse(session);
+    }
       this.userService.getUser(id)
         .subscribe(user => this.user = user);
     }
