@@ -1,0 +1,73 @@
+mat-card-title{
+    font-size: 1.5em;
+    text-align: center;
+    padding-top: 1em;
+    color: rgb(121, 10, 10);
+  }
+  
+  mat-form-field {
+    margin-bottom: 15px;
+    margin-top: 10px;
+  
+  }
+  
+  .login-card {
+    width: 40em;
+    height: 30em;
+    margin-left: auto;
+    margin-right: auto;
+    top: 5em;
+    background-color: rgba(157, 64, 2, 0.363);
+    border-radius: 4px;
+  }
+  
+  .full-width {
+    width: 100%;
+    min-height: 3em;
+  }
+  
+  
+  .login-sep {
+    height: 1em;
+  }
+  
+  .button {
+    display: flex;
+    justify-content: center;
+  }
+  
+  mat-error.username-error {
+    position: absolute;
+    left: 10px;
+    bottom: -20px;
+  }
+  
+  .full-width {
+    display: inline-flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    width: 90%;
+    height: 4.5em;
+    margin-left: 5%;
+  }
+  
+  input[type="text"] {
+    font-size:1.7em;
+  }
+  
+  input[type="password"] {
+    font-size:1.7em;
+    padding-top: 10px;
+  }
+  mat-card-title {
+    font-size: 3em;
+  }
+  
+  #noacc {
+    margin-left: 30%;
+  }
+  
+  #registar {
+    margin-left: 0.5em;
+  }
+  
