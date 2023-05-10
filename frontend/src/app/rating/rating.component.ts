@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { GameService } from '../game_service/game.service';
+import { Game_detail } from '../games/game_detail';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rating',
@@ -7,13 +9,22 @@ import { GameService } from '../game_service/game.service';
   styleUrls: ['./rating.component.css']
 })
 export class RatingComponent {
-  userService: any;
   rating = 0
-  gameName = "" // TODO get from selecting in app
+  game: Game_detail | undefined 
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService,
+              private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.getGame();
+  }
+
+  getGame(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.gameService.getGameDetail(id)
+    .subscribe( (game)=>{this.game = game;
+      console.log(this.game.description)} 
+    );
   }
 
   onStarClick(rate: number): void {
@@ -28,18 +39,21 @@ export class RatingComponent {
     });
   }
 
+  //TODO check
   rate() {
-    while (this.rating === 0) {
+    if (this.rating === 0) {
       alert('Please select a rating.');
+    } else {
+      //not necessary for US
+      if(this.game) {
+        const inputField = document.querySelector('input[type="text"]') as HTMLInputElement;
+        const inputText = inputField.value;
+        this.gameService.addCommentGame(this.game, inputText);
+        this.gameService.rateGame(this.game, this.rating);
+
+        alert('Thanks for sharing your opinion!');
+      }
     }
-
-    //not necessary for US
-    const inputField = document.querySelector('input[type="text"]') as HTMLInputElement;
-    const inputText = inputField.value;
-    //this.gameService.addComment(this.gameName, inputText);
-    //this.gameService.rateGame(this.gameName, this.rating);
-
-    alert('Thanks for sharing your opinion!');
   }
 }
 
