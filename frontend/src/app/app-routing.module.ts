@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -16,11 +17,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'edit', component: EditProfileComponent },
   { path: 'user-profile/:id', component: UserProfileComponent},
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
   { path: 'game/:id', component: GameDetailComponent},
-  { path: 'wishlist', component: WishlistComponent}
+  { path: 'gam/wishlist', component: WishlistComponent}
 ];
 
 @NgModule({
