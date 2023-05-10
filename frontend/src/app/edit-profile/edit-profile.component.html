@@ -1,35 +1,14 @@
-<div class="profile">
-    <div *ngIf="user">
-        <button mat-raised-button color="primary" id="dashboardBut">
-          <a id="dashboard" routerLink="/dashboard/{{user.id}}">Dashboard</a>
-        </button>
-        <div class="user-profile">
-            <div class="profile-header">
-              <img src={{user.profilepic}} alt="User Profile Picture">
-              <h2>{{user.name}}</h2>
-              <p></p>
-              <button mat-raised-button color="primary" type="submit" routerLink="/edit">Edit</button> 
-            </div>
-            <hr>
-            <div class="profile-container">
-              <div class="profile-numbers">
-               <p>{{ user.followers?.length || '0' }} followers</p>
-               <p>{{ user.following?.length || '0' }} follows</p>
-              </div>
-              <hr style="width: 0,1px; height: 40px; display: inline-block;">
-              <div class="profile-content">
-                <ul>
-                  <li><button (click)="getGamesLibrary(id)">
-                    My library
-                  </button></li>
-                  <li><button>
-                    Wishlist
-                  </button></li>
-                  <li><button (click)="getFollowing(id)">
-                    My follows
-                  </button></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-</div>
+<mat-card class="login-card">
+    <mat-card-title>Edit</mat-card-title>
+    <div class="login-sep">&nbsp;</div>
+    <form>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username">
+      </mat-form-field>
+      <div class="button">
+        <button mat-raised-button color="primary" type="submit">Edit</button>
+        <button mat-raised-button color="primary" type="submit" routerLink="/user-profile">Go Back</button> 
+      </div>
+    </form>
+</mat-card>
