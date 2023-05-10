@@ -8,6 +8,7 @@ import { Game_search_DTO } from '../games/game_search_DTO';
 import { Game_detail } from '../games/game_detail';
 import { MessageService } from '../message.service';
 import { Game_wishlist } from '../games/game_wishlist';
+import { Game_cart } from '../games/game_cart';
 
 @Injectable({
   providedIn: 'root'
@@ -69,9 +70,9 @@ export class GameService {
     return this.http.post<boolean>(`${this.gameUrl}/towish`,{userId: session, gameId: gameId}, this.httpOptions);
   }
 
-  getCart(id: string): Observable<Game_wishlist[]> {
-    return this.http.get<Game_wishlist[]>(`${this.gamesUrl}/cart/${id}`).pipe(
-     catchError(this.handleError<Game_wishlist[]>('cart', []))
+  getCart(id: string): Observable<Game_cart[]> {
+    return this.http.get<Game_cart[]>(`${this.gamesUrl}/cart/${id}`).pipe(
+     catchError(this.handleError<Game_cart[]>('cart', []))
    );
   }
 

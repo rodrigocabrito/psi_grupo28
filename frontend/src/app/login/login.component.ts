@@ -40,9 +40,7 @@ export class LoginComponent implements OnInit {
     .subscribe(user => {
       this.user = user;
       if (this.user) {
-        window.localStorage.setItem('session', JSON.stringify(this.user?.id));
-        this.router.navigate(['/dashboard', this.user.id]);
-        
+        window.localStorage.setItem('session', JSON.stringify(this.user?.id));        
         if (this.user.id === '0') {
           alert('Username or password incorrect');
         }else{this.router.navigate(['/dashboard', this.user.id]);

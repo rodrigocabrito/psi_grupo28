@@ -1,12 +1,29 @@
-<head>
-    <title>Your Cart</title>
-</head>
-<button mat-raised-button color="primary" id="dashboardBut">
-    <a id="voltar"routerLink="/dashboard/{{id}}">Voltar</a>
-</button> 
-<button mat-raised-button color="primary" id="checkoutBut">
-    <a id="checkout"routerLink="/checkout">Checkout</a>
-</button> 
-<div>Items in cart: {{cart.length}}</div>
+<div class="Header">
+  <a routerLink="/dashboard/{{id}}" class="dash">← Dashboard</a>
+  <h3 class="Heading">Shopping Cart</h3>
+  <h5 class="Action">Remove all</h5>
+</div>
+<div class="Cart-Items">
+  <ng-container *ngFor="let game of getCartWithCounts()">
+    <li>
+      <img src="http://localhost:3078/images/{{game.image_p}}" style="width:100%">
+      <a routerLink="/game/{{game.id}}">{{game.name}}</a>
+      <span class="type">{{game.type}}</span>
+      <span class="quantity" *ngIf="game.quantity > 1">{{game.quantity}}</span>
+      <span class="price">{{game.price | currency:'EUR'}}</span>
+      <button type="button" class="delete" title="delete game">x</button>
+    </li>
+  </ng-container>
+</div>
 
-
+<div class="counter">
+  <span class="label">Items:</span>
+  <span class="value">{{cart.length}}</span>
+</div>
+<div class="prices">
+  <div class="subtotal">
+    <span class="label">Subtotal:</span>
+    <span class="value">{{getSubtotal()}}€</span>
+  </div>
+  <button type="button" class="checkout" routerLink="/checkout">Checkout</button>
+</div>

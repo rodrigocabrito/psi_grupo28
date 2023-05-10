@@ -1,3 +1,105 @@
-header {
-   color: black;
-  }
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Heading {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.dash{
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+  outline-style:solid ;
+}
+
+.Action {
+  font-size: 16px;
+  color: red;
+  cursor: pointer;
+}
+
+.Cart-Items ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Cart-Items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Cart-Items img {
+  margin-right: 10px;
+}
+
+.Cart-Items a {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.Cart-Items .type {
+  font-size: 16px;
+  color: gray;
+  margin-left: 10px;
+}
+
+.Cart-Items .price {
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
+}
+
+.Cart-Items .delete {
+  font-size: 24px;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.counter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.counter .label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.counter .value {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.prices .subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+

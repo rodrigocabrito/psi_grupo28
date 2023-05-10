@@ -3,6 +3,8 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { Game_search_DTO } from '../games/game_search_DTO';
 import { ActivatedRoute } from '@angular/router';
+import { Game_wishlist } from '../games/game_wishlist';
+import { GameService } from '../game_service/game.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   user:User |undefined
+  cart: Game_wishlist[] = [];
   followers: User[] = [];
   following: User[] = [];
   games: Game_search_DTO[] = [];
@@ -22,13 +25,14 @@ export class DashboardComponent implements OnInit {
   hideFollowers = true;
   hideFollowing = true;
 
-  constructor(private userService: UserService,private route: ActivatedRoute) { }
+  constructor(private userService: UserService,private gameService: GameService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getFollowers(this.id);
     this.getFollowing(this.id);
     this.getGamesLibrary(this.id);
     this.getUser();
+    this.getCart();
   }
 
   getFollowers(id: string): void {
@@ -78,5 +82,11 @@ export class DashboardComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.userService.getUser(id)
       .subscribe(user => this.user = user);
+  }
+
+  getCart(): void{
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.gameService.getCart(id)
+      .subscribe(cart => this.cart = cart);
   }
 }
