@@ -76,7 +76,7 @@ export class UserService {
       // if not search term, return empty user array.
       return of([]);
     }
-    return this.http.get<User[]>(`${this.usersUrl}/?name=${term}`).pipe(
+    return this.http.get<User[]>(`${this.usersUrl}/search/${term}`).pipe(
       tap(x => x.length ?
          this.log(`found users matching "${term}"`) :
          this.log(`no users matching "${term}"`)),

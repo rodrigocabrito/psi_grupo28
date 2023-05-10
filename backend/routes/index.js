@@ -33,5 +33,7 @@ router.get('/games/cart/:id', game_controller.getcart);
 
 router.post('/game/tocart', game_controller.addCart);
 
+router.get('/users/search/:param', users_controller.user_search);
+
 
 module.exports = router;

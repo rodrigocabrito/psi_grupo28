@@ -49,6 +49,11 @@ export class UserProfileComponent implements OnInit{
     
   }
 
+  //addFollowing(userToFollow: User) {
+  //  this.userService.followerHandler()
+  //    .subscribe
+  //}
+
   getUser(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.userService.getUser(id)
