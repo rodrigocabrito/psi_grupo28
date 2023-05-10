@@ -25,6 +25,7 @@ import { GameSearchComponent } from './game-search/game-search.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { SafePipe } from './safe.pipe';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   imports: [
@@ -58,6 +59,7 @@ import { SafePipe } from './safe.pipe';
     GameDetailComponent,
     WishlistComponent,
     SafePipe,
+    EditProfileComponent,
   ],
   bootstrap: [ AppComponent ]
 })
