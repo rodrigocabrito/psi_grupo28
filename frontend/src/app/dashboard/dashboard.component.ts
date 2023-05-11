@@ -5,6 +5,7 @@ import { Game_search_DTO } from '../games/game_search_DTO';
 import { ActivatedRoute } from '@angular/router';
 import { Game_wishlist } from '../games/game_wishlist';
 import { GameService } from '../game_service/game.service';
+import { Game_cart } from '../games/game_cart';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ import { GameService } from '../game_service/game.service';
 })
 export class DashboardComponent implements OnInit {
   user:User |undefined
-  cart: Game_wishlist[] = [];
+  cart: Game_cart[] = [];
   followers: User[] = [];
   following: User[] = [];
   games: Game_search_DTO[] = [];

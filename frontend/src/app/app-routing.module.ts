@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
   { path: 'game/:id', component: GameDetailComponent},
-  { path: 'game/wishlist', component: WishlistComponent},
-  { path: 'game/cart/:id', component: CartComponent},
+  { path: 'wishlist', component: WishlistComponent},
+  { path: 'cart/:id', component: CartComponent},
   { path: 'checkout', component: CheckoutComponent},
 ];
 

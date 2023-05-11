@@ -84,15 +84,12 @@ exports.search = function(req, res, next){
 
     exports.getcart = function (req, res, next){
       let cart = [];
-      console.log(req.params.id)
       User.findById(req.params.id).exec(function (err, user){
         if (err) {
           return next(err);
         }
-        console.log(req.params.id)
         for (let index = 0; index < user.cart.length; index++) {
           Game.findById(user.cart[index]).exec(function (err1, games){
-            console.log(games)
             if (err1) {
               return next(err1);
             }
