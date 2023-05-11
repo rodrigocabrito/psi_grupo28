@@ -1,10 +1,10 @@
-<div id="search-component" (click)="clickEvent()">
+<div id="search-component" (click)="clickEvent()" >
     <label for="search-box">Game Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" />
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" (focus)="clickEvent()"/>
   
-    <ul class="search-result">
-      <div id="show" ng-hide="myVar">
-            <li *ngFor="let game of games$ | async" >
+    <ul class="search-result" (blur)="blurEvent()" (focus)="clickEvent()" alt="resultado da pesquisa">
+        <div id="show" ng-hide="myVar" >
+            <li *ngFor="let game of games$ | async" tabindex="0" (blur)="blurEvent()" (focus)="clickEvent()" (click)="clickEvent()"> 
         <a routerLink="/game/{{game.id}}">
           {{game.name}}
         </a>

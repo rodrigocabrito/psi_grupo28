@@ -18,6 +18,7 @@ export class GameSearchComponent implements OnInit{
   games$!: Observable<Game_search_DTO[]>;
   b = true;
   private searchTerms = new Subject<string>();
+  key:string="";
 
   constructor(private gameService: GameService) {}
 
@@ -45,11 +46,13 @@ export class GameSearchComponent implements OnInit{
       switchMap((term: string) => this.gameService.searchGames(term)),
       
     );
+    document.addEventListener("keydown", (e) => this.key=e.key)
+    document.addEventListener("click", (e) => this.key="click")
   }
 
   blurEvent(): void {
     let d = document.getElementById("show");
-    if (d) {
+    if (d && this.key !== "Tab") {
       d.style.visibility = "hidden";
     } 
   }

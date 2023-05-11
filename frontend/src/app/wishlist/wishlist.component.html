@@ -1,9 +1,16 @@
-<ul class="heroes">
-    <li *ngFor="let game of wishlist">
-      <a routerLink="/game/{{game.id}}">
-        <span class="badge">{{game.image_p}}</span> {{game.name}}
+<h2>WishList({{wishlist.length}})</h2>
+<ul class="my_fav_list">
+    <li *ngFor="let game of wishlist" class="my_fav_list_li item">
+      
+      <a routerLink="/game/{{game.id}}" class="image">
+        <img src='http://localhost:3078/images/{{game.image_p}}' >
       </a>
-      <button type="button" class="delete" title="delete hero"
+      <a routerLink="/game/{{game.id}}" class="name">
+        <p class="name">{{game.name}}</p>
+      </a>
+      
+      <button type="button" class="delete" title="delete wishlist" (click)="c()"
         >x</button>
     </li>
+    <li *ngIf="wishlist.length == 0" id="alert">Não existe itens no seu wishlist </li>
 </ul>

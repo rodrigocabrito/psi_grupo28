@@ -32,6 +32,10 @@ export class WishlistComponent implements OnInit{
     this.getList();
   }
 
+  c(): void{
+    alert(126);
+  }
+
   getList(): void {
     this.GameService.getWishList(this.id)
     .subscribe( (list)=>{this.wishlist = list;} 

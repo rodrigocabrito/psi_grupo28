@@ -22,6 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      const id = JSON.parse(session);
+      this.router.navigate(['/dashboard', id]);
+    }
   }
 
   loginForm: FormGroup = this.fb.group({
