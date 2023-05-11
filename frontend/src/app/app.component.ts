@@ -8,8 +8,16 @@ import { Router} from '@angular/router';
 })
 export class AppComponent {
   title = 'Oasis Gaming';
+  id ="";
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.id = JSON.parse(session);
+    }
+  }
 
   // Add a method to check the current route
   isRoute(route: string): boolean {
