@@ -7,7 +7,7 @@
             <div class="profile-header">
               <img src={{user.profilepic}} alt="User Profile Picture">
               <h2>{{user.name}}</h2>
-              <button id="follow">
+              <button id="follow" (click)="addFollowing()">
                 Follow
               </button>
             </div>

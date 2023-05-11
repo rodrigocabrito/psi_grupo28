@@ -45,5 +45,9 @@ router.post('/game/spliceWishList/:id', game_controller.removeFromWishlist);
 
 router.post('/game/updateLibrary/:id', game_controller.updateLibrary);
 
+router.post('/users/follow', users_controller.follow);
+
+router.post('/users/followed', users_controller.followed);
+
 
 module.exports = router;
