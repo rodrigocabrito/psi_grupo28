@@ -64,7 +64,7 @@ exports.search = function(req, res, next){
               return next(err1);
             }
             for (let index = 0; index < games.length; index++) {
-              wishlist.push({id:games[index]._id, name:games[index].name, img_p:games[index].image_p});
+              wishlist.push({id:games[index]._id, name:games[index].name, image_p:games[index].image_p});
             }
             res.send(wishlist);
           }); 
