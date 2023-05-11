@@ -97,12 +97,13 @@ export class UserService {
     );
   }
 
-  followerHandler(userSelf: User, userToFollow: User): Observable<User> {
-    userToFollow.followers.push(userSelf);
-    return this.http.post<User>(`${this.userUrl}/${userToFollow.id}`, userToFollow, this.httpOptions).pipe(
-      tap((user: User) => this.log(`added a user to the followers of user w/ id=${user.id}`)),
-      catchError(this.handleError<User>('registerUser'))
-    );
+  /* POST follow a certain user*/
+  follow(id_self: string, id_other: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.usersUrl}/follow`, {selfid: id_self, otherid: id_other}, this.httpOptions);
+  }
+
+  followed(id_self: string, id_other: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.usersUrl}/followed`, {selfid: id_self, otherid: id_other}, this.httpOptions);
   }
   
   /* GET users that the user with the given id is following*/
@@ -112,14 +113,6 @@ export class UserService {
       map(user => user.followers),
       tap(_ => this.log(`fetched user's followers id=${id}`)),
       catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
-    );
-  }
-
-  followerHandler2(userSelf: User, userToFollow: User): Observable<User> {
-    userSelf.following.push(userToFollow);
-    return this.http.post<User>(`${this.userUrl}/${userSelf.id}`, userSelf, this.httpOptions).pipe(
-      tap((user: User) => this.log(`added a user to the following of user w/ id=${user.id}`)),
-      catchError(this.handleError<User>('registerUser'))
     );
   }
 

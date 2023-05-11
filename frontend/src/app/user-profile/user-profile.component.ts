@@ -49,10 +49,20 @@ export class UserProfileComponent implements OnInit{
     
   }
 
-  //addFollowing(userToFollow: User) {
-  //  this.userService.followerHandler()
-  //    .subscribe
-  //}
+  addFollowing() {
+    if(this.user) {
+      this.userService.follow(this.visitorid,this.user.id)
+      .subscribe();
+      this.userService.followed(this.visitorid,this.user.id)
+      .subscribe();
+      this.refreshPage();
+    }
+
+  }
+
+  refreshPage() {
+    location.reload();
+  }
 
   getUser(): void {
     const id = this.route.snapshot.paramMap.get('id')!;

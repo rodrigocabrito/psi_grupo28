@@ -72,7 +72,7 @@ exports.loginUser = function(req, res, next){
        } 
        res.send({id:user[0]._id ,username: user[0].username, followers: user[0].followers, following: user[0].following, games:[]})
     })
-}
+};
 
 
 exports.create_user = async function(req, res, next){
@@ -80,11 +80,11 @@ exports.create_user = async function(req, res, next){
       const user = new User({name:req.body.name});
       const m = await user.save();
       res.json({id: m._id ,name:m.username});  
-}
+};
 
 exports.update_user = async function(req, res, next) {
   res.send(await User.findOneAndUpdate({_id:req.params.id}, {name: req.body.name}, { new : true}));
-}
+};
 
 
 
@@ -94,7 +94,7 @@ exports.delete_user = async function (req, res, next) {
         // Success - go to author list
         res.json("seccess")
     })
-}
+};
 
 exports.registerUser = async function (req, res, next) {
   console.log(req.body.username)
@@ -102,7 +102,7 @@ exports.registerUser = async function (req, res, next) {
     .exec(async function(err, user){
       if (err) { return next(err); }
       if (user.length === 0) {
-        const user1 = new User({username: req.body.username, password: req.body.password, wallet:0});
+        const user1 = new User({username: req.body.username, password: req.body.password, followers: [], following: [], wallet:0});
         console.log(user1)
         const user2 = await user1.save();
         console.log(user2)
@@ -112,4 +112,26 @@ exports.registerUser = async function (req, res, next) {
       }
         
     })
-}
+};
+
+exports.follow = function (req, res, next){
+  const userVisitor = User.findById(req.body.selfid);
+  const userVisited = User.findById(req.body.otherid);
+  userVisitor.exec(async function (err, user){
+    if(!user.following.includes(req.body.selfid)){
+      user.following.push(req.body.selfid);
+      res.send(await User.findOneAndUpdate({_id:req.body.selfid}, {$set:{following: user.following}}, {}));
+    }
+  })
+};
+
+exports.followed = function (req, res, next){
+  const userVisitor = User.findById(req.body.selfid);
+  const userVisited = User.findById(req.body.otherid);
+  userVisited.exec(async function (err, user){
+    if(!user.followers.includes(req.body.otherid)){
+      user.followers.push(req.body.otherid);
+      res.send(await User.findOneAndUpdate({_id:req.body.otherid}, {$set:{followers: user.followers}}, {}));
+    } 
+  })
+};
