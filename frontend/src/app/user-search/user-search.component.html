@@ -1,12 +1,15 @@
-<div id="search-component">
+<div id="search-component" (click)="clickEvent()">
   <label for="search-box">User Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" />
 
   <ul class="search-result">
+    <div id="show" ng-hide="myVar">
     <li *ngFor="let user of users$ | async" >
-      <a routerLink="/detail/{{user.id}}">
+      <a routerLink="/user-profile/{{user.id}}">
         {{user.name}}
       </a>
     </li>
+    <li *ngIf="!b" id="alert">Utilizador não encontrado.</li>
+  </div>
   </ul>
 </div>

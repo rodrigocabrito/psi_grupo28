@@ -111,4 +111,66 @@ exports.search = function(req, res, next){
         res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{cart: user.cart}}, {}));
       })
     };
+
+    //TODO: check
+    exports.emptyCart = async function(req, res) {
+      try {
+        const userId = req.params.userId;
+        // Find the user by ID and update their cart array to an empty array
+        const user = await User.findByIdAndUpdate(userId, { cart: [] });
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+        return res.json(user);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+      }
+    };
+
+    //TODO: check
+    exports.removeFromWishlist = async function(req, res) {
+      try {
+        const userId = req.params.userId;
+        const { cart } = req.body;
+        // Find the user by ID
+        const user = await User.findById(userId);
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+    
+        // Remove the games that are in both the cart and the wishList
+        user.wishList = user.wishList.filter(wishListGame => {
+          const isCartGame = cart.some(cartGame => cartGame.id.equals(wishListGame.id));
+          return !isCartGame;
+        });
+    
+        // Save the updated user object to the database
+        await user.save();
+    
+        return res.json(user);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+      }
+    };
+
+    //TODO: check
+    exports.updateLibrary = async function(req, res) {
+      try {
+        const userId = req.params.userId;
+        const updatedUser = req.body;
+        // Find the user by ID and update their games array
+        const user = await User.findByIdAndUpdate(userId, { games: updatedUser.games });
+        if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+        return res.json(user);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+      }
+    };
+    
+    
   

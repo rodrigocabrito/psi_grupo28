@@ -2,16 +2,14 @@
     <label for="search-box">Game Search</label>
     <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" />
   
-    <ul class="search-result" >
-        <div id="show" ng-hide="myVar">
+    <ul class="search-result">
+      <div id="show" ng-hide="myVar">
             <li *ngFor="let game of games$ | async" >
         <a routerLink="/game/{{game.id}}">
           {{game.name}}
         </a>
       </li>
-        <li *ngIf="!b" id="alert">nao encontrou </li>
-        </div>
-      
-
+        <li *ngIf="!b" id="alert">Jogo não encontrado.</li>
+      </div>
     </ul>
   </div>

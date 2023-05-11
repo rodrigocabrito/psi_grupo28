@@ -27,16 +27,14 @@
       </ng-container>
     </div>
 
-    <div class="counter">
-      <span class="label">Items:</span>
-      <span class="value">{{cart.length}}</span>
-    </div>
-    <div class="prices">
-      <div class="subtotal">
-        <span class="label">Subtotal:</span>
-        <span class="value">{{getSubtotal()}} €</span>
-      </div>
-      <button type="button" class="checkout" routerLink="/checkout">Checkout</button>
-    </div>
-  </div>  
-</body>
+<div class="counter">
+  <span class="label">Items:</span>
+  <span class="value">{{cart.length}}</span>
+</div>
+<div class="prices">
+  <div class="subtotal">
+    <span class="label">Subtotal:</span>
+    <span class="value">{{getSubtotal()}}€</span>
+  </div>
+  <button type="button" class="checkout" routerLink="/checkout/{{id}}">Checkout</button>
+</div>

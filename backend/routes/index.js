@@ -33,5 +33,12 @@ router.get('/games/cart/:id', game_controller.getcart);
 
 router.post('/game/tocart', game_controller.addCart);
 
+router.get('/users/search/:param', users_controller.user_search);
+router.post('/game/emptyCart/:id', game_controller.emptyCart);
+
+router.post('/game/spliceWishList/:id', game_controller.removeFromWishlist);
+
+router.post('/game/updateLibrary/:id', game_controller.updateLibrary);
+
 
 module.exports = router;

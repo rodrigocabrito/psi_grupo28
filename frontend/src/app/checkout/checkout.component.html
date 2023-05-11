@@ -15,8 +15,9 @@
                 <option value="google-pay">Google Pay</option>
                 <option value="cu">Cu</option>
             </select>
-
-        <button type="submit" routerLink="/carrinho">Voltar atrás</button>
-        <button type="submit" (click)="finalizeBuy()">Finalizar compra</button>
+        <div *ngIf="user">
+            <button type="submit" routerLink="/cart/{{user.id}}">Voltar atrás</button>
+            <button type="submit" (click)="finalizeBuy()">Finalizar compra</button>
+        </div>
     </form>
 </div>

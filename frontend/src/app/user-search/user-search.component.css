@@ -5,7 +5,7 @@ label {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: 1rem;
-  margin-bottom: .5rem;
+  margin-bottom: 1rem;
 
 }
 input {
@@ -23,7 +23,8 @@ input:focus {
 li {
   list-style-type: none;
 }
-.search-result li a {
+.search-result li a, #alert {
+  background-color: white;
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
@@ -36,6 +37,10 @@ li {
   color: black;
 }
 
+#alert{
+    text-align: center;
+  }
+
 .search-result li a:hover {
   background-color: #435A60;
   color: white;
@@ -44,4 +49,8 @@ li {
 ul.search-result {
   margin-top: 0;
   padding-left: 0;
+}
+
+#search-component {
+  padding-bottom: 1.5em;
 }
