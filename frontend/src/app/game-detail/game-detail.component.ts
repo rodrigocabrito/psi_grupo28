@@ -20,6 +20,7 @@ export class GameDetailComponent {
   url = "http://localhost:3078/images/";
   Confirm: any;
   options= { title: 'Add to Wishlist', message: 'Queres adicionar a tua wishlist?', okText: "Sim", cancelText: "Não"};
+  cartText = { title: 'Add to Cart', message: 'Queres adicionar ao teu carrinho?', okText: "Sim", cancelText: "Não"};
   inf={title:"Informação", message: ""};
 
   constructor(
@@ -110,7 +111,22 @@ _close (confirmEl: Element | null) {
   addCart() {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.addCart(this.session, id)
-    .subscribe();
+    .subscribe(result =>{
+      const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
+      if (!result) {
+        this.inf={title:"Informação", message: "failed add to cart"};
+      }else{
+        this.inf={title:"Informação", message: "added to cart successfully"};
+      }
+      temp.style.display = "flex";
+      document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
+    });
+  }
+
+  confirmCart(){
+    const temp = document.getElementsByClassName("confirmCart")[0] as HTMLElement;
+    temp.style.display = "flex";
+    document.getElementsByClassName("confirmCart")[0].classList.remove('confirm--close');
   }
 
 }

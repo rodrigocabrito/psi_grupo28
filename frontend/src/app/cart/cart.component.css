@@ -14,6 +14,8 @@ body {
   background-color: rgba(164, 90, 40, 0.363);
   border-radius: 20px;
   box-shadow: 0px 10px 20px #1687d933;
+  position: relative;
+  overflow-y: auto;
 }
 
 .Header {
@@ -37,16 +39,18 @@ body {
   text-decoration: none;
 }
 
-.Action {
+.removeAll {
   font-size: 16px;
   font-weight: 600;
   color: rgba(200, 30, 30, 0.829);
   cursor: pointer;
-  border-bottom: 1px solid;
+  text-decoration: underline;
+  background-color: #ffffff00;
 }
 
-
-
+.removeAll:hover {
+  color: rgba(121, 10, 10, 0.826);
+}
 
 .Cart-Items li {
   margin: auto;
@@ -72,9 +76,9 @@ body {
 .Cart-Items .type {
   line-height: 10px;
 	font-size: 18px;
-	font-family: 'Open Sans';
 	font-weight: 600;
-	color: #909090;
+	color: #5e5e5e;
+  margin-right: 20%;
 }
 
 .Cart-Items .price {
@@ -91,10 +95,14 @@ body {
   cursor: pointer;
 }
 
+.Cart-Items .delete:hover {
+  color: rgba(121, 10, 10, 0.826);
+}
+
 .btn{
 	width: 30px;
 	height: 30px;
-	border-radius: 50%;
+	border-radius: 30%;
 	background-color: rgba(121, 10, 10, 0.519);
 	display: flex;
 	justify-content: center;
@@ -104,6 +112,11 @@ body {
 	font-weight: 900;
 	color: #ffffff;
 	cursor: pointer;
+  margin-left: 20%;
+}
+
+.btn:hover{
+  background-color: rgba(121, 10, 10, 0.8);
 }
 
 .count{
@@ -119,13 +132,20 @@ body {
   margin-right: 20px;
 }
 
-.counter .label {
+.cartsize{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.cartsize .label {
   font-size: 20px;
   font-weight: bold;
   margin-right: 10px;
 }
 
-.counter .value {
+.cartsize .value {
   font-size: 20px;
   font-weight: bold;
   color: rgb(168, 17, 17);
@@ -138,7 +158,14 @@ body {
   align-items: flex-end;
 }
 
-.prices .subtotal {
+.Cart-Footer .prices {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.Cart-Footer .subtotal {
   display: flex;
   justify-content: flex-end;
   align-items:flex-end;
@@ -149,7 +176,16 @@ body {
   margin-right: 10px;
 }
 
-.prices .checkout{
+.Cart-Footer .checkout{
   background-color: rgba(121, 10, 10, 0.519);
   color:#ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Cart-Footer .checkout:hover{
+  background-color: rgba(121, 10, 10, 0.8);
 }

@@ -55,7 +55,7 @@ export class CheckoutComponent {
 
   removeGamesCarrinho(): void {
     if(this.user) {
-      this.gameService.removeGamesFromCart(this.user);
+      this.gameService.removeGamesFromCart(this.user.id);
     }
   }
 

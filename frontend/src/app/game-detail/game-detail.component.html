@@ -1,8 +1,5 @@
 <div *ngIf="game">
     <h2>{{game.name | uppercase}} Details</h2>
-    <button mat-raised-button color="primary" id="dashboardBut">
-        <a id="dashboard" routerLink="/dashboard/{{ session }}">Dashboard</a>
-    </button>
     <div class="slideshow-container">
         <div class="mySlides fade" style="display: block;">
             <img src='http://localhost:3078/images/{{game.img_p}}' style="width:100%">
@@ -36,7 +33,7 @@
     <div>
         <button (click)="confirmWish()">addWishList</button>
         <br>
-        <button (click)="addCart()">addShopCart</button>
+        <button (click)="confirmCart()">addShopCart</button>
         
     </div>
     <div class="description">
@@ -65,6 +62,19 @@
             <div class="confirm__buttons">
                 <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addWish()">{{options.okText}}</button>
                 <button class="confirm__button confirm__button--cancel" (click)="close('confirm')">{{options.cancelText}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="confirmCart">
+        <div class="confirm__window">
+            <div class="confirm__titlebar">
+                <span class="confirm__title">{{cartText.title}}</span>
+                <button class="confirm__close" (click)="close('confirmCart')">&times;</button>
+            </div>
+            <div class="confirm__content">{{cartText.message}}</div>
+            <div class="confirm__buttons">
+                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addCart()">{{cartText.okText}}</button>
+                <button class="confirm__button confirm__button--cancel" (click)="close('confirmCart')">{{cartText.cancelText}}</button>
             </div>
         </div>
     </div>

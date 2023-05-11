@@ -121,12 +121,16 @@ export class GameService {
   }
 
   /**POST: empties cart from user */
-  removeGamesFromCart(user: User): Observable<User> {
-    user.cart = [];
-    return this.http.post<User>(`${this.gameUrl}/emptyCart/${user.id}`, user, this.httpOptions).pipe(
-      tap((user: User) => this.log(`cart of user w/ id=${user.id} is now empty.`)),
-      catchError(this.handleError<User>('removeGamesFromCart'))
-    );
+  removeGamesFromCart(id: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.gamesUrl}/emptyCart`, {userId: id}, this.httpOptions);
+  }
+
+  removeFromCart(id: string, gameId: string): Observable<boolean>{
+    return this.http.post<boolean>(`${this.gamesUrl}/rmcart`, {userId: id, gameId: gameId}, this.httpOptions);
+  }
+
+  removeOneFromCart(id: string, gameId: string): Observable<boolean>{
+    return this.http.post<boolean>(`${this.gamesUrl}/rmonecart`, {userId: id, gameId: gameId}, this.httpOptions);
   }
 
   //TODO check

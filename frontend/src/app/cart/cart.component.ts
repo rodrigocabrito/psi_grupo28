@@ -58,6 +58,31 @@ export class CartComponent {
   
     return cartWithCounts;
   }
+
+  addToCart(gameId:string): void{
+    this.GameService.addCart(this.id, gameId)
+    .subscribe();
+  }
+
+  removeAll(): void{
+    this.GameService.removeGamesFromCart(this.id)
+    .subscribe();
+  }
+
+  removeFromCart(gameId:string): void{
+    this.GameService.removeFromCart(this.id, gameId)
+    .subscribe();
+  }
+
+  removeOneFromCart(gameId:string): void{
+    this.GameService.removeOneFromCart(this.id, gameId)
+    .subscribe();
+  }
+
+  refreshPage() {
+    location.reload();
+  }
+  
   
 }
 

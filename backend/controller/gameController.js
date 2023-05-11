@@ -112,21 +112,37 @@ exports.search = function(req, res, next){
       })
     };
 
-    //TODO: check
-    exports.emptyCart = async function(req, res) {
-      try {
-        const userId = req.params.userId;
-        // Find the user by ID and update their cart array to an empty array
-        const user = await User.findByIdAndUpdate(userId, { cart: [] });
-        if (!user) {
-          return res.status(404).json({ error: 'User not found' });
-        }
-        return res.json(user);
-      } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Server error' });
-      }
+    exports.emptyCart = async function(req, res, next) {
+        User.findById(req.body.userId).exec(async function (err, user){
+        user.cart = [];
+        console.log(user.cart);
+        res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{cart: user.cart}}, {}));
+      })
     };
+
+    
+
+    exports.removeFromCart = async function(req, res, next) {
+      User.findById(req.body.userId).exec(async function (err, user) {
+        user.cart = user.cart.filter(id => !id.equals(req.body.gameId));
+        console.log(user.cart);
+        res.send(await User.findOneAndUpdate({_id: req.body.userId}, {$set: {cart: user.cart}}, {}));
+      });
+
+    };
+
+    exports.removeOneFromCart = function (req, res, next){
+      User.findById(req.body.userId).exec(async function (err, user){
+        console.log(user.cart);
+        const gameIndex = user.cart.findIndex(id => id.toString() === req.body.gameId);
+        if (gameIndex !== -1) {
+          user.cart.splice(gameIndex, 1);
+          res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{cart: user.cart}}, {}));
+        }
+      })
+    };
+    
+    
 
     //TODO: check
     exports.removeFromWishlist = async function(req, res) {
