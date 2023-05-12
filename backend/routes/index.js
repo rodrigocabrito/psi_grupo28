@@ -53,5 +53,7 @@ router.post('/users/follow', users_controller.follow);
 
 router.post('/users/followed', users_controller.followed);
 
+router.get('/users/gamesLibrary/:id', users_controller.getGamesLibrary);
+
 
 module.exports = router;

@@ -8,7 +8,7 @@ export interface User {
   name: string;
   followers: User[];
   following: User[];
-  games: Game_search_DTO[];
+  games: Game_wishlist[];
   profilepic: string;
   wishList: Game_wishlist[];
   cart: Game_cart[];

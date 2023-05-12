@@ -117,13 +117,9 @@ export class UserService {
   }
 
   /* GET all games from the user with the given id*/
-  getGamesLibrary(id: string): Observable<Game_search_DTO[]> {
-    const url = `${this.userUrl}/gamesLibrary/${id}`;
-    return this.http.get<User>(url).pipe(
-      map(user => user.games),
-      tap(_ => this.log(`fetched user's games id=${id}`)),
-      catchError(this.handleError<User[]>(`getGamesLibrary id=${id}`))
-    );
+  getGamesLibrary(id: string): Observable<Game_wishlist[]> {
+    return this.http.get<Game_wishlist[]>(`${this.usersUrl}/gamesLibrary/${id}`).pipe(
+      catchError(this.handleError<Game_wishlist[]>('games', [])))
   }
 
   //////// Save methods //////////

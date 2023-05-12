@@ -135,3 +135,19 @@ exports.followed = function (req, res, next){
     } 
   })
 };
+
+exports.getGamesLibrary = function (req, res, next){
+  let games = [];
+  User.findById(req.params.id).exec(function (err, user){
+    if (err) {
+      return next(err);
+    }
+    console.log(games);
+    for (let index = 0; index < user.games.length; index++) {
+      games.push({id:games._id, name:games.name, image_p:games.image_p});
+      if (index === user.games.length-1) {
+        res.send(games);
+      } 
+      } 
+    });
+};

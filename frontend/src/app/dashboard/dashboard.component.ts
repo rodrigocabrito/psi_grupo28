@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   cart: Game_cart[] = [];
   followers: User[] = [];
   following: User[] = [];
-  games: Game_search_DTO[] = [];
+  games: Game_wishlist[] = [];
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
   id: string = ''; //TODO get self id
@@ -29,10 +29,14 @@ export class DashboardComponent implements OnInit {
   constructor(private userService: UserService,private gameService: GameService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.id = JSON.parse(session);
+    }
     this.getFollowers(this.id);
     this.getFollowing(this.id);
-    this.getGamesLibrary(this.id);
     this.getUser();
+    this.getGamesLibrary();
     this.getCart();
   }
 
@@ -46,9 +50,9 @@ export class DashboardComponent implements OnInit {
       .subscribe(following => this.following = following);
   }
 
-  getGamesLibrary(id: string): void {
-    this.userService.getGamesLibrary(id)
-    .subscribe(games => this.games = games);;
+  getGamesLibrary(): void {
+    this.userService.getGamesLibrary(this.id)
+    .subscribe((games)=>{this.games = games;} );;
   }
 
   showListas(): void {
