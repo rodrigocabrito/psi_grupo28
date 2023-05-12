@@ -1,23 +1,25 @@
-<div>
-    <form action="/checkout" method="POST">
-        <h2>Checkout</h2>
-        <label for="nif">NIF:</label>
-            <input type="text" placeholder="required" id="nif" name="nif" required>
-    
-        <label for="address">Morada:</label>
-            <input type="text" placeholder="optional" id="address" name="address">
+<body>
+    <div class="checkoutContainer">
+        <form action="/checkout" method="POST">
+            <h2>Checkout</h2>
+            <label for="nif">NIF:</label>
+                <input type="number" placeholder="required" id="nif" name="nif" required>
+        
+            <label for="address">Morada:</label>
+                <input type="text" placeholder="optional" id="address" name="address">
 
-        <label for="payment-method">Método de pagamento:</label>
-            <select id="payment-method" name="payment-method">
-                <option value="credit-card">Cartão de Crédito</option>
-                <option value="paypal">PayPal</option>
-                <option value="apple-pay">Apple Pay</option>
-                <option value="google-pay">Google Pay</option>
-                <option value="cu">Cu</option>
-            </select>
-        <div *ngIf="user">
-            <button type="submit" routerLink="/cart/{{user.id}}">Voltar atrás</button>
-            <button type="submit" (click)="finalizeBuy()">Finalizar compra</button>
-        </div>
-    </form>
-</div>
+            <label for="payment-method">Método de pagamento:</label>
+                <select id="payment-method" name="payment-method">
+                    <option value="credit-card">Cartão de Crédito</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="apple-pay">Apple Pay</option>
+                    <option value="google-pay">Google Pay</option>
+                    <option value="cu">Cu</option>
+                </select>
+            <div *ngIf="user" class="submitButts">
+                <button type="submit" routerLink="/cart/{{user.id}}">Voltar atrás</button>
+                <button type="submit" (click)="finalizeBuy()">Finalizar compra</button>
+            </div>
+        </form>
+    </div>
+</body>

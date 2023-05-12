@@ -34,6 +34,8 @@
         <button (click)="confirmWish()">addWishList</button>
         <br>
         <button (click)="confirmCart()">Adicionar ao carrinho</button>
+        <br>
+        <button (click)="confirmRate()">Rate</button>
         
     </div>
     <div class="description">
@@ -87,6 +89,42 @@
             <div class="confirm__content">{{inf.message}}</div>
             <div class="inf__buttons">
                 <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="close('inf')">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="rate__confirm">
+        <div class="rate__confirm__window">
+            <div class="rate__confirm__titlebar">
+                <span class="rate__confirm__title">{{rate_options.title}}</span>
+                <button class="rate__confirm__close" (click)="close('rate__confirm')">&times;</button>
+            </div>
+            <div id="rating">
+                <span class="star" (click)="onStarClick(1)">&#9733;</span>
+                <span class="star" (click)="onStarClick(2)">&#9733;</span>
+                <span class="star" (click)="onStarClick(3)">&#9733;</span>
+                <span class="star" (click)="onStarClick(4)">&#9733;</span>
+                <span class="star" (click)="onStarClick(5)">&#9733;</span>
+              </div>
+          
+              <div>
+                  <label for="comment">Comment (Optional):</label>
+                  <input type="text" maxlength="5000" id="comment" name="comment" placeholder="Write your comment here...">
+              </div>
+              <button id="submit-button" (click)="rate()">Submit</button>
+        </div>
+    </div>
+
+    <div class="rate__inf">
+        <div class="rate__inf__window">
+            <div class="rate__inf__titlebar">
+                <span class="rate__inf__title">{{rate_inf.title}}</span>
+                <button class="rate__inf__close" (click)="close('rate__inf')">&times;</button>
+            </div>
+            
+            <div class="rate__inf__content">{{rate_inf.message}}</div>
+            <div class="rate__inf__buttons">
+                <button class="rate__inf__button rate__inf__button--ok rate__inf__button--fill" (click)="close('rate__inf')">OK</button>
             </div>
         </div>
     </div>

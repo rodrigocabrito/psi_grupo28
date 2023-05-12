@@ -48,8 +48,8 @@ export class RatingComponent {
       if(this.game) {
         const inputField = document.querySelector('input[type="text"]') as HTMLInputElement;
         const inputText = inputField.value;
-        this.gameService.addCommentGame(this.game, inputText);
-        this.gameService.rateGame(this.game, this.rating);
+        this.gameService.addCommentGame(this.game.id, inputText);
+        this.gameService.rateGame(this.game.id, this.rating);
 
         alert('Thanks for sharing your opinion!');
       }

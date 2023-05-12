@@ -43,8 +43,8 @@ export class CheckoutComponent {
       this.removeGamesCarrinho()
 
       if(this.user) {
-        this.adicionaGamesBiblioteca(this.user.cart)
-        this.removeGamesWishlist(this.user.cart)
+        this.adicionaGamesBiblioteca()
+        this.removeGamesWishlist()
       }
     }
   }
@@ -60,9 +60,9 @@ export class CheckoutComponent {
   }
 
   //TODO check
-  removeGamesWishlist(cart: Game_cart[]): void {
+  removeGamesWishlist(): void {
     if(this.user) {
-      this.gameService.removeGamesFromWishlist(this.user, cart);
+      this.gameService.removeGamesFromWishlist(this.user.id);
     }
 
     /*if (this.user) {
@@ -93,7 +93,7 @@ export class CheckoutComponent {
   }
 
   //TODO check
-  adicionaGamesBiblioteca(cart: Game_cart[]): void {
+  adicionaGamesBiblioteca(): void {
     this.gameService.getAllGames()
       .pipe(
         map((allGames: Game_search_DTO[]) => {
@@ -108,7 +108,7 @@ export class CheckoutComponent {
           }
 
           if(this.user) {
-            this.gameService.addGamesToLibrary(this.user, cart, this.allGames);
+            this.gameService.addGamesToLibrary(this.user.id, this.allGames);
           }
 
           return this.allGames;

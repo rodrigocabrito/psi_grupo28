@@ -22,6 +22,9 @@ export class GameDetailComponent {
   options= { title: 'Add to Wishlist', message: 'Queres adicionar a tua wishlist?', okText: "Sim", cancelText: "Não"};
   cartText = { title: 'Add to Cart', message: 'Quer adicionar este jogo ao seu carrinho?', okText: "Sim", cancelText: "Não"};
   inf={title:"Informação", message: ""};
+  rate_options= { title: 'Your opinion is important to us!'};
+  rate_inf={title:"Informação", message: ""};
+  rating = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -129,4 +132,56 @@ _close (confirmEl: Element | null) {
     document.getElementsByClassName("confirmCart")[0].classList.remove('confirm--close');
   }
 
+  confirmRate() {  
+    const temp = document.getElementsByClassName("rate__confirm")[0] as HTMLElement;
+    temp.style.display = "flex";
+    document.getElementsByClassName("confirm")[0].classList.remove('confirm--close');
+  }
+
+  rate(){
+    this.close("rate__confirm");
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (this.rating === 0) {
+      alert('Please select a rating.');
+    } else {
+
+      //not necessary for US
+      if(this.game) {
+        const inputField = document.querySelector('input[type="text"]') as HTMLInputElement;
+        const inputText = inputField.value;
+
+        this.GameService.addCommentGame(this.game.id, inputText)
+        .subscribe(result1 =>{
+
+          if(this.game) {
+            this.GameService.rateGame(this.game.id, this.rating)
+            .subscribe(result2 =>{
+
+              const temp = document.getElementsByClassName("rate__inf")[0] as HTMLElement;
+              if (!result1 && !result2) {
+                this.rate_inf={title:"Informação", message: "failed to rate the game..."};
+              }else{
+                this.rate_inf={title:"Informação", message: "game rated succesfully!"};
+              }
+              temp.style.display = "flex";
+              document.getElementsByClassName("rate__inf")[0].classList.remove('confirm--close');
+            });
+          }
+        });
+      }
+    }
+  }
+
+  onStarClick(rate: number): void {
+    this.rating = rate;
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+      if (index < this.rating) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
 }
