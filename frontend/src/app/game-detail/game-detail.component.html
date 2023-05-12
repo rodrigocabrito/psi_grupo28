@@ -33,7 +33,7 @@
     <div>
         <button (click)="confirmWish()">addWishList</button>
         <br>
-        <button (click)="confirmCart()">addShopCart</button>
+        <button (click)="confirmCart()">Adicionar ao carrinho</button>
         
     </div>
     <div class="description">
@@ -73,7 +73,7 @@
             </div>
             <div class="confirm__content">{{cartText.message}}</div>
             <div class="confirm__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addCart()">{{cartText.okText}}</button>
+                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addCart(); close('confirmCart')">{{cartText.okText}}</button>
                 <button class="confirm__button confirm__button--cancel" (click)="close('confirmCart')">{{cartText.cancelText}}</button>
             </div>
         </div>

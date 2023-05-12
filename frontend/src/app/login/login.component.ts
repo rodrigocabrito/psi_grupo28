@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls
-  : ['./login.component.scss'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   user: User | undefined;
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
     const session = window.localStorage.getItem("session");
     if (session) {
       const id = JSON.parse(session);
-      this.router.navigate(['/dashboard', id]);
     }
   }
 

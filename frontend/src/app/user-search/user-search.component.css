@@ -6,7 +6,7 @@ label {
   font-size: 1.2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-
+  color: rgb(121, 10, 10);
 }
 input {
   padding: .5rem;
@@ -14,10 +14,11 @@ input {
   max-width: 600px;
   box-sizing: border-box;
   display: block;
+  border-radius: 7px;
 }
 
 input:focus {
-  outline: #336699 auto 1px;
+  outline: rgb(121, 10, 10) auto 1px;
 }
 
 li {
@@ -28,6 +29,7 @@ li {
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
+  border-radius: 7px;
   display: inline-block;
   width: 100%;
   max-width: 600px;

@@ -8,7 +8,9 @@
     <div class="Cart-Items">
       <ng-container *ngFor="let game of getCartWithCounts()">
         <li>
-          <img src="http://localhost:3078/images/{{game.image_p}}" style="width:100%">
+          <a routerLink="/game/{{game.id}}" class="image">
+            <img src='http://localhost:3078/images/{{game.image_p}}'style="width:90%" >
+          </a>
           <a routerLink="/game/{{game.id}}">{{game.name}}</a>
           <span class="type">{{game.type}}</span>
           <div class="counter">

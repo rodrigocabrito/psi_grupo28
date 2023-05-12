@@ -93,7 +93,7 @@ exports.search = function(req, res, next){
             if (err1) {
               return next(err1);
             }
-              cart.push({id:games._id, name:games.name, img_p:games.image_p, type:games.type, price:games.price});
+              cart.push({id:games._id, name:games.name, image_p:games.image_p, type:games.type, price:games.price});
               if (index === user.cart.length-1) {
                 res.send(cart);
               }

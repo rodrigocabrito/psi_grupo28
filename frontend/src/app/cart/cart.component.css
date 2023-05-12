@@ -10,7 +10,7 @@ body {
 
 .CartContainer {
   width: 70%;
-  height: 90%;
+  height: 80%;
   background-color: rgba(164, 90, 40, 0.363);
   border-radius: 20px;
   box-shadow: 0px 10px 20px #1687d933;
@@ -30,6 +30,8 @@ body {
 .Heading {
   font-size: 24px;
   font-weight: bold;
+  color: rgba(121, 10, 10, 0.826);
+  min-width: 180px;
 }
 
 .dash{
@@ -61,8 +63,8 @@ body {
   align-items: center;
 }
 
-.Cart-Items img {
-  margin-right: 10px;
+.image {
+  grid-area: img;
 }
 
 .Cart-Items a {
@@ -163,6 +165,12 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.Cart-Footer {
+  position:relative;
+  bottom: 0;
+  right: 0;
 }
 
 .Cart-Footer .subtotal {
