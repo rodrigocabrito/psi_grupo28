@@ -3,11 +3,15 @@
 
 <div *ngIf="!isRoute('/register') && !isRoute('/login')">
   <button mat-raised-button color="primary">
-  <a routerLink="dashboard/{{id}}">Dashboard</a>
-</button> 
-<button mat-raised-button color="primary">
-  <a routerLink="/wishlist">WishList</a>
-</button> 
+    <a routerLink="dashboard/{{id}}">Dashboard</a>
+  </button> 
+  <button mat-raised-button color="primary">
+    <a routerLink="/wishlist">WishList</a>
+  </button>
+  <button mat-raised-button color="primary">
+    <a routerLink="/user-profile/{{id}}">Perfil</a>
+  </button> 
 </div>  
+
 
 <router-outlet></router-outlet>

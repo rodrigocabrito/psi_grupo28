@@ -35,7 +35,7 @@ router.post('/game/tocart', game_controller.addCart);
 
 router.get('/users/search/:param', users_controller.user_search);
 
-router.post('/game/emptyCart/', game_controller.emptyCart);
+router.post('/games/emptyCart/', game_controller.emptyCart);
 
 router.post('/games/rmcart', game_controller.removeFromCart);
 

@@ -134,7 +134,7 @@ _close (confirmEl: Element | null) {
   confirmRate() {  
     const temp = document.getElementsByClassName("confirmRate")[0] as HTMLElement;
     temp.style.display = "flex";
-    document.getElementsByClassName("confirm")[0].classList.remove('confirm--close');
+    document.getElementsByClassName("confirmRate")[0].classList.remove('confirm--close');
   }
 
   rate(){

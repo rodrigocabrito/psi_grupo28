@@ -99,7 +99,7 @@
                   <label for="comment" id="commentLabel">Comment (Optional):</label>
                   <input type="text" maxlength="5000" id="commentInput" name="comment" placeholder="Write your comment here...">
               </div>
-              <button id="submit-button" (click)="rate(); refreshPage()">Submit</button>
+              <button id="submit-button" (click)="rate()">Submit</button>
         </div>
     </div>
 
@@ -111,7 +111,7 @@
             </div>
             <div class="confirm__content">{{inf.message}}</div>
             <div class="inf__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="close('inf')">OK</button>
+                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="close('inf');refreshPage()">OK</button>
             </div>
         </div>
     </div>
