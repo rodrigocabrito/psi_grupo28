@@ -43,31 +43,21 @@ export class GameService {
   }
 
   //TODO check
-  rateGame(game: Game_detail, rating: number): Observable<Game_detail> {
-    game.rates.push(rating);
-    game.rating = this.calculateRate(game.rates);
-
-    return this.http.post<Game_detail>(`${this.gameUrl}/${game.id}`, game, this.httpOptions).pipe(
-      tap((game: Game_detail) => this.log(`rated game w/ id=${game.id}`)),
-      catchError(this.handleError<Game_detail>('rateGame'))
-    );
+  rateGame(gameId: string, rating: number): Observable<boolean> {
+    return this.http.post<boolean>(`${this.gameUrl}/rate`, {gameId: gameId, rating: rating}, this.httpOptions);
   }
 
+  /*
   calculateRate(rates: number[]): number {
     const i = rates.length;
     const sum = rates.reduce((accumulator, currentValue) => accumulator + currentValue);
 
     return sum / i;
-  }
+  }*/
 
   //TODO check
-  addCommentGame(game: Game_detail, comment: string): Observable<Game_detail> {
-    game.comment.push(comment);
-
-    return this.http.post<Game_detail>(`${this.gameUrl}/${game.id}`, game, this.httpOptions).pipe(
-      tap((game: Game_detail) => this.log(`comment added to game w/ id=${game.id}`)),
-      catchError(this.handleError<Game_detail>('addCommentGame'))
-    );
+  addCommentGame(gameId: string, comment: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.gameUrl}/comment`, {gameId: gameId, comment: comment}, this.httpOptions);
   }
 
   // GET all games TODO: check
@@ -134,16 +124,7 @@ export class GameService {
   }
 
   //TODO check
-  removeGamesFromWishlist(user: User, cart: Game_cart[]): Observable<User> {
-    if (!user || !user.id) {
-      throw new Error('User ID is undefined');
-    }
-
-    // Remove the games that are in both the cart and the wishList
-    user.wishList = user.wishList.filter(wishListGame => {
-      const isCartGame = cart.some(cartGame => cartGame.id === wishListGame.id);
-      return !isCartGame;
-    });
+  removeGamesFromWishlist(userId: string): Observable<boolean> {
 
     /*for (const gameWL of user.wishList) {
       const game = cart.find(gameCart => gameCart.id === gameWL.id);
@@ -156,34 +137,12 @@ export class GameService {
       }
     }*/
 
-    return this.http.post<User>(`${this.gameUrl}/spliceWishList/${user.id}`, user, this.httpOptions).pipe(
-      tap((user: User) => this.log(`games in cart removed from whishlist of user w/ id=${user.id}`)),
-      catchError(this.handleError<User>('removeGamesFromWishList'))
-    );
+    return this.http.post<boolean>(`${this.gameUrl}/filterWishList`, {userId: userId}, this.httpOptions);
   }
 
   // TODO: check
-  addGamesToLibrary(user: User, cart: Game_cart[], allGames: Game_search_DTO[]): Observable<User> {
-    if (!user || !user.id) {
-      throw new Error('User ID is undefined');
-    }
-    const games: Game_search_DTO[] = [];
-
-    for (const gameCart of cart) {
-      const game = allGames.find(game => game.id === gameCart.id);
-      
-      if (!game) {
-        throw new Error(`Game with name ${gameCart.name} not found`);
-      } else {
-        games.push(game);
-      }
-    }
-    user.games.push(...games);
-
-    return this.http.post<User>(`${this.gameUrl}/updateLibrary/${user.id}`, user, this.httpOptions).pipe(
-      tap((user: User) => this.log(`added games to library of user w/ id=${user.id}`)),
-      catchError(this.handleError<User>('addGamesToLibrary'))
-    );
+  addGamesToLibrary(userId: string, allGames: Game_search_DTO[]): Observable<boolean> {
+    return this.http.post<boolean>(`${this.gameUrl}/updateLibrary`, {userId: userId, allGames: allGames} , this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

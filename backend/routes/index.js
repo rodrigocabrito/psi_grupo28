@@ -35,15 +35,19 @@ router.post('/game/tocart', game_controller.addCart);
 
 router.get('/users/search/:param', users_controller.user_search);
 
-router.post('/games/emptyCart/', game_controller.emptyCart);
+router.post('/game/emptyCart/:id', game_controller.emptyCart);
 
 router.post('/games/rmcart', game_controller.removeFromCart);
 
 router.post('/games/rmonecart', game_controller.removeOneFromCart);
 
-router.post('/game/spliceWishList/:id', game_controller.removeFromWishlist);
+router.post('/game/filterWishList', game_controller.removeFromWishlist);
 
-router.post('/game/updateLibrary/:id', game_controller.updateLibrary);
+router.post('/game/updateLibrary', game_controller.updateLibrary);
+
+router.post('/game/rate', game_controller.rateGame);
+
+router.post('/game/comment', game_controller.addCommentGame);
 
 router.post('/users/follow', users_controller.follow);
 

@@ -39,7 +39,8 @@ exports.search = function(req, res, next){
         platform: game.supported_platform,
         language: game.supported_languages,
         price: game.price,
-        rate: game.rate,
+        rates: game.rates,
+        rating: game.rating,
         dlc: game.dlc,
         main: game.main_game,
         img_p: game.image_p,
@@ -106,6 +107,14 @@ exports.search = function(req, res, next){
 
     exports.addCart = function (req, res, next){
       User.findById(req.body.userId).exec(async function (err, user){
+
+        if (user == null) {
+          // No results.
+          var err = new Error("user not found");
+          err.status = 404;
+          return next(err);
+        }
+
         user.cart.push(req.body.gameId);
         console.log(user.cart)
         res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{cart: user.cart}}, {}));
@@ -146,46 +155,99 @@ exports.search = function(req, res, next){
 
     //TODO: check
     exports.removeFromWishlist = async function(req, res) {
-      try {
-        const userId = req.params.userId;
-        const { cart } = req.body;
-        // Find the user by ID
-        const user = await User.findById(userId);
-        if (!user) {
-          return res.status(404).json({ error: 'User not found' });
+      User.findById(req.body.userId).exec(async function(err, user) {
+
+        if (user == null) {
+          // No results.
+          var err = new Error("user not found");
+          err.status = 404;
+          return next(err);
         }
-    
-        // Remove the games that are in both the cart and the wishList
-        user.wishList = user.wishList.filter(wishListGame => {
-          const isCartGame = cart.some(cartGame => cartGame.id.equals(wishListGame.id));
+
+        // TODO: check
+        user.wishlist = user.wishlist.filter(wishlistGame => {
+          const isCartGame = user.cart.some(cartGame => cartGame.id === wishlistGame.id);
           return !isCartGame;
         });
-    
-        // Save the updated user object to the database
-        await user.save();
-    
-        return res.json(user);
-      } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Server error' });
-      }
+
+        /*for (const gameWL of user.wishList) {
+          const game = user.cart.find(gameCart => gameCart.id === gameWL.id);
+          
+          if (!game) {
+            throw new Error(`Game with name ${gameWL.name} not found`);
+          } else {
+            const index = user.wishlist.findIndex(gameCart => gameCart.id === gameWL.id);
+            user.wishlist.splice(index, 1);
+          }
+        }*/
+
+        res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{wishlist: user.wishlist}}, {}));
+      });
     };
 
     //TODO: check
     exports.updateLibrary = async function(req, res) {
-      try {
-        const userId = req.params.userId;
-        const updatedUser = req.body;
-        // Find the user by ID and update their games array
-        const user = await User.findByIdAndUpdate(userId, { games: updatedUser.games });
-        if (!user) {
-          return res.status(404).json({ error: 'User not found' });
+      User.findById(req.body.userId).exec(async function(err, user) {
+
+        if (user == null) {
+          // No results.
+          var err = new Error("user not found");
+          err.status = 404;
+          return next(err);
         }
-        return res.json(user);
-      } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Server error' });
-      }
+
+        for (const gameCart of user.cart) {
+          Game.findById(gameCart.id).exec(async function(err, game) {
+
+            if (game == null) {
+              // No results.
+              var err = new Error("game not found");
+              err.status = 404;
+              return next(err);
+            }
+
+            user.games.push(game.id);
+          });
+        }
+
+        res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{games: user.games}}, {}));
+      });
+    };
+
+    //TODO: check
+    exports.rateGame = async function(req, res) {
+      Game.findById(req.body.gameId).exec(async function(err, game) {
+        if (game == null) {
+          // No results.
+          var err = new Error("game not found");
+          err.status = 404;
+          return next(err);
+        }
+
+        game.rates.push(req.body.rating);
+
+        const i = game.rates.length;
+        const sum = game.rates.reduce((accumulator, currentValue) => accumulator + currentValue);
+
+        game.rating = sum / i;
+        res.send(await Game.findOneAndUpdate({_id:req.body.gameId}, {$set:{rates: game.rates, rating: game.rating}}, {}));
+      })
+    };
+
+    //TODO: check
+    exports.addCommentGame = function(req, res) {
+      Game.findById(req.body.gameId).exec(async function(err, game) {
+        if (game == null) {
+          // No results.
+          var err = new Error("game not found");
+          err.status = 404;
+          return next(err);
+        }
+
+        //TODO: check if comment its .id or not
+        game.comments.push(req.body.comment);
+        res.send(await Game.findOneAndUpdate({_id:req.body.gameId}, {$set:{comments: game.comments}}, {}));
+      })
     };
     
     
