@@ -80,9 +80,8 @@ img {
 
 .confirm,
 .confirmCart,
-.inf,
-.rate__confirm,
-.rate__inf {
+.confirmRate,
+.inf {
   position: fixed;
   top: 0;
   left: 0;
@@ -102,13 +101,11 @@ img {
 }
 
 
-.confirm--close,
-.rate__confirm--close {
+.confirm--close {
   animation-name: confirm---close;
 }
 
-.confirm__window,
-.rate__confirm__window {
+.confirm__window {
   width: 100%;
   max-width: 600px;
   background: white;
@@ -128,15 +125,11 @@ img {
 
 .confirm__titlebar,
 .confirm__content,
-.confirm__buttons,
-.rate__confirm__titlebar,
-.rate__confirm__content,
-.rate__confirm__buttons {
+.confirm__buttons {
   padding: 1.25em;
 }
 
-.confirm__titlebar,
-.rate__confirm__titlebar {
+.confirm__titlebar {
   background: #222222;
   color: #ffffff;
   display: flex;
@@ -144,14 +137,12 @@ img {
   justify-content: space-between;
 }
 
-.confirm__title,
-.rate__confirm__title {
+.confirm__title {
   font-weight: bold;
   font-size: 1.1em;
 }
 
-.confirm__close,
-.rate__confirm__close {
+.confirm__close {
   background: none;
   outline: none;
   border: none;
@@ -160,33 +151,28 @@ img {
   transition: color 0.15s;
 }
 
-.confirm__close:hover,
-.rate__confirm__close:hover {
+.confirm__close:hover {
   color: #ff0000;
   cursor: pointer;
 }
 
-.confirm__content,
-.rate__confirm__content {
+.confirm__content {
   line-height: 1.8em;
 }
 
-.confirm__buttons,
-.rate__confirm__buttons {
+.confirm__buttons {
   background: #eeeeee;
   display: flex;
   justify-content: flex-end;
 }
 
-.inf__buttons,
-.rate__inf__buttons {
+.inf__buttons {
   background: #eeeeee;
   display: flex;
   justify-content: center;
 }
 
-.confirm__button,
-.rate__confirm__button {
+.confirm__button {
   padding: 0.4em 0.8em;
   border: 2px solid #009879;
   border-radius: 5px;
@@ -200,14 +186,12 @@ img {
   outline: none;
 }
 
-.confirm__button--fill,
-.rate__confirm__button--fill {
+.confirm__button--fill {
   background: #009879;
   color: #ffffff;
 }
 
-.confirm__button:focus,
-.rate__confirm__button:focus {
+.confirm__button:focus {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -215,20 +199,27 @@ img {
   font-size: 24px;
   color: #ccc;
   cursor: pointer;
+  font-size: 2rem;
 }
 
 .star.active, .star:hover {
   color: #ffcc00;
 }
 
-#comment::placeholder {
+#commentInput::placeholder {
   color: gray;
 }
 
-#comment {
+#commentInput {
   width: 350px;
   height: 50px;
   white-space: pre-wrap;
+  
+}
+
+#commentLabel {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #rating-window {
@@ -241,6 +232,18 @@ img {
   background-color: #fff;
   z-index: 9999;
   display: none;
+}
+
+#submit-button {
+  display: block;
+  margin: 10px;
+  margin-left: 13em;
+  background-color: rgba(121, 10, 10, 0.519);
+  color: #fff;
+}
+
+#submit-button:hover {
+  background-color: rgba(121, 10, 10, 0.737);
 }
 
 @keyframes confirm---open {

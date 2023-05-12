@@ -74,3 +74,8 @@ button[type="submit"]:hover {
     justify-items: center;
     align-items: center;
 }
+
+#payment-method option:hover {
+    background-color: yellow;
+    color: black;
+}

@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     const session = window.localStorage.getItem("session");
     if (session) {
       const id = JSON.parse(session);
-      this.router.navigate(['/dashboard', id]);
     }
   }
 

@@ -228,8 +228,8 @@ exports.search = function(req, res, next){
 
         const i = game.rates.length;
         const sum = game.rates.reduce((accumulator, currentValue) => accumulator + currentValue);
-
-        game.rating = sum / i;
+        const avg = sum / i;
+        game.rating = Number(avg.toFixed(1));
         res.send(await Game.findOneAndUpdate({_id:req.body.gameId}, {$set:{rates: game.rates, rating: game.rating}}, {}));
       })
     };
