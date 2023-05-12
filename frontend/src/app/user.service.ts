@@ -159,6 +159,16 @@ export class UserService {
     );
   }
 
+  saveProfile(json: { id: string, name: string, profile_image: string | undefined }) {
+    const sub_url = `/user/${json.id}`
+    return this.http.put<any>(this.userUrl + sub_url, json);
+}
+
+  getUserss(){
+  const sub_url = `/users`;
+  return this.http.get<any>(this.userUrl + sub_url);
+}
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

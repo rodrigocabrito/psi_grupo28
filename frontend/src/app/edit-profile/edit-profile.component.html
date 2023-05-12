@@ -1,14 +1,44 @@
-<mat-card class="login-card">
-    <mat-card-title>Edit</mat-card-title>
-    <div class="login-sep">&nbsp;</div>
-    <form>
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput type="text" formControlName="username">
-      </mat-form-field>
-      <div class="button">
-        <button mat-raised-button color="primary" type="submit">Edit</button>
-        <button mat-raised-button color="primary" type="submit" routerLink="/user-profile">Go Back</button> 
-      </div>
-    </form>
-</mat-card>
+<div class="main-div">
+  <mat-card>
+    <mat-card-title>
+      Edit Profile
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="submitForm" #formDirective="ngForm" enctype="multipart/form-data" novalidate>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input formControlName="name" [(ngModel)]="user.name" matInput>
+          <mat-error *ngIf="submitForm.controls['name'].hasError('required')">Need to put a name</mat-error>
+          <mat-error *ngIf="submitForm.controls['name'].hasError('minlength')">Name must contain at least 3 characters</mat-error>
+          <mat-error *ngIf="submitForm.controls['name'].hasError('usernameExists')">Name already exists</mat-error>
+          <mat-error *ngIf="submitForm.controls['name'].hasError('pattern')">Name must only contain alphanumeric characters</mat-error>
+        </mat-form-field>
+
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Profile Pictures
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="profile-pictures">
+              <div [class.selected-image]="selectedImage === 'water.jpg'" (click)="selectedImage = 'water.jpg'">
+                <img src="assets/water.jpg" alt="image1">
+              </div>
+              <div [class.selected-image]="selectedImage === 'stickman.jpg'" (click)="selectedImage = 'stickman.jpg'">
+                <img src="assets/stickman.jpg" alt="image2">
+              </div>
+              <div [class.selected-image]="selectedImage === 'flower.jpg'" (click)="selectedImage = 'flower.jpg'">
+                <img src="assets/flower.jpg" alt="image3">
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <button [disabled]="!submitForm.valid" mat-raised-button type="submit" (click)="onSubmit()">
+          <span>Save</span>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

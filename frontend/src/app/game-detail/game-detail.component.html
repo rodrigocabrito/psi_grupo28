@@ -31,7 +31,7 @@
         <div>rate: {{game.rate}}</div>
     </div>
     <div>
-        <button (click)="confirmWish()">addWishList</button>
+        <button (click)="addWish()">addWishList</button>
         <br>
         <button>addShopCar</button>
         
@@ -51,30 +51,5 @@
               {{comment}}
             </li>
           </ul>
-    </div>
-    <div class="confirm">
-        <div class="confirm__window">
-            <div class="confirm__titlebar">
-                <span class="confirm__title">{{options.title}}</span>
-                <button class="confirm__close" (click)="close('confirm')">&times;</button>
-            </div>
-            <div class="confirm__content">{{options.message}}</div>
-            <div class="confirm__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addWish()">{{options.okText}}</button>
-                <button class="confirm__button confirm__button--cancel" (click)="close('confirm')">{{options.cancelText}}</button>
-            </div>
-        </div>
-    </div>
-    <div class="inf">
-        <div class="confirm__window">
-            <div class="confirm__titlebar">
-                <span class="confirm__title">{{inf.title}}</span>
-                <button class="confirm__close" (click)="close('inf')">&times;</button>
-            </div>
-            <div class="confirm__content">{{inf.message}}</div>
-            <div class="inf__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="close('inf')">OK</button>
-            </div>
-        </div>
     </div>
   </div>

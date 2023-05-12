@@ -15,9 +15,6 @@ export class GameDetailComponent {
   slideIndex = 2;
   session : string = "";
   url = "http://localhost:3000/images/";
-  Confirm: any;
-  options= { title: 'Add to Wishlist', message: 'Queres adicionar a tua wishlist?', okText: "Sim", cancelText: "Não"};
-  inf={title:"Informação", message: ""};
 
   constructor(
     private route: ActivatedRoute,
@@ -33,15 +30,6 @@ export class GameDetailComponent {
     this.getGame();
   }
 
-_close (confirmEl: Element | null) {
-        debugger;
-        if (confirmEl) {
-          confirmEl.classList.add('confirm--close');
-          const temp = confirmEl as HTMLElement;
-          temp.style.display = "none";
-        }
-          
-      }
   getGame(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.getGameDetail(id)
@@ -61,29 +49,9 @@ _close (confirmEl: Element | null) {
   }
 
   addWish(){
-    this.close("confirm");
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.addWishList(this.session, id)
-    .subscribe(result =>{
-      const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
-      if (!result) {
-        this.inf={title:"Informação", message: "failed add to wishlist"};
-      }else{
-        this.inf={title:"Informação", message: "add to wishlist success"};
-      }
-      temp.style.display = "flex";
-      document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
-    });
-  }
-
-  close(classname:string){
-    this._close(document.getElementsByClassName(classname)[0]);
-  }
-
-  confirmWish(){
-    const temp = document.getElementsByClassName("confirm")[0] as HTMLElement;
-    temp.style.display = "flex";
-    document.getElementsByClassName("confirm")[0].classList.remove('confirm--close');
+    .subscribe();
   }
   
   showSlides(n : number) : void {
