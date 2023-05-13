@@ -46,7 +46,8 @@ exports.search = function(req, res, next){
         img_p: game.image_p,
         img_s: game.image_s,
         video: game.video_link,
-        comment: game.comments
+        comment: game.comments,
+        date: game.date
       });
     });
 };
@@ -193,8 +194,8 @@ exports.search = function(req, res, next){
             if (err) {
               return next(err);
             }
-
-            user.games.push(game._id); //TODO set data
+            game.date = new Date();
+            user.games.push(game._id); 
             console.log(user.games);
 
             if (index === user.cart.length-1) {

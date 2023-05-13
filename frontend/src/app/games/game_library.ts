@@ -1,7 +1,7 @@
 export interface Game_library {
     id: string;
     name: string;
-    date_aquisition: string; //TODO date
+    date: Date; 
     image_p: string;
 }
   

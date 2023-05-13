@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Game_wishlist } from '../games/game_wishlist';
 import { GameService } from '../game_service/game.service';
 import { Game_cart } from '../games/game_cart';
+import { Game_library } from '../games/game_library';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
   cart: Game_cart[] = [];
   followers: User[] = [];
   following: User[] = [];
-  games: Game_wishlist[] = [];
+  games: Game_library[] = [];
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
   id: string = ''; //TODO get self id

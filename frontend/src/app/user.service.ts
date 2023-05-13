@@ -12,6 +12,7 @@ import { Game_search_DTO } from './games/game_search_DTO';
 import { Game_detail } from './games/game_detail';
 import { Game_wishlist } from './games/game_wishlist';
 import { Game_cart } from './games/game_cart';
+import { Game_library } from './games/game_library';
 
 
 @Injectable({ providedIn: 'root' })
@@ -117,9 +118,9 @@ export class UserService {
   }
 
   /* GET all games from the user with the given id*/
-  getGamesLibrary(id: string): Observable<Game_wishlist[]> {
-    return this.http.get<Game_wishlist[]>(`${this.usersUrl}/gamesLibrary/${id}`).pipe(
-      catchError(this.handleError<Game_wishlist[]>('games', [])))
+  getGamesLibrary(id: string): Observable<Game_library[]> {
+    return this.http.get<Game_library[]>(`${this.usersUrl}/gamesLibrary/${id}`).pipe(
+      catchError(this.handleError<Game_library[]>('games', [])))
   }
 
   //////// Save methods //////////

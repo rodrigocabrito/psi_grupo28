@@ -18,7 +18,7 @@
           <div class="listasList" [hidden]="hideListas">
             <ul *ngIf="games">
               <li *ngFor="let game of games">
-                <h3>{{game.name}}</h3>
+                <h3>{{game.name}} {{game.date}}</h3>
               </li>
             </ul>
           </div>
