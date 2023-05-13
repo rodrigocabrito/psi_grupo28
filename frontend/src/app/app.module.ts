@@ -27,6 +27,17 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { SafePipe } from './safe.pipe';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 
 @NgModule({
   imports: [
@@ -39,7 +50,16 @@ import { SafePipe } from './safe.pipe';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    TextFieldModule,
+    MatExpansionModule,
+    BrowserAnimationsModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -62,6 +82,7 @@ import { SafePipe } from './safe.pipe';
     CartComponent,
     WishlistComponent,
     SafePipe,
+    EditProfileComponent,
   ],
   bootstrap: [ AppComponent ]
 })

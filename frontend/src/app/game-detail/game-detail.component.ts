@@ -39,21 +39,22 @@ export class GameDetailComponent {
     this.getGame();
   }
 
-_close (confirmEl: Element | null) {
-        debugger;
-        if (confirmEl) {
-          confirmEl.classList.add('confirm--close');
-          const temp = confirmEl as HTMLElement;
-          temp.style.display = "none";
-        }
-          
-      }
   getGame(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.getGameDetail(id)
     .subscribe( (game)=>{this.game = game;
       console.log(this.game.description)} 
     );
+  }
+
+  _close (confirmEl: Element | null) {
+    debugger;
+    if (confirmEl) {
+      confirmEl.classList.add('confirm--close');
+      const temp = confirmEl as HTMLElement;
+      temp.style.display = "none";
+    }
+      
   }
   
   plusSlides(n: number) :void{
@@ -67,7 +68,6 @@ _close (confirmEl: Element | null) {
   }
 
   addWish(){
-    this.close("confirm");
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.addWishList(this.session, id)
     .subscribe(result =>{
