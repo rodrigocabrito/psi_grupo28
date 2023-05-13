@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Game_wishlist } from '../games/game_wishlist';
 import { GameService } from '../game_service/game.service';
 import { Game_search_DTO } from '../games/game_search_DTO';
@@ -21,7 +21,8 @@ export class CheckoutComponent {
 
   constructor(private userService: UserService,
               private gameService: GameService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.getUser();
@@ -45,6 +46,8 @@ export class CheckoutComponent {
         this.adicionaGamesBiblioteca();
         this.removeGamesWishlist();
         this.removeGamesCarrinho();
+
+        this.router.navigate(['/dashboard', this.user.id]);
       }
 
       //TODO redirect to dashboard page
