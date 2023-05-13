@@ -6,6 +6,5 @@ export interface User {
   followers: User[];
   following: User[];
   games: Game_search_DTO[];
-  profilepic: string;
   photo: string;
 }
