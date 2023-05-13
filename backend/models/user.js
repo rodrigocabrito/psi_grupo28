@@ -10,6 +10,7 @@ const UserSchema = new Schema(
     following: {type:[ Schema.Types.ObjectId], ref :"User"},
     games: {type:[ Schema.Types.ObjectId], ref :"Game"},
     wishlist: {type: [Schema.Types.ObjectId], ref:"WishList"},
+    photo: {type: String, required: true},
     wallet: {type: Number}
   }
 );

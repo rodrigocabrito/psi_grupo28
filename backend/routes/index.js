@@ -29,4 +29,6 @@ router.get('/games/wishlist/:id', game_controller.getwishlist);
 
 router.post('/game/towish', game_controller.addWishlist);
 
+
+
 module.exports = router;

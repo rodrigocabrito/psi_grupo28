@@ -13,9 +13,10 @@ import { UserService } from '../user.service';
 })
 export class EditProfileComponent {
   submitForm!: FormGroup;
-  user!: User;
+  user: User | undefined;
   selectedImage: string | undefined;
   id: string ='';
+  serverURL = "http://localhost:3078/images/";
   images: ProfilePic[] = [
     {name: 'nierbrother', path: '/assets/water.jpg'},
     {name: 'nierfather', path: '/assets/flower.jpg'},
@@ -34,7 +35,7 @@ export class EditProfileComponent {
 
   createFormGroup(): FormGroup {
     return new FormGroup({
-      name: new FormControl("", {
+      username: new FormControl("", {
         validators: [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]*$')],
         asyncValidators: [this.checkUsername.bind(this)],
         updateOn: 'blur'
@@ -59,22 +60,29 @@ export class EditProfileComponent {
   }
 
   onSubmit() {
-    this.userService.saveProfile({
-      id: sessionStorage.getItem("userId")!,
-      name: this.submitForm.value.name,
-      profile_image: this.selectedImage
-    }).subscribe((bool) => {
-      if (bool) this.router.navigate([`user/${sessionStorage.getItem("userId")!}/profile`]);
-    });
+    debugger
+    if (this.submitForm.valid) {
+      console.log(this.submitForm.value.username)
+      if (this.user) {
+          this.userService.saveProfile({
+          id: this.user.id,
+          name: this.submitForm.value.username,
+          profile_image: this.selectedImage
+        }).subscribe((bool) => {
+          if (bool) this.router.navigate([`user-profile/${this.user?.id}`]);
+        });
+      }
+    }
+    
+    
   }
 
   checkUsername(control: AbstractControl) {
     const username = control.value.toLowerCase();
-    if (username === this.user.name.toLowerCase()) {
+    if (this.user && username === this.user.name.toLowerCase()) {
        
         return of(null);
     } else {
-       
         return this.userService.getUserss().pipe(
             map((users: { name: string }[]) => {
                 const usernameExists = users.some(user => user.name.toLowerCase() === username);

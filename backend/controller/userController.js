@@ -13,7 +13,7 @@ exports.user_list = function(req, res)  {
       //Successful, so render
       var count =0;
       for (let index = 0; index < list_users.length; index++) {
-          temp.push({id:list_users[index]._id, username:list_users[index].username, followers:list_users[index].followers, following:list_users[index].following, games:list_users[index].games, wallet:list_users[index].wallet});
+          temp.push({name:list_users[index].username});
           count++;
           if(count == list_users.length){
               res.json(temp);
@@ -34,7 +34,7 @@ exports.user_detail = function(req, res, next) {
         return next(err);
       }
     // Successful, so render.
-    res.json({id:user._id, name:user.username, followers:user.followers, following:user.following, games:user.games, wallet:user.wallet});
+    res.json({id:user._id, name:user.username, followers:user.followers, following:user.following, games:user.games, photo:user.photo, wallet:user.wallet});
   })
 
 };
@@ -68,7 +68,12 @@ exports.create_user = async function(req, res, next){
 }
 
 exports.update_user = async function(req, res, next) {
-  res.send(await User.findOneAndUpdate({_id:req.params.id}, {name: req.body.name}, { new : true}));
+  if (req.body.profile_image) {
+    res.send(await User.findOneAndUpdate({_id:req.params.id}, {$set:{username: req.body.name, photo: req.body.profile_image}}, { new : true}));
+  }else{
+    res.send(await User.findOneAndUpdate({_id:req.params.id}, {$set:{username: req.body.name}}, { new : true}));
+  }
+  
 }
 
 
@@ -87,10 +92,8 @@ exports.registerUser = async function (req, res, next) {
     .exec(async function(err, user){
       if (err) { return next(err); }
       if (user.length === 0) {
-        const user1 = new User({username: req.body.username, password: req.body.password, wallet:0});
-        console.log(user1)
+        const user1 = new User({username: req.body.username, password: req.body.password, followers: [], following: [], games:[], wishlist:[], photo:"default.png", wallet:0});
         const user2 = await user1.save();
-        console.log(user2)
         res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
       }else{
         res.send({id:"0" ,username: "", followers: [], following: [], games:[]});

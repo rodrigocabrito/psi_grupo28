@@ -2,13 +2,12 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 mat-card {
   width: 30%;
   margin: auto;
-  background-color: #202020;
+  background-color: #725b5b;
 }
 
 @media only screen and (max-width: 768px) {
@@ -61,6 +60,10 @@ button {
   margin: 0 auto;
   background-color: white !important;
 }
+.error{
+  color: red;
+  margin-bottom: 100px;
+}
 
 input {
   width: 75%;
@@ -84,4 +87,10 @@ input {
 
 .selected-image {
   filter: brightness(50%);
+}
+
+.full-width {
+  width: 100%;
+  min-height: 3em;
+  margin-bottom: 10%;
 }
