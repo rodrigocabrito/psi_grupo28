@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Game = require('../models/game');
 var async = require('async');
 const { body,validationResult } = require('express-validator');
 const { sanitizeBody } = require('express-validator');
@@ -137,17 +138,23 @@ exports.followed = function (req, res, next){
 };
 
 exports.getGamesLibrary = function (req, res, next){
-  let games = [];
+  let gamesList = [];
   User.findById(req.params.id).exec(function (err, user){
     if (err) {
       return next(err);
     }
-    console.log(games);
     for (let index = 0; index < user.games.length; index++) {
-      games.push({id:games._id, name:games.name, image_p:games.image_p});
-      if (index === user.games.length-1) {
-        res.send(games);
-      } 
-      } 
+      Game.findById(user.games[index]).exec(function (err1, games){
+        if (err1) {
+          return next(err1);
+        }
+          gamesList.push({id:games._id, name:games.name, image_p:games.image_p, type:games.type, price:games.price});
+          if (index === user.games.length-1) {
+            res.send(gamesList);
+          }
+        
+      }); 
+      }
+        
     });
 };
