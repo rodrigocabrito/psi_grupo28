@@ -59,17 +59,17 @@ exports.search = function(req, res, next){
         }
         console.log(user.wishlist)
         
-          Game.find({ _id: { $in: user.wishlist } }).exec(function (err1, games){
-            console.log(games)
-            if (err1) {
-              return next(err1);
-            }
-            for (let index = 0; index < games.length; index++) {
-              wishlist.push({id:games[index]._id, name:games[index].name, image_p:games[index].image_p});
-            }
-            res.send(wishlist);
-          }); 
-          });
+        Game.find({ _id: { $in: user.wishlist } }).exec(function (err1, games){
+          console.log(games)
+          if (err1) {
+            return next(err1);
+          }
+          for (let index = 0; index < games.length; index++) {
+            wishlist.push({id:games[index]._id, name:games[index].name, image_p:games[index].image_p});
+          }
+          res.send(wishlist);
+        }); 
+      });
     };
 
     exports.addWishlist = function (req, res, next){
@@ -157,6 +157,8 @@ exports.search = function(req, res, next){
     exports.removeFromWishlist = async function(req, res) {
       User.findById(req.body.userId).exec(async function(err, user) {
 
+        console.log('id do user ' + user.id);
+
         if (user == null) {
           // No results.
           var err = new Error("user not found");
@@ -164,57 +166,45 @@ exports.search = function(req, res, next){
           return next(err);
         }
 
-        // TODO: check
-        user.wishlist = user.wishlist.filter(wishlistGame => {
-          const isCartGame = user.cart.some(cartGame => cartGame.id === wishlistGame.id);
-          return !isCartGame;
-        });
+        console.log('cart do user ' + user.cart);
 
-        /*for (const gameWL of user.wishList) {
-          const game = user.cart.find(gameCart => gameCart.id === gameWL.id);
-          
-          if (!game) {
-            throw new Error(`Game with name ${gameWL.name} not found`);
-          } else {
-            const index = user.wishlist.findIndex(gameCart => gameCart.id === gameWL.id);
-            user.wishlist.splice(index, 1);
+        for (let index = 0; index < user.cart.length; index++) {
+          if (index !== -1) {
+            user.wishlist = user.wishlist.filter(id => !id.equals(user.cart[index]));
           }
-        }*/
 
-        res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{wishlist: user.wishlist}}, {}));
+          if (index === user.cart.length-1) {
+            res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{wishlist: user.wishlist}}, {}));
+          } 
+        }
       });
     };
 
     //TODO: check
-    exports.updateLibrary = async function(req, res) {
+    exports.updateLibrary = async function(req, res, next) {
       User.findById(req.body.userId).exec(async function(err, user) {
 
-        if (user == null) {
-          // No results.
-          var err = new Error("user not found");
-          err.status = 404;
-          return next(err);
-        }
+        console.log(user.cart);
 
-        for (const gameCart of user.cart) {
-          Game.findById(gameCart.id).exec(async function(err, game) {
+        for (let index = 0; index < user.cart.length; index++) {
+          Game.findById(user.cart[index]).exec(async function(err, game) {
+            console.log('gameCart: ' + user.cart[index]);
 
-            if (game == null) {
-              // No results.
-              var err = new Error("game not found");
-              err.status = 404;
+            if (err) {
               return next(err);
             }
 
-            user.games.push(game.id);
+            user.games.push(game._id); //TODO set data
+            console.log(user.games);
+
+            if (index === user.cart.length-1) {
+              res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{games: user.games}}, {}));
+            }            
           });
         }
-
-        res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{games: user.games}}, {}));
       });
     };
 
-    //TODO: check
     exports.rateGame = async function(req, res) {
       Game.findById(req.body.gameId).exec(async function(err, game) {
         if (game == null) {
@@ -234,7 +224,7 @@ exports.search = function(req, res, next){
       })
     };
 
-    //TODO: check
+    //TODO: check change to contain user and rate
     exports.addCommentGame = function(req, res) {
       Game.findById(req.body.gameId).exec(async function(err, game) {
         if (game == null) {

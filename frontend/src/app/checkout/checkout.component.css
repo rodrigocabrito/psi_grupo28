@@ -1,7 +1,6 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
+    margin-top: 10px;
+    height: auto;
     background-color: rgba(132, 69, 27, 0);
     display: flex;
     justify-content: center;
@@ -66,6 +65,11 @@ button[type="submit"]:hover {
     background-color: rgba(121, 10, 10, 0.737);
 }
 
+button[type="submit"]:active {
+    transform: scale(0.95);
+    transition: transform 0.2s ease-in-out;
+}
+
 #nif::placeholder, #adress::placeholder {
     color: gray;
 }
@@ -73,9 +77,5 @@ button[type="submit"]:hover {
 .submitButts {
     justify-items: center;
     align-items: center;
-}
-
-#payment-method option:hover {
-    background-color: yellow;
-    color: black;
+    margin-bottom: 20px;
 }

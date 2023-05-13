@@ -51,4 +51,15 @@ label {
     margin-top: 0;
     padding-left: 0;
   }
+
+  #search-box,
+  #search-label,
+  .search-result {
+    margin-left: 20px;
+  }
+
+  #search-box {
+    background-color: rgba(247, 247, 247, 0.8);
+    font-size: large;
+  }
   

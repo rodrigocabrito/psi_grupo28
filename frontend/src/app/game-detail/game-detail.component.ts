@@ -19,10 +19,10 @@ export class GameDetailComponent {
   slideIndex = 2;
   url = "http://localhost:3078/images/";
   Confirm: any;
-  options= { title: 'Add to Wishlist', message: 'Queres adicionar a tua wishlist?', okText: "Sim", cancelText: "Não"};
-  cartText = { title: 'Add to Cart', message: 'Quer adicionar este jogo ao seu carrinho?', okText: "Sim", cancelText: "Não"};
+  options= { title: 'Adicionar à wishlist', message: 'Quer adicionar este jogo à sua wishlist?', okText: "Sim", cancelText: "Não"};
+  cartText = { title: 'Adicionar ao carrinho', message: 'Quer adicionar este jogo ao seu carrinho?', okText: "Sim", cancelText: "Não"};
   inf={title:"Informação", message: ""};
-  rate_options= { title: 'Your opinion is important to us!'};
+  rate_options= { title: 'A tua opinião é importante!'};
   rating = 0;
 
   constructor(
@@ -73,9 +73,9 @@ _close (confirmEl: Element | null) {
     .subscribe(result =>{
       const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
       if (!result) {
-        this.inf={title:"Informação", message: "failed add to wishlist"};
+        this.inf={title:"Informação", message: "Erro ao adicionar jogo à wishlist ☹️"};
       }else{
-        this.inf={title:"Informação", message: "add to wishlist success"};
+        this.inf={title:"Informação", message: "Jogo adicionado à wishlist! 😄"};
       }
       temp.style.display = "flex";
       document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
@@ -116,9 +116,9 @@ _close (confirmEl: Element | null) {
     .subscribe(result =>{
       const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
       if (!result) {
-        this.inf={title:"Informação", message: "Erro ao adicionar jogo ao carrinho"};
+        this.inf={title:"Informação", message: "Erro ao adicionar jogo ao carrinho ☹️"};
       }else{
-        this.inf={title:"Informação", message: "Jogo adicionado ao carrinho!"};
+        this.inf={title:"Informação", message: "Jogo adicionado ao carrinho! 😄"};
       }
       temp.style.display = "flex";
       document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
@@ -147,7 +147,7 @@ _close (confirmEl: Element | null) {
 
       //not necessary for US
       if(this.game) {
-        const inputField = document.querySelector('input[type="text"]') as HTMLInputElement;
+        const inputField = document.getElementById('commentInput') as HTMLTextAreaElement;
         const inputText = inputField.value;
 
         this.GameService.addCommentGame(this.game.id, inputText)
@@ -159,9 +159,9 @@ _close (confirmEl: Element | null) {
 
               const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
               if (!result1 && !result2) {
-                this.inf={title:"Informação", message: "failed to rate the game..."};
+                this.inf={title:"Informação", message: "Erro ao avaliar o jogo ☹️"};
               }else{
-                this.inf={title:"Informação", message: "game rated succesfully!"};
+                this.inf={title:"Informação", message: "Jogo avaliado com sucesso! 😄"};
               }
               temp.style.display = "flex";
               document.getElementsByClassName("inf")[0].classList.remove('confirm--close');

@@ -124,25 +124,13 @@ export class GameService {
   }
 
   //TODO check
-  removeGamesFromWishlist(userId: string): Observable<boolean> {
-
-    /*for (const gameWL of user.wishList) {
-      const game = cart.find(gameCart => gameCart.id === gameWL.id);
-      
-      if (!game) {
-        throw new Error(`Game with name ${gameWL.name} not found`);
-      } else {
-        const index = user.wishList.findIndex(gameCart => gameCart.id === gameWL.id);
-        user.wishList.splice(index, 1);
-      }
-    }*/
-
-    return this.http.post<boolean>(`${this.gameUrl}/filterWishList`, {userId: userId}, this.httpOptions);
+  removeGamesFromWishlist(userId: string, cart: Game_cart[]): Observable<boolean> {
+    return this.http.post<boolean>(`${this.gamesUrl}/filterWishList`, {userId: userId, cart: cart}, this.httpOptions);
   }
 
   // TODO: check
-  addGamesToLibrary(userId: string, allGames: Game_search_DTO[]): Observable<boolean> {
-    return this.http.post<boolean>(`${this.gameUrl}/updateLibrary`, {userId: userId, allGames: allGames} , this.httpOptions);
+  addGamesToLibrary(userId: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.gamesUrl}/updateLibrary`, {userId: userId} , this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

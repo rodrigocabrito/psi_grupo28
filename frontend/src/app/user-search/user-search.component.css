@@ -5,9 +5,10 @@ label {
   font-weight: bold;
   font-size: 1.2rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   color: rgb(121, 10, 10);
 }
+
 input {
   padding: .5rem;
   width: 100%;
@@ -24,6 +25,7 @@ input:focus {
 li {
   list-style-type: none;
 }
+
 .search-result li a, #alert {
   background-color: white;
   border-bottom: 1px solid gray;
@@ -55,4 +57,15 @@ ul.search-result {
 
 #search-component {
   padding-bottom: 1.5em;
+}
+
+#search-box,
+#search-label,
+.search-result {
+  margin-left: 20px;
+}
+
+#search-box {
+  background-color: rgba(247, 247, 247, 0.8);
+  font-size: large;
 }

@@ -1,7 +1,5 @@
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
+  height: auto;
   background-color: rgba(132, 69, 27, 0);
   display: flex;
   justify-content: center;
@@ -42,7 +40,7 @@ body {
 }
 
 .removeAll {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   color: rgba(200, 30, 30, 0.829);
   cursor: pointer;
@@ -121,6 +119,11 @@ body {
   background-color: rgba(121, 10, 10, 0.8);
 }
 
+.btn:active {
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
+}
+
 .count{
 	font-size: 20px;
 	font-weight: 600;
@@ -168,9 +171,10 @@ body {
 }
 
 .Cart-Footer {
-  position:relative;
+  position: relative;
   bottom: 0;
   right: 0;
+  margin-right: 30px;
 }
 
 .Cart-Footer .subtotal {
@@ -192,8 +196,14 @@ body {
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 
 .Cart-Footer .checkout:hover{
   background-color: rgba(121, 10, 10, 0.8);
+}
+
+.Cart-Footer .checkout:active{
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
 }

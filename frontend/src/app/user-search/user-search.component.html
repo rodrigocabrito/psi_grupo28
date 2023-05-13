@@ -1,5 +1,5 @@
 <div id="search-component" (click)="clickEvent()">
-  <label for="search-box">Procure um utilizador 🔍</label>
+  <label for="search-box" id="search-label">Procure um utilizador 🔍</label>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" />
 
   <ul class="search-result">

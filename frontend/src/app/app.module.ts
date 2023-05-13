@@ -24,7 +24,6 @@ import { RegisterComponent } from './register/register.component';
 import { GameSearchComponent } from './game-search/game-search.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { RatingComponent } from './rating/rating.component';
 import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { SafePipe } from './safe.pipe';
@@ -60,7 +59,6 @@ import { SafePipe } from './safe.pipe';
     GameSearchComponent,
     GameDetailComponent,
     CheckoutComponent,
-    RatingComponent,
     CartComponent,
     WishlistComponent,
     SafePipe,

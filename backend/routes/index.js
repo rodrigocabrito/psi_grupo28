@@ -41,9 +41,9 @@ router.post('/games/rmcart', game_controller.removeFromCart);
 
 router.post('/games/rmonecart', game_controller.removeOneFromCart);
 
-router.post('/game/filterWishList', game_controller.removeFromWishlist);
+router.post('/games/filterWishList', game_controller.removeFromWishlist);
 
-router.post('/game/updateLibrary', game_controller.updateLibrary);
+router.post('/games/updateLibrary', game_controller.updateLibrary);
 
 router.post('/game/rate', game_controller.rateGame);
 

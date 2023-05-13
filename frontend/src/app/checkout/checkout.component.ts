@@ -40,12 +40,14 @@ export class CheckoutComponent {
       alert('Infelizmente, a compra não foi bem sucedida.');
     } else {
       alert('Compra realizada com sucesso!');
-      this.removeGamesCarrinho()
 
       if(this.user) {
-        this.adicionaGamesBiblioteca()
-        this.removeGamesWishlist()
+        this.adicionaGamesBiblioteca();
+        this.removeGamesWishlist();
+        this.removeGamesCarrinho();
       }
+
+      //TODO redirect to dashboard page
     }
   }
 
@@ -55,64 +57,24 @@ export class CheckoutComponent {
 
   removeGamesCarrinho(): void {
     if(this.user) {
-      this.gameService.removeGamesFromCart(this.user.id);
+      this.gameService.removeGamesFromCart(this.user.id)
+      .subscribe();
     }
   }
 
   //TODO check
   removeGamesWishlist(): void {
     if(this.user) {
-      this.gameService.removeGamesFromWishlist(this.user.id);
+      this.gameService.removeGamesFromWishlist(this.user.id, this.user.cart)
+      .subscribe();
     }
-
-    /*if (this.user) {
-
-      // convert Observable<Game_Wishlist> to plain Game_Wishlist
-      this.gameService.getWishList(this.user.id)
-        .pipe(
-          map((gamesWishList: Game_wishlist[]) => {
-            
-            for (const gameWishList of gamesWishList) {
-              const plainGameWishList: Game_wishlist = {
-                id: gameWishList.id,
-                name: gameWishList.name,
-                image_p: gameWishList.image_p
-              };
-
-              this.gamesWishList.push(plainGameWishList);
-            }
-
-            if(this.user) {
-              this.gameService.removeGamesFromWishlist(this.user, gamesWishList, cart);
-            }
-
-            return this.gamesWishList;
-          })
-        ).subscribe();
-    }*/
   }
 
   //TODO check
   adicionaGamesBiblioteca(): void {
-    this.gameService.getAllGames()
-      .pipe(
-        map((allGames: Game_search_DTO[]) => {
-          
-          for (const game of allGames) {
-            const plainGame: Game_search_DTO = {
-              id: game.id,
-              name: game.name
-            };
-
-            this.allGames.push(plainGame);
-          }
-
-          if(this.user) {
-            this.gameService.addGamesToLibrary(this.user.id, this.allGames);
-          }
-
-          return this.allGames;
-        })
-      ).subscribe();
+    if(this.user) {
+      this.gameService.addGamesToLibrary(this.user.id)
+      .subscribe();
+    }
   }    
 }

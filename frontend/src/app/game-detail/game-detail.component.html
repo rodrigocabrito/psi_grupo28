@@ -1,118 +1,127 @@
-<div *ngIf="game">
-    <h2>{{game.name | uppercase}} Details</h2>
-    <div class="slideshow-container">
-        <div class="mySlides fade" style="display: block;">
-            <img src='http://localhost:3078/images/{{game.img_p}}' style="width:100%">
-        </div>
-        <div class="mySlides fade" *ngIf="game.img_s.length >= 1">
-            <img src='http://localhost:3078/images/{{game.img_s[0]}}'style="width:100%">
-        </div>
-        <div class="mySlides fade" *ngIf="game.img_s.length >= 2">
-            <img src='http://localhost:3078/images/{{game.img_s[1]}}' style="width:100%">
-        </div>
-        <div class="mySlides fade" *ngIf="game.video">
-            <iframe width="100%" height="auto"
-                [src]="game.video | safe">
-            </iframe>
-        </div>
-        <a class="prev" (click)="plusSlides(-1)">❮</a>
-        <a class="next" (click)="plusSlides(1)">❯</a>
-        <br>
-        <div style="text-align:center">
-            <span class="dot" (click)="currentSlide(1)" *ngIf="game.img_s.length >= 1"></span> 
-            <span class="dot" (click)="currentSlide(2)"></span> 
-            <span class="dot" (click)="currentSlide(3)" *ngIf="game.img_s.length >= 2"></span> 
-            <span class="dot" (click)="currentSlide(4)" *ngIf="game.video"></span>
-        </div>
-    </div>
-    <div>
-        <div>type: {{game.type}}</div>
-        <div>price: {{game.price}}</div>
-        <div>rate: {{game.rating}}</div>
-    </div>
-    <div>
-        <button (click)="confirmWish()">addWishList</button>
-        <br>
-        <button (click)="confirmCart()">Adicionar ao carrinho</button>
-        <br>
-        <button (click)="confirmRate()">Rate</button>
-        
-    </div>
-    <div class="description">
-        <h3>Descrição:</h3>
-        <p>{{game.description}}</p>
-    </div>
-    <div class="description">
-        <p>supported Platform: {{game.platform}}</p>
-        <p>supported Language: {{game.language}}</p>
-    </div>
-    <div>
-        <h3>Avaliação:</h3>
-        <ul class="avaliacao" *ngIf="game.comment.length > 0">
-            <li *ngFor="let comment of game.comment">
-              {{comment}}
-            </li>
-          </ul>
-    </div>
-    <div class="confirm">
-        <div class="confirm__window">
-            <div class="confirm__titlebar">
-                <span class="confirm__title">{{options.title}}</span>
-                <button class="confirm__close" (click)="close('confirm')">&times;</button>
+<body>
+    <div class="container" *ngIf="game">
+        <h2>{{game.name | uppercase}}</h2>
+        <div class="slideshow-container">
+            <div class="mySlides fade" style="display: block;">
+                <img src='http://localhost:3078/images/{{game.img_p}}' style="width:100%">
             </div>
-            <div class="confirm__content">{{options.message}}</div>
-            <div class="confirm__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addWish()">{{options.okText}}</button>
-                <button class="confirm__button confirm__button--cancel" (click)="close('confirm')">{{options.cancelText}}</button>
+            <div class="mySlides fade" *ngIf="game.img_s.length >= 1">
+                <img src='http://localhost:3078/images/{{game.img_s[0]}}'style="width:100%">
+            </div>
+            <div class="mySlides fade" *ngIf="game.img_s.length >= 2">
+                <img src='http://localhost:3078/images/{{game.img_s[1]}}' style="width:100%">
+            </div>
+            <div class="mySlides fade" *ngIf="game.video">
+                <iframe width="100%" height="auto"
+                    [src]="game.video | safe">
+                </iframe>
+            </div>
+            <a class="prev" (click)="plusSlides(-1)">❮</a>
+            <a class="next" (click)="plusSlides(1)">❯</a>
+            <br>
+            <div style="text-align:center">
+                <span class="dot" (click)="currentSlide(1)" *ngIf="game.img_s.length >= 1"></span> 
+                <span class="dot" (click)="currentSlide(2)"></span> 
+                <span class="dot" (click)="currentSlide(3)" *ngIf="game.img_s.length >= 2"></span> 
+                <span class="dot" (click)="currentSlide(4)" *ngIf="game.video"></span>
             </div>
         </div>
-    </div>
-    <div class="confirmCart">
-        <div class="confirm__window">
-            <div class="confirm__titlebar">
-                <span class="confirm__title">{{cartText.title}}</span>
-                <button class="confirm__close" (click)="close('confirmCart')">&times;</button>
-            </div>
-            <div class="confirm__content">{{cartText.message}}</div>
-            <div class="confirm__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addCart(); close('confirmCart')">{{cartText.okText}}</button>
-                <button class="confirm__button confirm__button--cancel" (click)="close('confirmCart')">{{cartText.cancelText}}</button>
-            </div>
-        </div>
-    </div>
 
-    <div class="confirmRate">
-        <div class="confirm__window">
-            <div class="confirm__titlebar">
-                <span class="confirm__title">{{rate_options.title}}</span>
-                <button class="confirm__close" (click)="close('confirmRate')">&times;</button>
-            </div>
-            <div id="rating">
-                <span class="star" (click)="onStarClick(1)">&#9733;</span>
-                <span class="star" (click)="onStarClick(2)">&#9733;</span>
-                <span class="star" (click)="onStarClick(3)">&#9733;</span>
-                <span class="star" (click)="onStarClick(4)">&#9733;</span>
-                <span class="star" (click)="onStarClick(5)">&#9733;</span>
-              </div>
-          
-              <div>
-                  <label for="comment" id="commentLabel">Comment (Optional):</label>
-                  <input type="text" maxlength="5000" id="commentInput" name="comment" placeholder="Write your comment here...">
-              </div>
-              <button id="submit-button" (click)="rate()">Submit</button>
+        <div class="buttonsDetail">
+            <button title="Adicionar à wishlist" (click)="confirmWish()">Adicionar à wishlist</button>
+            <br>
+            <button title="Adicionar ao carrinho" (click)="confirmCart()">Adicionar ao carrinho</button>
+            <br>
+            <button title="Avaliar" (click)="confirmRate()">Avaliar</button>
+            
         </div>
-    </div>
 
-    <div class="inf">
-        <div class="confirm__window">
-            <div class="confirm__titlebar">
-                <span class="confirm__title">{{inf.title}}</span>
-                <button class="confirm__close" (click)="close('inf')">&times;</button>
+        <div class="description">
+            <p><u>Categoria:</u> {{game.type}}</p>
+            <p><u>Preço:</u> {{game.price}}€</p>
+            <p><u>Classificação:</u> {{game.rating}} ⭐</p>
+        </div>
+
+        <div class="description">
+            <h3>Descrição:</h3>
+            <p>{{game.description}}</p>
+        </div>
+        <div class="description">
+            <p><u>Plataformas disponíveis:</u> {{game.platform}}</p>
+            <p><u>Linguagens suportadas:</u> {{game.language}}</p>
+        </div>
+        <div>
+            <h3 class="comentarios">Comentários:</h3>
+            <ul class="lista-comentarios" *ngIf="game.comment.length > 0">
+                <li *ngFor="let comment of game.comment">
+                {{comment}}
+                </li>
+            </ul>
+        </div>
+        <div class="confirm">
+            <div class="confirm__window">
+                <div class="confirm__titlebar">
+                    <span class="confirm__title">{{options.title}}</span>
+                    <button class="confirm__close" (click)="close('confirm')">&times;</button>
+                </div>
+                <div class="confirm__content">{{options.message}}</div>
+                <div class="confirm__buttons">
+                    <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addWish()">{{options.okText}}</button>
+                    <button class="confirm__button confirm__button--cancel" (click)="close('confirm')">{{options.cancelText}}</button>
+                </div>
             </div>
-            <div class="confirm__content">{{inf.message}}</div>
-            <div class="inf__buttons">
-                <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="close('inf');refreshPage()">OK</button>
+        </div>
+        <div class="confirmCart">
+            <div class="confirm__window">
+                <div class="confirm__titlebar">
+                    <span class="confirm__title">{{cartText.title}}</span>
+                    <button class="confirm__close" (click)="close('confirmCart')">&times;</button>
+                </div>
+                <div class="confirm__content">{{cartText.message}}</div>
+                <div class="confirm__buttons">
+                    <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="addCart(); close('confirmCart')">{{cartText.okText}}</button>
+                    <button class="confirm__button confirm__button--cancel" (click)="close('confirmCart')">{{cartText.cancelText}}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="confirmRate">
+            <div class="confirm__window">
+                <div class="confirm__titlebar">
+                    <span class="confirm__title">{{rate_options.title}}</span>
+                    <button class="confirm__close" (click)="close('confirmRate')">&times;</button>
+                </div>
+                <div id="rating">
+                    <span class="star" (click)="onStarClick(1)">&#9733;</span>
+                    <span class="star" (click)="onStarClick(2)">&#9733;</span>
+                    <span class="star" (click)="onStarClick(3)">&#9733;</span>
+                    <span class="star" (click)="onStarClick(4)">&#9733;</span>
+                    <span class="star" (click)="onStarClick(5)">&#9733;</span>
+                </div>
+            
+                <div class="inputComment">
+                    <br>
+                    <label for="comment" id="commentLabel">Comentário (Opcional):</label>
+                    <br>
+                    <textarea id="commentInput" name="comment" rows="5" cols="30" placeholder="Escreva aqui o seu comentário..."></textarea>
+                </div>
+                <div class="submit-button">
+                    <button id="submit-button" (click)="rate()">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="inf">
+            <div class="confirm__window">
+                <div class="confirm__titlebar">
+                    <span class="confirm__title">{{inf.title}}</span>
+                    <button class="confirm__close" (click)="close('inf')">&times;</button>
+                </div>
+                <div class="confirm__content">{{inf.message}}</div>
+                <div class="inf__buttons">
+                    <button class="confirm__button confirm__button--ok confirm__button--fill" (click)="close('inf'); refreshPage()">OK</button>
+                </div>
             </div>
         </div>
     </div>
-  </div>
+</body>

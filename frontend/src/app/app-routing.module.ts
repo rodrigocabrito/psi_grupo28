@@ -11,7 +11,6 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { RatingComponent } from './rating/rating.component';
 
 
 const routes: Routes = [
@@ -26,7 +25,6 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent},
   { path: 'cart/:id', component: CartComponent},
   { path: 'checkout/:id', component: CheckoutComponent},
-  { path: 'rating', component: RatingComponent}
 ];
 
 @NgModule({
