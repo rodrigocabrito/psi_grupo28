@@ -23,3 +23,37 @@ button a:hover{
   color: rgb(121, 10, 10);
 }
 
+.cart {
+  position: relative;
+  right: 0;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-left: 57em;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 24px;
+}
+
+.cart mat-icon {
+  transform: scale(1.5);
+  margin-bottom: 5px;
+}
+
+.cart:hover{
+  color: rgb(121, 10, 10);
+}
+
+.cart ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px; 
+}
+

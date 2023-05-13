@@ -10,7 +10,13 @@
   </button>
   <button mat-raised-button color="primary">
     <a routerLink="/user-profile/{{id}}">Perfil</a>
-  </button> 
+  </button>
+  <div *ngIf="cart.length > 0 && !isRoute('/cart')">
+    <a class="cart "routerLink="/cart/{{id}}">
+      <ul>{{cart.length}}</ul>
+      <mat-icon>shopping_cart</mat-icon>
+    </a>
+  </div>  
 </div>  
 
 
