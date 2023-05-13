@@ -13,4 +13,5 @@ export interface User {
   profilepic: string;
   wishList: Game_wishlist[];
   cart: Game_cart[];
+  photo: string;
 }

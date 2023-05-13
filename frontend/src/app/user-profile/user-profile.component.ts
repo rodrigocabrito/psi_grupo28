@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit{
   user: User | undefined;
   followers: User[] = [];
   following: User[] = [];
+  server_imageURL="http://localhost:3078/images/";
   games: Game_search_DTO[] = [];
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
@@ -67,6 +68,6 @@ export class UserProfileComponent implements OnInit{
   getUser(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.userService.getUser(id)
-      .subscribe(user => this.user = user);
+      .subscribe(user => {this.user = user});
   }
 }

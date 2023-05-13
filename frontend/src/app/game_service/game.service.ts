@@ -100,6 +100,10 @@ export class GameService {
     return this.http.post<boolean>(`${this.gameUrl}/towish`,{userId: session, gameId: gameId}, this.httpOptions);
   }
 
+  removeWish(id: string, gameId: string): Observable<boolean>{
+    return this.http.post<boolean>(`${this.gamesUrl}/rmwish`, {userId: id, gameId: gameId}, this.httpOptions);
+  }
+
   getCart(id: string): Observable<Game_cart[]> {
     return this.http.get<Game_cart[]>(`${this.gamesUrl}/cart/${id}`).pipe(
      catchError(this.handleError<Game_cart[]>('cart', []))

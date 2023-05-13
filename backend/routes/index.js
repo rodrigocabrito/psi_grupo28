@@ -29,6 +29,8 @@ router.get('/games/wishlist/:id', game_controller.getwishlist);
 
 router.post('/game/towish', game_controller.addWishlist);
 
+router.post('/games/rmwish', game_controller.removeWish);
+
 router.get('/games/cart/:id', game_controller.getcart);
 
 router.post('/game/tocart', game_controller.addCart);
