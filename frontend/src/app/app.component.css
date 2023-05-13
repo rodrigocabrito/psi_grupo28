@@ -31,7 +31,7 @@ button a:hover{
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  margin-left: 57em;
+  margin-left: calc(100% - (48px + 15px));
   margin-right: 15px;
   margin-bottom: 10px;
   line-height: 1.6;
