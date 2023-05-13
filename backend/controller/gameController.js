@@ -84,6 +84,14 @@ exports.search = function(req, res, next){
       })
     };
 
+    exports.removeWish = async function(req, res, next) {
+      User.findById(req.body.userId).exec(async function (err, user) {
+        user.wishlist = user.wishlist.filter(id => !id.equals(req.body.gameId));
+        console.log(user.wishlist);
+        res.send(await User.findOneAndUpdate({_id: req.body.userId}, {$set: {wishlist: user.wishlist}}, {}));
+      });
+    };
+
     exports.getcart = function (req, res, next){
       let cart = [];
       User.findById(req.params.id).exec(function (err, user){

@@ -36,10 +36,19 @@ export class WishlistComponent implements OnInit{
     alert(126);
   }
 
+  removeWish(gameId:string): void{
+    this.GameService.removeWish(this.id, gameId)
+    .subscribe();
+  }
+
   getList(): void {
     this.GameService.getWishList(this.id)
     .subscribe( (list)=>{this.wishlist = list;} 
     );
+  }
+
+  refreshPage(){
+    location.reload();
   }
 
 }
