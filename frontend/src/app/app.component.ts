@@ -22,7 +22,6 @@ export class AppComponent {
       this.id = JSON.parse(session);
     }
     this.getCart();
-    
   }
 
   // Add a method to check the current route
