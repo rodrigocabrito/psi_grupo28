@@ -23,12 +23,17 @@
             </ul>
           </div>
           <div class="gamesList" [hidden]="hideGames">
-            <ul *ngIf="games">
-              <li *ngFor="let game of games">
-                <h3>{{game.name}}</h3>
-              </li>
-            </ul>
-          </div>
+            <ng-container *ngIf="games && games.length > 0; else noGames">
+              <ul>
+                <li *ngFor="let game of games">
+                  <h3>{{game.name}}</h3>
+                </li>
+              </ul>
+            </ng-container>
+            <ng-template #noGames>
+              <p>Não tem nenhum jogo na sua biblioteca😶‍🌫️</p>
+            </ng-template>
+          </div>          
           <div class="followingList" [hidden]="hideFollowing">
             <ul *ngIf="following">
               <li *ngFor="let user of following">
