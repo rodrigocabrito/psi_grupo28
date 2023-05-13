@@ -186,6 +186,11 @@ main {
   margin-right: 5px; 
 }
 
+#nameGame {
+  max-width: 400px;
+  width: auto;
+}
+
   
 
 

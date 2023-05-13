@@ -40,7 +40,8 @@ async function gameCreate(
   image_p,
   image_s,
   video_link,
-  comments
+  comments,
+  date
 ) {
   const game = new Game({
     name: name,
@@ -56,7 +57,8 @@ async function gameCreate(
     image_p: image_p,
     image_s: image_s,
     video_link: video_link,
-    comments: comments
+    comments: comments,
+    date: date
   });
   await game.save();
   games.push(game);
@@ -80,8 +82,8 @@ async function createGames() {
       "the-last-of-us-part-main.jpg",
       ["the-last-of-us-part-s-1.jpg", "the-last-of-us-part-s-2.jpg"],
       "https://www.youtube.com/watch?v=CxVyuE2Nn_w&pp=ygUgdGhlIGxhc3Qgb2YgdXMgcGFydCBpIHBjIHRyYWlsZXI%3D",
-      []
-
+      [],
+      new Date()
     ),
     gameCreate(
       "Stranded: Alien Dawn",
@@ -97,7 +99,8 @@ async function createGames() {
       "stranded-alien-dawn-main.jpg",
       ["stranded-alien-dawn-1.jpg", "stranded-alien-dawn-2.jpg"],
       "",
-      []
+      [],
+      new Date()
     ),
     gameCreate(
       "Football Manager 2023",
@@ -121,7 +124,8 @@ async function createGames() {
       "football-manager-2023-main.jpg",
       ["football-manager-2023-1.jpg", "football-manager-2023-2.jpg"],
       "https://www.youtube.com/watch?v=ISJxT7VLzYg&pp=ygUdRm9vdGJhbGwgTWFuYWdlciAyMDIzIHRyYWlsZXI%3D",
-      []
+      [],
+      new Date()
 
     ),
     gameCreate(
@@ -146,7 +150,8 @@ async function createGames() {
       "planet-zoo-main.jpg",
       ["planet-zoo-1.jpg", "planet-zoo-2.jpg"],
       "https://www.youtube.com/watch?v=gNg6-JVx_9M&pp=ygUSUGxhbmV0IFpvbyB0cmFpbGVy",
-      []
+      [],
+      new Date()
     ),
     gameCreate(
       "Afterimage",
@@ -162,7 +167,8 @@ async function createGames() {
       "afterimage-main.jpg",
       ["afterimage-1.jpg", "afterimage-2.jpg"],
       "https://www.youtube.com/watch?v=g6JD2i0nusc&pp=ygUXYWZ0ZXJpbWFnZS1tYWluIHRyYWlsZXI%3D",
-      []
+      [],
+      new Date()
     ),
   ]);
 }
