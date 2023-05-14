@@ -1,9 +1,8 @@
 <body>
   <div class="CartContainer">
     <div class="Header">
-     <!--<a routerLink="/dashboard/{{id}}" class="dash">← Dashboard</a>-->
-      <h3 class="Heading">Shopping Cart</h3>
-      <button class="removeAll" (click)="removeAll(); refreshPage()">Remove all</button>
+      <h3 class="Heading">Carrinho</h3>
+      <button class="removeAll" (click)="removeAll(); refreshPage()">Remover todos os itens</button>
     </div>
     <div class="Cart-Items">
       <ng-container *ngFor="let game of getCartWithCounts()">
@@ -30,7 +29,7 @@
     </div>
     <div class="Cart-Footer">
       <div class="cartsize">
-        <span class="label">Items:</span>
+        <span class="label">Itens:</span>
         <span class="value">{{cart.length}}</span>
       </div>
       <div class="prices">
