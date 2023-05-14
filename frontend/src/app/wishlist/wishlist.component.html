@@ -3,7 +3,7 @@
     <li *ngFor="let game of wishlist" class="my_fav_list_li item">
       
       <a routerLink="/game/{{game.id}}" class="image">
-        <img src='http://localhost:3078/images/{{game.image_p}}' >
+        <img src='{{game.image_p}}' >
       </a>
       <a routerLink="/game/{{game.id}}" class="name">
         <p class="name">{{game.name}}</p>

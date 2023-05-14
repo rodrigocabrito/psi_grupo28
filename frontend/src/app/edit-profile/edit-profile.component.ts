@@ -16,12 +16,14 @@ export class EditProfileComponent {
   user: User | undefined;
   selectedImage: string | undefined;
   id: string ='';
-  serverURL = "http://localhost:3078/images/";
   images: ProfilePic[] = [
     {name: 'nierbrother', path: '/assets/water.jpg'},
     {name: 'nierfather', path: '/assets/flower.jpg'},
     {name: 'patches', path: '/assets/stickman.jpg'},
   ];
+  first = "https://game-icons.net/icons/ffffff/000000/1x1/lorc/triton-head.svg";
+  second = "https://game-icons.net/icons/ffffff/000000/1x1/lorc/haunting.svg";
+  third = "https://game-icons.net/icons/ffffff/000000/1x1/lorc/dark-squad.svg";
 
   constructor(
     private userService: UserService,

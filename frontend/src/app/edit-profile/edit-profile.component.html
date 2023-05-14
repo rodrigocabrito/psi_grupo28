@@ -23,14 +23,14 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <div class="profile-pictures">
-                <div [class.selected-image]="selectedImage === 'water.jpg'" (click)="selectedImage = 'water.jpg'">
-                  <img src="{{serverURL}}water.jpg" alt="image1">
+                <div [class.selected-image]="selectedImage === first" (click)="selectedImage = first">
+                  <img src="https://game-icons.net/icons/ffffff/000000/1x1/lorc/triton-head.svg" alt="image1">
                 </div>
-                <div [class.selected-image]="selectedImage === 'stickman.jpg'" (click)="selectedImage = 'stickman.jpg'">
-                  <img src="{{serverURL}}stickman.jpg" alt="image2">
+                <div [class.selected-image]="selectedImage === second" (click)="selectedImage = second">
+                  <img src="https://game-icons.net/icons/ffffff/000000/1x1/lorc/haunting.svg" alt="image2">
                 </div>
-                <div [class.selected-image]="selectedImage === 'flower.jpg'" (click)="selectedImage = 'flower.jpg'">
-                  <img src="{{serverURL}}flower.jpg" alt="image3">
+                <div [class.selected-image]="selectedImage === third" (click)="selectedImage = third">
+                  <img src="https://game-icons.net/icons/ffffff/000000/1x1/lorc/dark-squad.svg" alt="image3">
                 </div>
               </div>
             </mat-expansion-panel>

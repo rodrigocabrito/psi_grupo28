@@ -3,13 +3,13 @@
         <h2>{{game.name | uppercase}}</h2>
         <div class="slideshow-container">
             <div class="mySlides fade" style="display: block;">
-                <img src='http://localhost:3078/images/{{game.img_p}}' style="width:100%">
+                <img src='{{game.img_p}}' style="width:100%">
             </div>
             <div class="mySlides fade" *ngIf="game.img_s.length >= 1">
-                <img src='http://localhost:3078/images/{{game.img_s[0]}}'style="width:100%">
+                <img src='{{game.img_s[0]}}'style="width:100%">
             </div>
             <div class="mySlides fade" *ngIf="game.img_s.length >= 2">
-                <img src='http://localhost:3078/images/{{game.img_s[1]}}' style="width:100%">
+                <img src='{{game.img_s[1]}}' style="width:100%">
             </div>
             <div class="mySlides fade" *ngIf="game.video">
                 <iframe width="100%" height="auto"

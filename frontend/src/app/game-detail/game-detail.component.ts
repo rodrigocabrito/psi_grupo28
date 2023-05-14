@@ -17,7 +17,6 @@ export class GameDetailComponent {
   userId: string | null = sessionStorage.getItem('id');
   session : string = "";
   slideIndex = 2;
-  url = "http://localhost:3078/images/";
   Confirm: any;
   options= { title: 'Adicionar à wishlist', message: 'Quer adicionar este jogo à sua wishlist?', okText: "Sim", cancelText: "Não"};
   cartText = { title: 'Adicionar ao carrinho', message: 'Quer adicionar este jogo ao seu carrinho?', okText: "Sim", cancelText: "Não"};

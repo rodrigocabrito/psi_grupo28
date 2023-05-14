@@ -9,7 +9,7 @@
       <ng-container *ngFor="let game of getCartWithCounts()">
         <li>
           <a routerLink="/game/{{game.id}}" class="image">
-            <img src='http://localhost:3078/images/{{game.image_p}}'style="width:90%" >
+            <img src='{{game.image_p}}'style="width:90%" >
           </a>
           <a routerLink="/game/{{game.id}}">{{game.name}}</a>
           <span class="type">{{game.type}}</span>
