@@ -142,6 +142,6 @@ export class DashboardComponent implements OnInit {
   gameToDate(game: Game_library) {
     let dateNew = new Date(game.date);
     console.log(game.date);
-    return dateNew.getHours() + ":" + dateNew.getMinutes() + ":" + dateNew.getSeconds();
+    return dateNew.getFullYear() + "-" + (dateNew.getMonth()+1) + "-" + dateNew.getDate() + " " + dateNew.getHours() + ":" + dateNew.getMinutes();
   }
 }
