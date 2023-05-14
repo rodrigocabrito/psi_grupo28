@@ -1,37 +1,35 @@
 <div class="profile">
     <div *ngIf="user">
         <div class="user-profile">
-          <button id="follow" (click)="addFollowing()">
-            Follow
-          </button>
             <div class="profile-header">
 
               <img src={{server_imageURL}}{{user.photo}} alt="User Profile Picture">
               <h2>{{user.name}}</h2>
               
               <p></p>
-              <button mat-raised-button color="primary" type="submit" routerLink="/edit">Edit</button> 
+              <button *ngIf="visitorid == user.id" mat-raised-button color="primary" type="submit" routerLink="/edit">Editar perfil</button>
+              <button id="follow" *ngIf="visitorid != user.id" (click)="addFollowing()">Seguir</button> 
             </div>
             <hr>
             <div class="profile-container">
               <div class="profile-numbers">
-               <p>{{ user.followers.length || '0' }} followers</p>
-               <p>{{ user.following.length || '0' }} follows</p>
+               <p>{{ user.followers.length || '0' }} Seguidores</p>
+               <p>{{ user.following.length || '0' }} A seguir</p>
               </div>
               <hr style="width: 0,1px; height: 40px; display: inline-block;">
               <div class="profile-content">
                 <ul>
                   <li><button (click)="getGamesLibrary()">
-                    Games library
+                    Biblioteca de Jogos
                   </button></li>
                   <li><button (click)="getWishlist()">
                     Wishlist
                   </button></li>
                   <li><button (click)="getFollowing(id)">
-                    My follows
+                    A seguir
                   </button></li>
                   <li><button (click)="getFollowers(id)">
-                    My followers
+                    Seguidores
                   </button></li>
                 </ul>
               </div>

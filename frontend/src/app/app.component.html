@@ -9,7 +9,7 @@
     <a (click)="getWishlist()">WishList</a>
   </button>
   <button mat-raised-button color="primary">
-    <a routerLink="/user-profile/{{loginId}}">Perfil</a>
+    <a (click)="getProfile()">Perfil</a>
   </button>
   <div *ngIf="!isRoute('/cart')&& !isRoute('/checkout')">
     <a class="cart "routerLink="/cart/{{loginId}}">
