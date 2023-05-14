@@ -12,8 +12,8 @@
                 <img src='{{game.img_s[1]}}' style="width:100%">
             </div>
             <div class="mySlides fade" *ngIf="game.video">
-                <iframe width="100%" height="auto"
-                    [src]="game.video | safe">
+                <iframe width="100%" height="280px"
+                    [src]="game.video | safe" frameborder="0" allowfullscreen>
                 </iframe>
             </div>
             <a class="prev" (click)="plusSlides(-1)">❮</a>
