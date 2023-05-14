@@ -9,7 +9,7 @@
         <p class="name">{{game.name}}</p>
       </a>
       
-      <button type="button" class="delete" title="delete wishlist" (click)="removeWish(game.id);refreshPage()"
+      <button type="button" class="delete" title="delete wishlist" (click)="removeWish(game.id);c();refreshPage()"
       *ngIf="check()">X</button>
     </li>
     <li *ngIf="wishlist.length == 0" id="alert">Não existem jogos na sua wishlist!</li>
