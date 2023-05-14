@@ -215,7 +215,9 @@ main {
   width: auto;
 }
 
-
+#msg{
+  margin-left: 23px;
+}
   
 
 

@@ -39,4 +39,10 @@ export class AppComponent {
       location.reload();
     });
   }
+
+  getProfile(): void {
+    this.router.navigate(['/user-profile',this.loginId]).then(() => {
+      location.reload();
+    });
+  }
 }
