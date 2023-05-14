@@ -83,7 +83,7 @@ async function createGames() {
       "https://gaming-cdn.com/images/products/13298/616x353/the-last-of-us-part-i-pc-jogo-steam-cover.jpg?v=1683291639",
       ["https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/extras/d20220516_TLOUX_Annouce_Stills_9_WM_STEAM.png?t=1683913536",
        "https://gaming-cdn.com/images/products/13298/screenshot/the-last-of-us-part-i-pc-jogo-steam-wallpaper-1-big.jpg?v=1683291639"],
-      "https://www.youtube.com/watch?v=CxVyuE2Nn_w&pp=ygUgdGhlIGxhc3Qgb2YgdXMgcGFydCBpIHBjIHRyYWlsZXI%3D",
+      "https://www.youtube.com/embed/CxVyuE2Nn_w",
       [],
       new Date()
     ),
@@ -101,7 +101,7 @@ async function createGames() {
       "https://gaming-cdn.com/images/products/12710/616x353/stranded-alien-dawn-pc-jogo-steam-cover.jpg?v=1683636105",
       ["https://gaming-cdn.com/images/products/12710/screenshot/stranded-alien-dawn-pc-jogo-steam-wallpaper-1-big.jpg?v=1683636105",
        "https://gaming-cdn.com/images/products/12710/screenshot/stranded-alien-dawn-pc-jogo-steam-wallpaper-4-thumbv2.jpg?v=1683636105"],
-      "",
+      "https://www.youtube.com/embed/TbPQ-lfqesw",
       [],
       new Date()
     ),
@@ -127,7 +127,7 @@ async function createGames() {
       "https://gaming-cdn.com/images/products/12596/616x353/football-manager-2023-pc-mac-jogo-steam-europe-cover.jpg?v=1683293547",
       ["https://gaming-cdn.com/images/products/12596/screenshot/football-manager-2023-pc-mac-jogo-steam-europe-wallpaper-1-big.jpg?v=1683293547", 
       "https://gaming-cdn.com/images/products/12596/screenshot/football-manager-2023-pc-mac-jogo-steam-europe-wallpaper-3-thumbv2.jpg?v=1683293547"],
-      "https://www.youtube.com/watch?v=ISJxT7VLzYg&pp=ygUdRm9vdGJhbGwgTWFuYWdlciAyMDIzIHRyYWlsZXI%3D",
+      "https://www.youtube.com/embed/ISJxT7VLzYg",
       [],
       new Date()
 
@@ -154,7 +154,7 @@ async function createGames() {
       "https://gaming-cdn.com/images/products/4479/616x353/planet-zoo-pc-jogo-steam-cover.jpg?v=1650976223",
       ["https://gaming-cdn.com/images/products/4479/screenshot/planet-zoo-pc-jogo-steam-wallpaper-1-big.jpg?v=1650976223", 
       "https://gaming-cdn.com/images/products/4479/screenshot/planet-zoo-pc-jogo-steam-wallpaper-3-thumbv2.jpg?v=1650976223"],
-      "https://www.youtube.com/watch?v=gNg6-JVx_9M&pp=ygUSUGxhbmV0IFpvbyB0cmFpbGVy",
+      "https://www.youtube.com/embed/TAvzq-HrSoQ",
       [],
       new Date()
     ),
@@ -172,7 +172,7 @@ async function createGames() {
       "https://gaming-cdn.com/images/products/13737/616x353/afterimage-pc-jogo-steam-cover.jpg?v=1683639639",
       ["https://gaming-cdn.com/images/products/13737/screenshot/afterimage-pc-jogo-steam-wallpaper-1-big.jpg?v=1683639639",
        "https://gaming-cdn.com/images/products/13737/screenshot/afterimage-pc-jogo-steam-wallpaper-3-thumbv2.jpg?v=1683639639"],
-      "https://www.youtube.com/watch?v=g6JD2i0nusc&pp=ygUXYWZ0ZXJpbWFnZS1tYWluIHRyYWlsZXI%3D",
+      "https://www.youtube.com/embed/g6JD2i0nusc",
       [],
       new Date()
     ),
