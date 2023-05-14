@@ -8,18 +8,14 @@ import { User } from './user';
 import { MessageService } from './message.service';
 
 import { userRegister } from './userRegister';
-import { Game_search_DTO } from './games/game_search_DTO';
-import { Game_detail } from './games/game_detail';
-import { Game_wishlist } from './games/game_wishlist';
-import { Game_cart } from './games/game_cart';
 import { Game_library } from './games/game_library';
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  private usersUrl = 'http://localhost:3078/users';  // URL to web api
-  private userUrl = 'http://localhost:3078/user';
+  private usersUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/users';  // URL to web api
+  private userUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/user';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

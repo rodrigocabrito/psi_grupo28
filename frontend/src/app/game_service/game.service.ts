@@ -16,8 +16,8 @@ import { User } from '../user';
 })
 export class GameService {
 
-  private gamesUrl = 'http://localhost:3078/games';
-  private gameUrl = 'http://localhost:3078/game';
+  private gamesUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/games';
+  private gameUrl = 'http://appserver.alunos.di.fc.ul.pt:3078/game';
   
 
   httpOptions = {
