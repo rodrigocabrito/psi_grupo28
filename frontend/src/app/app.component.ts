@@ -34,6 +34,11 @@ export class AppComponent {
       .subscribe(cart => this.cart = cart);
   }
 
+  logout(): void{
+    window.localStorage.removeItem('session');
+    this.router.navigate(['']);
+  }
+
   getWishlist(): void {
     this.router.navigate(['/wishlist',this.loginId]).then(() => {
       location.reload();
