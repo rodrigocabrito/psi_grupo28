@@ -24,10 +24,12 @@ export class GameDetailComponent {
   inf={title:"Informação", message: ""};
   rate_options= { title: 'A tua opinião é importante!'};
   rating = 0;
+  got = false;
 
   constructor(
     private route: ActivatedRoute,
     private GameService: GameService,
+    private UserService: UserService,
     private location: Location
   ) {}
   
@@ -45,6 +47,19 @@ export class GameDetailComponent {
     .subscribe( (game)=>{this.game = game;
       console.log(this.game.description)} 
     );
+  }
+
+  checkGot(): void{
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.UserService.getGamesLibrary(this.session)
+    .subscribe( games => {
+      for(let index = 0; index < games.length; index++){
+        if (games[index].id === id) {
+          this.got =true;
+          break; 
+        }
+      }
+    })
   }
 
   _close (confirmEl: Element | null) {
@@ -140,8 +155,9 @@ export class GameDetailComponent {
   rate(){
     this.close("confirmRate");
     const id = this.route.snapshot.paramMap.get('id')!;
-
-    if (this.rating === 0) {
+    if (!this.got) {
+      alert('Para avaliar precisa de comprar o jogo.');
+    }else if (this.rating === 0) {
       alert('Please select a rating.');
     } else {
 
