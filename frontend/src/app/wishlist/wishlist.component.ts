@@ -38,7 +38,7 @@ export class WishlistComponent implements OnInit{
   }
 
   c(): void{
-    alert('Game removed');
+    alert('Jogo removido.');
   }
 
   removeWish(gameId:string): void{
