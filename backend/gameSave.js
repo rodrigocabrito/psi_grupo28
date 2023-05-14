@@ -21,6 +21,7 @@ async function main() {
   console.log("Debug: About to connect");
   await mongoose.connect(mongoDB);
   console.log("Debug: Should be connected?");
+  await Game.remove();
   await createGames();
   console.log("Debug: Closing mongoose");
   mongoose.connection.close();
