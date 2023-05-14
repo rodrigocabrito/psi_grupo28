@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Game_search_DTO } from '../games/game_search_DTO';
 import { User } from '../user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,13 +21,16 @@ export class UserProfileComponent implements OnInit{
   id: string = '';
   visitorid: string = '';
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {}
+  constructor(private userService: UserService, private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
     this.getUser();
     const session = window.localStorage.getItem("session");
     if (session) {
       this.visitorid = JSON.parse(session);
+    }
+    if(this.user){
+      this.id = this.user.id
     }
   }
 
@@ -41,13 +44,13 @@ export class UserProfileComponent implements OnInit{
       .subscribe(following => this.following = following);
   }
 
-  getGamesLibrary(id: string): void {
-    this.userService.getGamesLibrary(id)
-    .subscribe(games => this.games = games);;
+  getGamesLibrary(): void {
+    this.userService.getGamesLibrary(this.id)
+    .subscribe((games)=>{this.games = games;} );;
   }
 
-  getWishlish(id: string): void {
-    
+  getWishlist(): void {
+    this.router.navigate(['/wishlist']);
   }
 
   addFollowing() {

@@ -11,7 +11,7 @@ exports.user_search = function(req, res, next){
   .exec(function (err, list_users) {
     for(let index = 0; index < list_users.length; index++){
       if (list_users[index].username.toLowerCase().includes(req.params.param.toLowerCase())) {
-        l.push({id:list_users[index]._id, name:list_users[index].username});
+        l.push({id:list_users[index]._id, username:list_users[index].username});
         console.log(list_users[index].username);
       }
     }

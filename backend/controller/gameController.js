@@ -58,22 +58,19 @@ exports.search = function(req, res, next){
         if (err) {
           return next(err);
         }
-        console.log(req.params.id)
-        for (let index = 0; index < user.wishlist.length; index++) {
-          Game.findById(user.wishlist[index]).exec(function (err1, games){
-            console.log(games)
-            if (err1) {
-              return next(err1);
-            }
-              wishlist.push({id:games._id, name:games.name, img_p:games.image_p});
-              if (index === user.wishlist.length-1) {
-                res.send(wishlist);
-              }
-            
-          }); 
+        console.log(user.wishlist)
+        
+        Game.find({ _id: { $in: user.wishlist } }).exec(function (err1, games){
+          console.log(games)
+          if (err1) {
+            return next(err1);
           }
-            
-        });
+          for (let index = 0; index < games.length; index++) {
+            wishlist.push({id:games[index]._id, name:games[index].name, image_p:games[index].image_p});
+          }
+          res.send(wishlist);
+        }); 
+      });
     };
 
     exports.addWishlist = function (req, res, next){
