@@ -200,8 +200,9 @@ exports.search = function(req, res, next){
               return next(err);
             }
             game.date = new Date();
+            await game.save();
             user.games.push(game._id); 
-            console.log(user.games);
+            console.log(user.games[user.games.length-1].date);
 
             if (index === user.cart.length-1) {
               res.send(await User.findOneAndUpdate({_id:req.body.userId}, {$set:{games: user.games}}, {}));

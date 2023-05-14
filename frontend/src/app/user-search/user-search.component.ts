@@ -18,6 +18,7 @@ export class UserSearchComponent implements OnInit {
   users$!: Observable<User[]>;
   b = true;
   private searchTerms = new Subject<string>();
+  key:string="";
 
   constructor(private userService: UserService) {}
 
@@ -45,11 +46,13 @@ export class UserSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.userService.searchUsers(term)),
     );
+    document.addEventListener("keydown", (e) => this.key=e.key)
+    document.addEventListener("click", (e) => this.key="click")
   }
 
   blurEvent(): void {
     let d = document.getElementById("show");
-    if (d) {
+    if (d && this.key !== "Tab") {
       d.style.visibility = "hidden";
     } 
   }

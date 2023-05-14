@@ -23,7 +23,7 @@
             </ul>
           </div>
           <div class="gamesList" [hidden]="hideGames">
-            <ng-container *ngIf="games">
+            <ng-container *ngIf="games && games.length > 0; else noGames">
               <button class = "sorting" *ngIf="clickedBeforeName==true"  (click) = "sortByName(games)">Sort by Name ⬅</button>
               <button *ngIf="clickedBeforeName==false" class = "sorting" (click) = "sortByName(games)">Sort by Name ➡</button>
               <button class = "sorting" (click) = "sortByDate(games)">Sort by Date</button>
@@ -35,9 +35,9 @@
                 </li>
               </ul>
             </ng-container>
-            <ng-container>
+            <ng-template #noGames>
               <p>Não tem nenhum jogo na sua biblioteca😶‍🌫️</p>
-            </ng-container> 
+            </ng-template>
           </div>          
           <div class="followingList" [hidden]="hideFollowing">
             <ul *ngIf="following">

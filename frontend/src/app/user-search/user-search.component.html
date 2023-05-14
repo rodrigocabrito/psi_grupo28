@@ -1,10 +1,10 @@
 <div id="search-component" (click)="clickEvent()">
   <label for="search-box" id="search-label">Procure um utilizador 🔍</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" />
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" (focus)="clickEvent()"/>
 
-  <ul class="search-result">
+  <ul class="search-result" (blur)="blurEvent()" (focus)="clickEvent()" alt="resultado da pesquisa">
     <div id="show" ng-hide="myVar">
-    <li *ngFor="let user of users$ | async" >
+    <li *ngFor="let user of users$ | async" tabindex="0" (blur)="blurEvent()" (focus)="clickEvent()" (click)="clickEvent()">
       <a routerLink="/user-profile/{{user.id}}">
         {{user.name}}
       </a>

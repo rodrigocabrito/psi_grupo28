@@ -56,7 +56,6 @@ export class DashboardComponent implements OnInit {
   getGamesLibrary(): void {
     this.userService.getGamesLibrary(this.id)
     .subscribe((games)=>{this.games = games;} );;
-    console.log("Date = " + this.games[0].date);
   }
 
   showListas(): void {
