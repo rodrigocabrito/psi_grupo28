@@ -35,6 +35,23 @@ export class CheckoutComponent {
   }
 
   finalizeBuy() {
+
+    const inputNIF = document.getElementById('nif') as HTMLInputElement;
+    const nif = inputNIF.value;
+
+    if (nif === '') {
+      alert('Por favor, preencha o campo NIF antes de finalizar a compra.');
+      return;
+    }
+
+    const paymentMethodSelect = document.getElementById('payment-method') as HTMLSelectElement;
+    const selectedValue = paymentMethodSelect.value;
+
+    if (selectedValue !== 'credit-card' && selectedValue !== 'paypal' && selectedValue !== 'apple-pay' && selectedValue !== 'google-pay') {
+      alert('Por favor, escolha um método de pagamento.');
+      return;
+    }
+
     const randomNumber = this.generateRandomNumber();
 
     if (randomNumber <= 50) {
