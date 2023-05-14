@@ -10,7 +10,7 @@ import { GameService } from './game_service/game.service';
 })
 export class AppComponent {
   title = 'Oasis Gaming';
-  id ="";
+  loginId ="";
   cart: Game_cart[] = [];
   
 
@@ -19,7 +19,7 @@ export class AppComponent {
   ngOnInit(): void {
     const session = window.localStorage.getItem("session");
     if (session) {
-      this.id = JSON.parse(session);
+      this.loginId = JSON.parse(session);
     }
     this.getCart();
   }
@@ -30,7 +30,7 @@ export class AppComponent {
   }
 
   getCart(): void{
-    this.gameService.getCart(this.id)
+    this.gameService.getCart(this.loginId)
       .subscribe(cart => this.cart = cart);
   }
 }
