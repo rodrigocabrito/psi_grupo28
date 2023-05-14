@@ -1,104 +1,111 @@
 body{
-    background-color:  #d5a835ac;
+  background-color:  #d5a835ac;
 }
+
 h1 {
-    text-align: center;
-  }
-  .user-profile {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 20px;
-    border-color: rgba(157, 64, 2, 0.363);
-    background-color: rgba(167, 112, 76, 0.658);;
-  }
+  text-align: center;
+}
 
-  .profile-header img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-right: 20px;
-  float: left;
-  }
+.user-profile {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-color: rgba(157, 64, 2, 0.363);
+  background-color: rgba(167, 112, 76, 0.658);;
+}
 
-  .profile-header {
-    display: inline;
-  }
+.profile-header img {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+margin-right: 20px;
+float: left;
+border: 2px solid rgb(17, 17, 17) ;
 
-  .profile-header h2 {
-  margin: 0;
-  padding-left: 0.2em;
-  padding-top: 20px;
-  color:rgb(121, 10, 10) ;
-  }
+}
 
-  .profile-header p {
-  margin: 0;
-  font-style: italic;
-  padding-left: 150px;
-  padding-top: 5px;
-  }
+.profile-header {
+  display: inline-block;
+  position: relative;
+  right: 100px;
+ 
+}
 
-  .profile-content ul:last-of-type {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0;
-  }
-  .profile-content {
-    margin: 0 0;
-    padding: 0 0;
-  }
+.profile-header h2 {
+margin: 0;
+padding-left: 0.2em;
+padding-top: 20px;
+color:rgb(121, 10, 10) ;
+}
 
-  .profile-content li button {
-    
-    padding: 10px 10px 10px 10px;
-  }
+.profile-header p {
+margin: 0;
+font-style: italic;
+padding-left: 150px;
+padding-top: 5px;
+}
 
-  .profile-content li strong {
-    display: inline-block;
-    width: 120px;
-  }
+.profile-content ul:last-of-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+.profile-content {
+  margin: 0 0;
+  padding: 0 0;
+}
 
-  a {
-    color: black;
-    text-decoration: none;
-  }
+.profile-content li button {
+  
+  padding: 10px 10px 10px 10px;
+}
 
-  hr {
-    margin-top: 20px;
-    border-color: rgba(157, 64, 2, 0.363);
-  }
+.profile-content li strong {
+  display: inline-block;
+  width: 120px;
+}
 
-  h2 {
-    background-color: transparent;
-  }
+a {
+  color: black;
+  text-decoration: none;
+}
 
-  .profile-container {
-    display: grid;
-    grid-template-columns: 30% 1px 70%;
-  }
+hr {
+  margin-top: 20px;
+  border-color: rgba(157, 64, 2, 0.363);
+}
 
-  .profile-numbers {
-    padding-left: 30px;
-  }
+h2 {
+  background-color: transparent;
+}
 
-  li button {
-    background-color: rgba(157, 64, 2, 0.276);
-    padding: 0.5rem;
-    color: rgb(121, 10, 10);
-  }
+.profile-container {
+  display: grid;
+  grid-template-columns: 30% 1px 70%;
+}
 
- #dashboardBut{
-    position: absolute;
-    right: 2.5%;
-    top: 3.5%;
+.profile-numbers {
+  padding-left: 30px;
+}
+
+li button {
+  background-color: rgba(157, 64, 2, 0.276);
+  padding: 0.5rem;
+  color: rgb(121, 10, 10);
+}
+
+#dashboardBut{
+  position: absolute;
+  right: 2.5%;
+  top: 3.5%;
 }
 
 
 #follow {
-  position: relative;
-  top: 0.1em;
-  right: 0.1em;
+position: relative;
+left: 93%;
+bottom: 70px;
 }
 

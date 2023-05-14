@@ -88,6 +88,18 @@ main {
   transition: width 0.3s ease-in-out;
 }
 
+.menu .sorting {
+    width: 20ex;
+    font-size: 15px;
+    transition: none;
+    margin-bottom: 2vw;
+}
+
+.menu .sorting:hover {
+  width: 20ex;
+  background-color: rgba(0, 0, 0, 0.276);
+}
+
 .menu button.active {
   color: #2c3e50;
   font-weight: bold;
@@ -185,6 +197,12 @@ main {
   margin-left: 5px;
   margin-right: 5px; 
 }
+
+#nameGame {
+  max-width: 400px;
+  width: auto;
+}
+
 
   
 

@@ -16,7 +16,7 @@ const GameSchema = new Schema({
     image_s: { type: [String], required: false },
     video_link: { type: String, required: false },
     comments: {type:[String], ref :"comments" },
-    date: {type: Date, ref:"date"}
+    date: {type: Date}
 });
 GameSchema
   .virtual('url')

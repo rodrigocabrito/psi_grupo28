@@ -10,7 +10,7 @@
       <div class="menu">
         <ul>
           <li class="listas"><button class="listasButt" (click)="getFollowing(id); showListas()">Listas</button></li>
-          <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(); showGames()">Games Library</button></li>
+          <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(); showGames(); ">Games Library</button></li>
           <li class="following"><button  class="followingButt"(click)="getFollowing(id); showFollowing()">A seguir</button></li>
           <li class="followers"><button class="followersButt" (click)="getFollowers(id); showFollowers()">Seguidores</button></li>
         </ul>
@@ -18,21 +18,26 @@
           <div class="listasList" [hidden]="hideListas">
             <ul *ngIf="games">
               <li *ngFor="let game of games">
-                <h3>{{game.name}} {{game.date}}</h3>
+                <h3>{{game.name}} </h3>
               </li>
             </ul>
           </div>
           <div class="gamesList" [hidden]="hideGames">
-            <ng-container *ngIf="games && games.length > 0; else noGames">
+            <ng-container *ngIf="games">
+              <button class = "sorting" *ngIf="clickedBeforeName==true"  (click) = "sortByName(games)">Sort by Name ⬅</button>
+              <button *ngIf="clickedBeforeName==false" class = "sorting" (click) = "sortByName(games)">Sort by Name ➡</button>
+              <button class = "sorting" (click) = "sortByDate(games)">Sort by Date</button>
               <ul>
                 <li *ngFor="let game of games">
-                  <h3>{{game.name}}</h3>
+                  <img src="http://localhost:3078/images/{{game.image_p}}" alt="{{game.name}}" width="2em" height="2em">
+                  <h3 id="nameGame">{{game.name}}</h3>
+                  <h3>{{gameToDate(game)}}</h3>
                 </li>
               </ul>
             </ng-container>
-            <ng-template #noGames>
+            <ng-container>
               <p>Não tem nenhum jogo na sua biblioteca😶‍🌫️</p>
-            </ng-template>
+            </ng-container> 
           </div>          
           <div class="followingList" [hidden]="hideFollowing">
             <ul *ngIf="following">

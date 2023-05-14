@@ -151,11 +151,11 @@ exports.getGamesLibrary = function (req, res, next){
         if (err1) {
           return next(err1);
         }
-          gamesList.push({id:games._id, name:games.name, image_p:games.image_p, type:games.type, price:games.price});
+          data = new Date();
+          gamesList.push({id:games._id, name:games.name, image_p:games.image_p, date:data});
           if (index === user.games.length-1) {
             res.send(gamesList);
           }
-        
       }); 
       }
         

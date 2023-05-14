@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit {
   hideGames = true;
   hideFollowers = true;
   hideFollowing = true;
+  clickedBeforeDate = false;
+  clickedBeforeName = false;
 
   constructor(private userService: UserService,private gameService: GameService,private route: ActivatedRoute) { }
 
@@ -34,8 +36,8 @@ export class DashboardComponent implements OnInit {
     if (session) {
       this.id = JSON.parse(session);
     }
-    this.getFollowers(this.id);
-    this.getFollowing(this.id);
+    //this.getFollowers(this.id);
+    //this.getFollowing(this.id);
     this.getUser();
     this.getGamesLibrary();
     this.getCart();
@@ -54,6 +56,7 @@ export class DashboardComponent implements OnInit {
   getGamesLibrary(): void {
     this.userService.getGamesLibrary(this.id)
     .subscribe((games)=>{this.games = games;} );;
+    console.log("Date = " + this.games[0].date);
   }
 
   showListas(): void {
@@ -94,5 +97,31 @@ export class DashboardComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.gameService.getCart(id)
       .subscribe(cart => this.cart = cart);
+  }
+
+  sortByDate(games: Game_library[]){
+    if(this.clickedBeforeDate) {
+      games.sort((a, b) => (a.date < b.date ? -1 : 1));
+      this.clickedBeforeDate = false;
+    } else {
+      games.sort((a, b) => (a.date < b.date ? -1 : 1));
+      this.clickedBeforeDate = true;
+    }
+  } 
+
+  sortByName(games: Game_library[])  {
+    if(this.clickedBeforeName) {
+      games.sort((a, b) => a.name.localeCompare(b.name));
+      this.clickedBeforeName = false;
+    } else {
+      games.sort((a, b) => -1 * a.name.localeCompare(b.name));
+      this.clickedBeforeName = true;
+    }
+  }
+
+  gameToDate(game: Game_library) {
+    let dateNew = new Date(game.date);
+    console.log(game.date);
+    return dateNew.getHours() + ":" + dateNew.getMinutes() + ":" + dateNew.getSeconds();
   }
 }
