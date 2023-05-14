@@ -11,6 +11,9 @@
   <button mat-raised-button color="primary">
     <a (click)="getProfile()">Perfil</a>
   </button>
+  <button mat-raised-button color="primary">
+    <a (click)="logout()">Logout</a>
+  </button>
   <div *ngIf="!isRoute('/cart')&& !isRoute('/checkout')">
     <a class="cart "routerLink="/cart/{{loginId}}">
       <ul>{{cart.length}}</ul>
