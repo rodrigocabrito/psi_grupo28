@@ -47,7 +47,9 @@ export class CheckoutComponent {
         this.removeGamesWishlist();
         this.removeGamesCarrinho();
 
-        this.router.navigate(['/dashboard', this.user.id]);
+        this.router.navigate(['/dashboard', this.user.id]).then(() => {
+          location.reload();
+        });
       }
 
       //TODO redirect to dashboard page

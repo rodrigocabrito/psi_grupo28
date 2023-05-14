@@ -58,6 +58,27 @@ export class DashboardComponent implements OnInit {
     .subscribe((games)=>{this.games = games;} );;
   }
 
+  getGamesLibraryWithCounts(): Game_library[] {
+    const gameLibraryWithCounts: Game_library[] = [];
+    const itemCounts: { [key: string]: number } = {};
+
+  
+    for (const game of this.games) {
+      if (!itemCounts[game.id]) {
+        itemCounts[game.id] = 1;
+        gameLibraryWithCounts.push(game);
+        const index = gameLibraryWithCounts.findIndex(g => g.id === game.id);
+        gameLibraryWithCounts[index].quantity = 1;
+      } else {
+        itemCounts[game.id]++;
+        const index = gameLibraryWithCounts.findIndex(g => g.id === game.id);
+        gameLibraryWithCounts[index].quantity = itemCounts[game.id];
+      }
+    }
+  
+    return gameLibraryWithCounts;
+  }
+
   showListas(): void {
     this.hideListas = false;
     this.hideGames = true;

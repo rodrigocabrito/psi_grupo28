@@ -28,9 +28,9 @@
               <button *ngIf="clickedBeforeName==false" class = "sorting" (click) = "sortByName(games)">Sort by Name ➡</button>
               <button class = "sorting" (click) = "sortByDate(games)">Sort by Date</button>
               <ul>
-                <li *ngFor="let game of games">
+                <li *ngFor="let game of getGamesLibraryWithCounts()">
                   <img src="http://localhost:3078/images/{{game.image_p}}" alt="{{game.name}}" width="2em" height="2em">
-                  <h3 id="nameGame">{{game.name}}</h3>
+                  <h3 id="nameGame">{{game.name}} x{{game.quantity}}</h3>
                   <h3>{{gameToDate(game)}}</h3>
                 </li>
               </ul>

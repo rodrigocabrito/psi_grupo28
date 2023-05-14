@@ -3,16 +3,16 @@
 
 <div *ngIf="!isRoute('/register') && !isRoute('/login')">
   <button mat-raised-button color="primary">
-    <a routerLink="dashboard/{{id}}">Dashboard</a>
+    <a routerLink="dashboard/{{loginId}}">Dashboard</a>
   </button> 
   <button mat-raised-button color="primary">
-    <a routerLink="/wishlist/{{loginId}}">WishList</a>
+    <a (click)="getWishlist()">WishList</a>
   </button>
   <button mat-raised-button color="primary">
-    <a routerLink="/user-profile/{{id}}">Perfil</a>
+    <a routerLink="/user-profile/{{loginId}}">Perfil</a>
   </button>
   <div *ngIf="!isRoute('/cart')&& !isRoute('/checkout')">
-    <a class="cart "routerLink="/cart/{{id}}">
+    <a class="cart "routerLink="/cart/{{loginId}}">
       <ul>{{cart.length}}</ul>
       <mat-icon>shopping_cart</mat-icon>
     </a>

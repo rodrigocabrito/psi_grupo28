@@ -33,4 +33,10 @@ export class AppComponent {
     this.gameService.getCart(this.loginId)
       .subscribe(cart => this.cart = cart);
   }
+
+  getWishlist(): void {
+    this.router.navigate(['/wishlist',this.loginId]).then(() => {
+      location.reload();
+    });
+  }
 }

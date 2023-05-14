@@ -50,7 +50,7 @@ export class UserProfileComponent implements OnInit{
   }
 
   getWishlist(): void {
-    this.router.navigate(['/wishlist']);
+    this.router.navigate(['/wishlist',this.user?.id]);
   }
 
   addFollowing() {
@@ -73,4 +73,6 @@ export class UserProfileComponent implements OnInit{
     this.userService.getUser(id)
       .subscribe(user => {this.user = user});
   }
+
+  
 }
