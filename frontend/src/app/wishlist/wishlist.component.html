@@ -1,4 +1,4 @@
-<h2>WishList({{wishlist.length}})</h2>
+<h2 *ngIf="user">WishList({{wishlist.length}}) de {{user.name}}</h2>
 <ul class="my_fav_list">
     <li *ngFor="let game of wishlist" class="my_fav_list_li item">
       
@@ -12,5 +12,5 @@
       <button type="button" class="delete" title="delete wishlist" (click)="removeWish(game.id);c();refreshPage()"
       *ngIf="check()">X</button>
     </li>
-    <li *ngIf="wishlist.length == 0" id="alert">Não existem jogos na sua wishlist!</li>
+    <li *ngIf="wishlist.length == 0" id="alert">Não existem jogos na wishlist!</li>
 </ul>

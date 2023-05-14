@@ -8,6 +8,8 @@ import {
 
 import { Game_wishlist } from '../games/game_wishlist'; 
 import { GameService } from '../game_service/game.service';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -17,10 +19,12 @@ import { GameService } from '../game_service/game.service';
 export class WishlistComponent implements OnInit{
   wishlist : Game_wishlist[] = [];
   id : string = "";
+  user:User | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private GameService: GameService
+    private GameService: GameService,
+    private userService:UserService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +34,7 @@ export class WishlistComponent implements OnInit{
     }
     console.log(this.id)
     this.getList();
+    this.getUser();
   }
 
   c(): void{
@@ -55,6 +60,12 @@ export class WishlistComponent implements OnInit{
 
   refreshPage(){
     location.reload();
+  }
+
+  getUser(): void {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.userService.getUser(id)
+      .subscribe(user => this.user = user);
   }
 
 }

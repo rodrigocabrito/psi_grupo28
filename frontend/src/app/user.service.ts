@@ -90,11 +90,15 @@ export class UserService {
 
   /* GET user's followers */
   getUserFollowers(id: string): Observable<User[]> {
-    const url = `${this.userUrl}/followers/${id}`;
-    return this.http.get<User>(url).pipe(
-      map(user => user.followers),
-      tap(_ => this.log(`fetched user's followers id=${id}`)),
-      catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
+    return this.http.get<User[]>(`${this.userUrl}/followers/${id}`).pipe(
+      catchError(this.handleError<User[]>('user', []))
+    );
+  }
+
+  /* GET users that the user with the given id is following*/
+  getUserFollowing(id: string): Observable<User[]> {
+    return this.http.get<User[]>(`${this.userUrl}/following/${id}`).pipe(
+      catchError(this.handleError<User[]>('user', []))
     );
   }
 
@@ -107,15 +111,7 @@ export class UserService {
     return this.http.post<boolean>(`${this.usersUrl}/followed`, {selfid: id_self, otherid: id_other}, this.httpOptions);
   }
   
-  /* GET users that the user with the given id is following*/
-  getUserFollowing(id: string): Observable<User[]> {
-    const url = `${this.userUrl}/following/${id}`;
-    return this.http.get<User>(url).pipe(
-      map(user => user.followers),
-      tap(_ => this.log(`fetched user's followers id=${id}`)),
-      catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
-    );
-  }
+  
 
   /* GET all games from the user with the given id*/
   getGamesLibrary(id: string): Observable<Game_library[]> {

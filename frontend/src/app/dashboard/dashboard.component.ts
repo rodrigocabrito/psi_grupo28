@@ -43,13 +43,13 @@ export class DashboardComponent implements OnInit {
     this.getCart();
   }
 
-  getFollowers(id: string): void {
-    this.userService.getUserFollowers(id)
+  getFollowers(): void {
+    this.userService.getUserFollowers(this.id)
       .subscribe(followers => this.followers = followers);
   }
 
-  getFollowing(id: string): void {
-    this.userService.getUserFollowing(id)
+  getFollowing(): void {
+    this.userService.getUserFollowing(this.id)
       .subscribe(following => this.following = following);
   }
 

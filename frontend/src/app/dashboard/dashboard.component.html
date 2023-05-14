@@ -9,10 +9,10 @@
     <main>
       <div class="menu">
         <ul>
-          <li class="listas"><button class="listasButt" (click)="getFollowing(id); showListas()">Listas</button></li>
+          <li class="listas"><button class="listasButt" (click)="getFollowing(); showListas()">Listas</button></li>
           <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(); showGames(); ">Biblioteca</button></li>
-          <li class="following"><button  class="followingButt"(click)="getFollowing(id); showFollowing()">A seguir</button></li>
-          <li class="followers"><button class="followersButt" (click)="getFollowers(id); showFollowers()">Seguidores</button></li>
+          <li class="following"><button  class="followingButt"(click)="getFollowing(); showFollowing()">A seguir</button></li>
+          <li class="followers"><button class="followersButt" (click)="getFollowers(); showFollowers()">Seguidores</button></li>
         </ul>
         <div class="content">
           <div class="listasList" [hidden]="hideListas">
@@ -38,14 +38,14 @@
           <div class="followingList" [hidden]="hideFollowing">
             <ul *ngIf="following">
               <li *ngFor="let user of following">
-                <h3>{{user.name}}</h3> {{user.id}}
+                <h3>{{user.name}}</h3>
               </li>
             </ul>
           </div>
           <div class="followersList" [hidden]="hideFollowers">
             <ul *ngIf="followers">
               <li *ngFor="let user of followers">
-                <h3>{{user.name}}</h3>{{user.id}}
+                <h3>{{user.name}}</h3>
               </li>
             </ul>
           </div>
