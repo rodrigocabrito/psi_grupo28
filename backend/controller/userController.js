@@ -122,8 +122,8 @@ exports.follow = function (req, res, next){
   const userVisitor = User.findById(req.body.selfid);
   const userVisited = User.findById(req.body.otherid);
   userVisitor.exec(async function (err, user){
-    if(!user.following.includes(req.body.selfid)){
-      user.following.push(req.body.selfid);
+    if(!user.following.includes(req.body.otherid)){
+      user.following.push(req.body.otherid);
       res.send(await User.findOneAndUpdate({_id:req.body.selfid}, {$set:{following: user.following}}, {}));
     }
   })
@@ -133,8 +133,8 @@ exports.followed = function (req, res, next){
   const userVisitor = User.findById(req.body.selfid);
   const userVisited = User.findById(req.body.otherid);
   userVisited.exec(async function (err, user){
-    if(!user.followers.includes(req.body.otherid)){
-      user.followers.push(req.body.otherid);
+    if(!user.followers.includes(req.body.selfid)){
+      user.followers.push(req.body.selfid);
       res.send(await User.findOneAndUpdate({_id:req.body.otherid}, {$set:{followers: user.followers}}, {}));
     } 
   })
