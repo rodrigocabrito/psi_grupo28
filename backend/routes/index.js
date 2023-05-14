@@ -57,7 +57,7 @@ router.post('/users/followed', users_controller.followed);
 
 router.get('/users/gamesLibrary/:id', users_controller.getGamesLibrary);
 
-router.get('/users/:id/followers', users_controller.getFollowers);
+router.get('/user/:id/followers', users_controller.getFollowers);
 
 router.get('/user/:id/following', users_controller.getFollowing);
 

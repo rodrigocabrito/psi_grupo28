@@ -36,10 +36,8 @@ export class DashboardComponent implements OnInit {
     if (session) {
       this.id = JSON.parse(session);
     }
-    //this.getFollowers(this.id);
-    //this.getFollowing(this.id);
+    console.log(this.id)
     this.getUser();
-    this.getGamesLibrary();
     this.getCart();
   }
 

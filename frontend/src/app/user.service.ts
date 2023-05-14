@@ -90,14 +90,14 @@ export class UserService {
 
   /* GET user's followers */
   getUserFollowers(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}/followers/${id}`).pipe(
+    return this.http.get<User[]>(`${this.userUrl}/${id}/followers/`).pipe(
       catchError(this.handleError<User[]>('user', []))
     );
   }
 
   /* GET users that the user with the given id is following*/
   getUserFollowing(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}/following/${id}`).pipe(
+    return this.http.get<User[]>(`${this.userUrl}/${id}/following/`).pipe(
       catchError(this.handleError<User[]>('user', []))
     );
   }
