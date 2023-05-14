@@ -34,18 +34,15 @@ export class UserProfileComponent implements OnInit{
   }
 
   getFollowers(id: string): void {
-    this.userService.getUserFollowers(id)
-      .subscribe(followers => this.followers = followers);
+    alert("Este botão não faz nada. Para consultar os seguidores utilize o botão no dashboard.");
   }
 
   getFollowing(id: string): void {
-    this.userService.getUserFollowing(id)
-      .subscribe(following => this.following = following);
+    alert("Este botão não faz nada. Para consultar os utilizadores que segue utilize o botão no dashboard.");
   }
 
   getGamesLibrary(): void {
-    this.userService.getGamesLibrary(this.id)
-    .subscribe((games)=>{this.games = games;} );;
+    alert("Este botão não faz nada. Para consultar os jogos que possui utilize o botão no dashboard.");
   }
 
   getWishlist(): void {
