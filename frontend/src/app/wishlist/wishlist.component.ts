@@ -42,9 +42,15 @@ export class WishlistComponent implements OnInit{
   }
 
   getList(): void {
-    this.GameService.getWishList(this.id)
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.GameService.getWishList(id)
     .subscribe( (list)=>{this.wishlist = list;} 
     );
+  }
+
+  check(): boolean{
+    const id = this.route.snapshot.paramMap.get('id')!;
+    return id === this.id;
   }
 
   refreshPage(){

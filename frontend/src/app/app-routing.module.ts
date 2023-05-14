@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
   { path: 'game/:id', component: GameDetailComponent},
-  { path: 'wishlist', component: WishlistComponent},
+  { path: 'wishlist/:id', component: WishlistComponent},
   { path: 'cart/:id', component: CartComponent},
   { path: 'checkout/:id', component: CheckoutComponent},
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
