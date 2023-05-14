@@ -8,15 +8,26 @@
     </header>
     <main>
       <div class="menu">
-        <ul>
-          <li class="listas"><button class="listasButt" (click)="getFollowing(); showListas()">Listas</button></li>
-          <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(); showGames(); ">Biblioteca</button></li>
-          <li class="following"><button  class="followingButt"(click)="getFollowing(); showFollowing()">A seguir</button></li>
-          <li class="followers"><button class="followersButt" (click)="getFollowers(); showFollowers()">Seguidores</button></li>
+        <ul class="menu2">
+          <li class="listas">
+            <button class="listasButt" id="listasButt" (click)="getFollowing(); showListas()">Listas</button>
+          </li>
+          <li class="games">
+            <button class="gamesButt" id="gamesButt" (click)="getGamesLibrary(); showGames()">Biblioteca</button>
+          </li>
+          <li class="following">
+            <button class="followingButt" id="followingButt" (click)="getFollowing(); showFollowing()">A seguir</button>
+          </li>
+          <li class="followers">
+            <button class="followersButt" id="followersButt" (click)="getFollowers(); showFollowers()">Seguidores</button>
+          </li>
         </ul>
+        
         <div class="content">
           <div class="listasList" [hidden]="hideListas">
-
+            <ul *ngIf="user" class="listasButt">
+              <li><button routerLink="/wishlist/{{user.id}}">Wishlist</button></li>
+            </ul>
           </div>
           <div class="gamesList" [hidden]="hideGames">
             <ng-container *ngIf="games && games.length > 0; else noGames">
@@ -25,7 +36,7 @@
               <button class = "sorting" (click) = "sortByDate(games)">Sort by Date</button>
               <ul>
                 <li *ngFor="let game of getGamesLibraryWithCounts()">
-                  <img src="{{game.image_p}}" alt="{{game.name}}" width="2em" height="2em">
+                  <img class="gameImage" src="{{game.image_p}}" routerLink="/game/{{game.id}}" alt="{{game.name}}" width="2em" height="2em">
                   <h3 id="nameGame">{{game.name}} x{{game.quantity}}</h3>
                   <h3>{{gameToDate(game)}}</h3>
                 </li>
@@ -36,18 +47,24 @@
             </ng-template>
           </div>          
           <div class="followingList" [hidden]="hideFollowing">
-            <ul *ngIf="following">
-              <li *ngFor="let user of following">
-                <h3>{{user.name}}</h3>
-              </li>
-            </ul>
+            <ng-container *ngIf="following && following.length > 0; else noFollowing">
+              <ul *ngFor="let user of following">
+                <li class="userNames" routerLink="/user-profile/{{user.id}}">>{{user.name}}</li>
+              </ul>
+            </ng-container>
+            <ng-template #noFollowing>
+              <p id="msg">Não segue ninguém!</p>
+            </ng-template>
           </div>
           <div class="followersList" [hidden]="hideFollowers">
-            <ul *ngIf="followers">
-              <li *ngFor="let user of followers">
-                <h3>{{user.name}}</h3>
-              </li>
-            </ul>
+            <ng-container *ngIf="followers && followers.length > 0; else noFollowers">
+              <ul *ngFor="let user of followers">
+                <li class="userNames" routerLink="/user-profile/{{user.id}}">>{{user.name}}</li>
+              </ul>
+            </ng-container>
+            <ng-template #noFollowers>
+              <p id="msg">Não tem seguidores!</p>
+            </ng-template>
           </div>
         </div>
       </div>

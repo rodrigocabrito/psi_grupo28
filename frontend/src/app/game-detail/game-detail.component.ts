@@ -38,6 +38,7 @@ export class GameDetailComponent {
       this.session = JSON.parse(session);
     }
     this.getGame();
+    this.checkGot();
   }
 
   getGame(): void {

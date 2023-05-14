@@ -1,18 +1,18 @@
 <div *ngIf="user">
   <div class="main-div">
     <mat-card>
-      <mat-card-title>
+      <mat-card-title class="title">
         Editar Perfil
       </mat-card-title>
       <mat-card-content>
         <form [formGroup]="submitForm" class="example-form">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Nome</mat-label>
-            <input formControlName="username" [(ngModel)]="user.name" matInput>
-            <mat-error *ngIf="submitForm.controls['username'].hasError('required')" class="error">Tem que inserir um nome</mat-error>
-            <mat-error *ngIf="submitForm.controls['username'].hasError('minlength')" class="error">Nome tem que conter 3 caracteres</mat-error>
-            <mat-error *ngIf="submitForm.controls['username'].hasError('usernameExists')" class="error">Nome já existe</mat-error>
-            <mat-error *ngIf="submitForm.controls['username'].hasError('pattern')" class="error">Nome so pode conter caracteres alfanumericos</mat-error>
+            <input formControlName="username" class="inputText" [(ngModel)]="user.name" matInput>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('required')" class="error">Tem que inserir um nome.</mat-error>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('minlength')" class="error">Nome tem que conter 3 caracteres.</mat-error>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('usernameExists')" class="error">Nome já existe.</mat-error>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('pattern')" class="error">Nome só pode conter caracteres alfanumericos.</mat-error>
           </mat-form-field>
 
           <mat-accordion class="example-headers-align" multi>
