@@ -4,14 +4,12 @@
 }
 h1 {
   color: rgb(121, 10, 10);
-  font-size: 4rem;
+  font-size: 3rem;
   background-color: transparent;
   display: inline-block;
   text-align: center;
 }
 h2, h3 {
-  color: #ffffff;
-  background-color: #a3cd9a;
   font-weight: lighter;
   text-align: center;
   border-radius: 2px;

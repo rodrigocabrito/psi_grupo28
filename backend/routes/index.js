@@ -29,4 +29,33 @@ router.get('/games/wishlist/:id', game_controller.getwishlist);
 
 router.post('/game/towish', game_controller.addWishlist);
 
+router.post('/games/rmwish', game_controller.removeWish);
+
+router.get('/games/cart/:id', game_controller.getcart);
+
+router.post('/game/tocart', game_controller.addCart);
+
+router.get('/users/search/:param', users_controller.user_search);
+
+router.post('/games/emptyCart/', game_controller.emptyCart);
+
+router.post('/games/rmcart', game_controller.removeFromCart);
+
+router.post('/games/rmonecart', game_controller.removeOneFromCart);
+
+router.post('/games/filterWishList', game_controller.removeFromWishlist);
+
+router.post('/games/updateLibrary', game_controller.updateLibrary);
+
+router.post('/game/rate', game_controller.rateGame);
+
+router.post('/game/comment', game_controller.addCommentGame);
+
+router.post('/users/follow', users_controller.follow);
+
+router.post('/users/followed', users_controller.followed);
+
+router.get('/users/gamesLibrary/:id', users_controller.getGamesLibrary);
+
+
 module.exports = router;

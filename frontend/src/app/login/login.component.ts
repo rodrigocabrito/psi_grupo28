@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls
-  : ['./login.component.scss'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   user: User | undefined;
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
     const session = window.localStorage.getItem("session");
     if (session) {
       const id = JSON.parse(session);
-      this.router.navigate(['/dashboard', id]);
     }
   }
 
@@ -45,12 +43,11 @@ export class LoginComponent implements OnInit {
     .subscribe(user => {
       this.user = user;
       if (this.user) {
-        window.localStorage.setItem('session', JSON.stringify(this.user?.id));
-        this.router.navigate(['/dashboard', this.user.id]);
-        
+        window.localStorage.setItem('session', JSON.stringify(this.user?.id));        
         if (this.user.id === '0') {
           alert('Username or password incorrect');
-        }else{this.router.navigate(['/dashboard', this.user.id]);}
+        }else{this.router.navigate(['/dashboard', this.user.id]);
+        }
       }
       
     });

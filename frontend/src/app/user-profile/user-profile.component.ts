@@ -14,15 +14,21 @@ export class UserProfileComponent implements OnInit{
   user: User | undefined;
   followers: User[] = [];
   following: User[] = [];
+  server_imageURL="http://localhost:3078/images/";
   games: Game_search_DTO[] = [];
   lists: String[] = []; //TODO lists type & getter
   showAppC = false;
   id: string = '';
+  visitorid: string = '';
 
   constructor(private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getUser();
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      this.visitorid = JSON.parse(session);
+    }
   }
 
   getFollowers(id: string): void {
@@ -44,9 +50,24 @@ export class UserProfileComponent implements OnInit{
     
   }
 
+  addFollowing() {
+    if(this.user) {
+      this.userService.follow(this.visitorid,this.user.id)
+      .subscribe();
+      this.userService.followed(this.visitorid,this.user.id)
+      .subscribe();
+      this.refreshPage();
+    }
+
+  }
+
+  refreshPage() {
+    location.reload();
+  }
+
   getUser(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.userService.getUser(id)
-      .subscribe(user => this.user = user);
+      .subscribe(user => {this.user = user});
   }
 }

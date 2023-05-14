@@ -1,5 +1,5 @@
 <div id="search-component" (click)="clickEvent()" >
-    <label for="search-box">Game Search</label>
+    <label for="search-box" id="search-label">Procure um jogo 🔍</label>
     <input #searchBox id="search-box" (input)="search(searchBox.value)" (blur)="blurEvent()" (focus)="clickEvent()"/>
   
     <ul class="search-result" (blur)="blurEvent()" (focus)="clickEvent()" alt="resultado da pesquisa">
@@ -9,8 +9,7 @@
           {{game.name}}
         </a>
       </li>
-        <li *ngIf="!b" id="alert">nao encontrou </li>
-        </div>
-      
+        <li *ngIf="!b" id="alert">Jogo não encontrado.</li>
+      </div>
     </ul>
   </div>

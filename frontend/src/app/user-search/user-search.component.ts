@@ -16,6 +16,7 @@ import { UserService } from '../user.service';
 })
 export class UserSearchComponent implements OnInit {
   users$!: Observable<User[]>;
+  b = true;
   private searchTerms = new Subject<string>();
 
   constructor(private userService: UserService) {}
@@ -23,6 +24,14 @@ export class UserSearchComponent implements OnInit {
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+    let y = true;
+    this.users$.subscribe(x => {
+      if (x.length === 0) {
+        this.b = false;
+      }else{
+        this.b = true;
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -36,5 +45,19 @@ export class UserSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.userService.searchUsers(term)),
     );
+  }
+
+  blurEvent(): void {
+    let d = document.getElementById("show");
+    if (d) {
+      d.style.visibility = "hidden";
+    } 
+  }
+
+  clickEvent(): void{
+    let d = document.getElementById("show");
+    if (d) {
+      d.style.visibility = "visible";
+    } 
   }
 }

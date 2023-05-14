@@ -2,11 +2,6 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
-  <div *ngIf="user">
-    <button mat-raised-button color="primary" id="dashboardBut">
-      <a id="perfil"routerLink="/user-profile/{{user.id}}">Perfil</a>
-    </button>
-  </div>
   <body>
     <header>
       <h1 class="dashboard">Dashboard</h1>
@@ -15,7 +10,7 @@
       <div class="menu">
         <ul>
           <li class="listas"><button class="listasButt" (click)="getFollowing(id); showListas()">Listas</button></li>
-          <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(id); showGames()">Games Library</button></li>
+          <li class="games"><button  class="gamesButt"(click)="getGamesLibrary(); showGames(); ">Games Library</button></li>
           <li class="following"><button  class="followingButt"(click)="getFollowing(id); showFollowing()">A seguir</button></li>
           <li class="followers"><button class="followersButt" (click)="getFollowers(id); showFollowers()">Seguidores</button></li>
         </ul>
@@ -23,17 +18,27 @@
           <div class="listasList" [hidden]="hideListas">
             <ul *ngIf="games">
               <li *ngFor="let game of games">
-                <h3>{{game.name}}</h3>
+                <h3>{{game.name}} </h3>
               </li>
             </ul>
           </div>
           <div class="gamesList" [hidden]="hideGames">
-            <ul *ngIf="games">
-              <li *ngFor="let game of games">
-                <h3>{{game.name}}</h3>
-              </li>
-            </ul>
-          </div>
+            <ng-container *ngIf="games">
+              <button class = "sorting" *ngIf="clickedBeforeName==true"  (click) = "sortByName(games)">Sort by Name ⬅</button>
+              <button *ngIf="clickedBeforeName==false" class = "sorting" (click) = "sortByName(games)">Sort by Name ➡</button>
+              <button class = "sorting" (click) = "sortByDate(games)">Sort by Date</button>
+              <ul>
+                <li *ngFor="let game of games">
+                  <img src="http://localhost:3078/images/{{game.image_p}}" alt="{{game.name}}" width="2em" height="2em">
+                  <h3 id="nameGame">{{game.name}}</h3>
+                  <h3>{{gameToDate(game)}}</h3>
+                </li>
+              </ul>
+            </ng-container>
+            <ng-container>
+              <p>Não tem nenhum jogo na sua biblioteca😶‍🌫️</p>
+            </ng-container> 
+          </div>          
           <div class="followingList" [hidden]="hideFollowing">
             <ul *ngIf="following">
               <li *ngFor="let user of following">
@@ -50,6 +55,7 @@
           </div>
         </div>
       </div>
+      <app-game-search></app-game-search>
+      <app-user-search></app-user-search>
     </main>
   </body>
-  <app-game-search></app-game-search>

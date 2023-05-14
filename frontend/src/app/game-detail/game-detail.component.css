@@ -1,3 +1,32 @@
+
+body {
+  margin-top: 25px;
+  padding: 0;
+  height: auto;
+  background-color: rgba(132, 69, 27, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 70%;
+  height: 100%;
+  background-color: rgba(164, 90, 40, 0.363);
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px #1687d933;
+  font-size: larger;
+}
+
+
+h2 {
+  font-size: 1.9rem;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  color: rgb(121, 10, 10);
+  max-width: 400px;
+}
+
 .mySlides {
   display: none;
 }
@@ -7,9 +36,13 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 600px;
   position: relative;
   margin: auto;
+}
+
+.slideshow-container img {
+  height: 300px;
 }
 
 /* Next & previous buttons */
@@ -67,7 +100,7 @@ img {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbb;
+  background-color: #e5e5e5;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
@@ -79,6 +112,8 @@ img {
 }
 
 .confirm,
+.confirmCart,
+.confirmRate,
 .inf {
   position: fixed;
   top: 0;
@@ -128,7 +163,7 @@ img {
 }
 
 .confirm__titlebar {
-  background: #222222;
+  background-color: rgba(164, 90, 40, 0.613);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -137,7 +172,8 @@ img {
 
 .confirm__title {
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.4em;
+  margin-left: 7px;
 }
 
 .confirm__close {
@@ -150,12 +186,18 @@ img {
 }
 
 .confirm__close:hover {
-  color: #ff0000;
+  color: #ff0000b1;
   cursor: pointer;
+}
+
+.confirm__close:active {
+  transform: scale(2);
+  transition: transform 0.2s ease-in-out;
 }
 
 .confirm__content {
   line-height: 1.8em;
+  font-size: large;
 }
 
 .confirm__buttons {
@@ -164,7 +206,7 @@ img {
   justify-content: flex-end;
 }
 
-.inf__buttons{
+.inf__buttons {
   background: #eeeeee;
   display: flex;
   justify-content: center;
@@ -177,7 +219,7 @@ img {
   background: #ffffff;
   color: #009879;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.3em;
   font-family: 'Noto Sans', sans-serif;
   margin-left: 0.6em;
   cursor: pointer;
@@ -192,6 +234,145 @@ img {
 .confirm__button:focus {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
+
+.confirm__buttons button:active,
+.inf__buttons button:active {
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
+}
+
+.star {
+  color: #ccc;
+  cursor: pointer;
+  font-size: 2.7rem;
+}
+
+.star.active, .star:hover {
+  color: #ffcc00;
+  background-color: white;
+}
+
+#commentInput::placeholder {
+  color: gray;
+  font-size: large;
+}
+
+#commentInput {
+  width: 550px;
+  height: 150px;
+  word-wrap: break-word;
+  font-size: large;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+#commentLabel {
+  margin-left: 20px;
+  margin-right: 10px;
+  font-size: large;
+}
+
+#rating-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 9999;
+  display: none;
+}
+
+#submit-button {
+  display: block;
+  margin: 10px;
+  margin-left: 13em;
+  background-color: rgba(121, 10, 10, 0.519);
+  color: #fff;
+}
+
+.submit-button {
+  background: #eeeeee;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+#submit-button:hover {
+  background-color: rgba(121, 10, 10, 0.737);
+}
+
+#submit-button:active {
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
+}
+
+.inputComment {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.buttonsDetail{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.buttonsDetail button{
+  background-color: rgba(121, 10, 10, 0.519);
+  color: #fff;
+}
+
+.buttonsDetail button:hover {
+  background-color: rgba(121, 10, 10, 0.737);
+}
+
+.buttonsDetail button:active {
+  transform: scale(0.95);
+  transition: transform 0.2s ease-in-out;
+}
+
+.description {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.description h3 {
+  font-size: 1.8rem;
+  color: rgb(121, 10, 10);
+}
+
+.comentarios {
+  font-size: 1.8rem;
+  color: rgb(121, 10, 10);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.lista-comentarios {
+  margin-left: 40px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.lista-comentarios li {
+  background-color: #f1f1f175;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+#rating {
+  margin-left: 20px;
+}
+
 
 @keyframes confirm---open {
   from { opacity: 0 }

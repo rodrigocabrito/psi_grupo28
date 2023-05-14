@@ -8,13 +8,15 @@ const GameSchema = new Schema({
     supported_platform: { type: [String], required: false, max: 100 },
     supported_languages: { type: [String], required: false, max: 100 },
     price: { type: Number, required: true, min: 0 },
-    rate: { type: Number, required: true },
+    rating: { type: Number, required: true },
+    rates: { type: [Number], required: true},
     dlc: { type:[ Schema.Types.ObjectId], ref :"dlc" },
     main_game: {type: Schema.Types.ObjectId, ref : "main" },
     image_p: { type: String, required:true },
     image_s: { type: [String], required: false },
     video_link: { type: String, required: false },
-    comments: {type:[ Schema.Types.ObjectId], ref :"comments" }
+    comments: {type:[String], ref :"comments" },
+    date: {type: Date}
 });
 GameSchema
   .virtual('url')

@@ -1,0 +1,45 @@
+<body>
+  <div class="CartContainer">
+    <div class="Header">
+     <!--<a routerLink="/dashboard/{{id}}" class="dash">← Dashboard</a>-->
+      <h3 class="Heading">Shopping Cart</h3>
+      <button class="removeAll" (click)="removeAll(); refreshPage()">Remove all</button>
+    </div>
+    <div class="Cart-Items">
+      <ng-container *ngFor="let game of getCartWithCounts()">
+        <li>
+          <a routerLink="/game/{{game.id}}" class="image">
+            <img src='http://localhost:3078/images/{{game.image_p}}'style="width:90%" >
+          </a>
+          <a routerLink="/game/{{game.id}}">{{game.name}}</a>
+          <span class="type">{{game.type}}</span>
+          <div class="counter">
+            <button class="btn" (click)="addToCart(game.id); refreshPage()">+</button>
+            <div *ngIf="game.quantity > 1; else showOne" class="count">{{game.quantity}}</div>
+            <ng-template #showOne>
+              <div class="count">1</div>
+            </ng-template>
+            <button class="btn" (click)="removeOneFromCart(game.id); refreshPage()">-</button>
+          </div>
+          <span class="price">{{game.price | currency:'EUR'}}</span>
+          <button mat-button class="delete" (click)="removeFromCart(game.id); refreshPage()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ng-container>
+    </div>
+    <div class="Cart-Footer">
+      <div class="cartsize">
+        <span class="label">Items:</span>
+        <span class="value">{{cart.length}}</span>
+      </div>
+      <div class="prices">
+        <div class="subtotal">
+          <span class="label">Subtotal:</span>
+          <span class="value">{{getSubtotal()}}€</span>
+        </div>
+        <button type="button" title="checkout" class="checkout" routerLink="/checkout/{{id}}">Checkout</button>
+      </div>
+    </div>
+  </div>
+</body>

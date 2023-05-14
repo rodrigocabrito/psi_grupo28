@@ -9,6 +9,10 @@ import { MessageService } from './message.service';
 
 import { userRegister } from './userRegister';
 import { Game_search_DTO } from './games/game_search_DTO';
+import { Game_detail } from './games/game_detail';
+import { Game_wishlist } from './games/game_wishlist';
+import { Game_cart } from './games/game_cart';
+import { Game_library } from './games/game_library';
 
 
 @Injectable({ providedIn: 'root' })
@@ -76,7 +80,7 @@ export class UserService {
       // if not search term, return empty user array.
       return of([]);
     }
-    return this.http.get<User[]>(`${this.usersUrl}/?name=${term}`).pipe(
+    return this.http.get<User[]>(`${this.usersUrl}/search/${term}`).pipe(
       tap(x => x.length ?
          this.log(`found users matching "${term}"`) :
          this.log(`no users matching "${term}"`)),
@@ -93,6 +97,15 @@ export class UserService {
       catchError(this.handleError<User[]>(`getUserFollowers id=${id}`))
     );
   }
+
+  /* POST follow a certain user*/
+  follow(id_self: string, id_other: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.usersUrl}/follow`, {selfid: id_self, otherid: id_other}, this.httpOptions);
+  }
+
+  followed(id_self: string, id_other: string): Observable<boolean> {
+    return this.http.post<boolean>(`${this.usersUrl}/followed`, {selfid: id_self, otherid: id_other}, this.httpOptions);
+  }
   
   /* GET users that the user with the given id is following*/
   getUserFollowing(id: string): Observable<User[]> {
@@ -105,13 +118,9 @@ export class UserService {
   }
 
   /* GET all games from the user with the given id*/
-  getGamesLibrary(id: string): Observable<Game_search_DTO[]> {
-    const url = `${this.userUrl}/gamesLibrary/${id}`;
-    return this.http.get<User>(url).pipe(
-      map(user => user.games),
-      tap(_ => this.log(`fetched user's games id=${id}`)),
-      catchError(this.handleError<User[]>(`getGamesLibrary id=${id}`))
-    );
+  getGamesLibrary(id: string): Observable<Game_library[]> {
+    return this.http.get<Game_library[]>(`${this.usersUrl}/gamesLibrary/${id}`).pipe(
+      catchError(this.handleError<Game_library[]>('games', [])))
   }
 
   //////// Save methods //////////
@@ -158,6 +167,16 @@ export class UserService {
       catchError(this.handleError<any>('updateUser'))
     );
   }
+
+  saveProfile(json: { id: string, name: string, profile_image: string | undefined }) {
+    const sub_url = `/${json.id}`;
+    console.log(json.name)
+    return this.http.put<any>(this.userUrl + sub_url, json);
+}
+
+  getUserss(){
+  return this.http.get<any>(this.usersUrl );
+}
 
   /**
    * Handle Http operation that failed.

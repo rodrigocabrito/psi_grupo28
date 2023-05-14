@@ -1,0 +1,46 @@
+<div *ngIf="user">
+  <div class="main-div">
+    <mat-card>
+      <mat-card-title>
+        Edit Profile
+      </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="submitForm" class="example-form">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="username" [(ngModel)]="user.name" matInput>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('required')" class="error">Need to put a name</mat-error>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('minlength')" class="error">Name must contain at least 3 characters</mat-error>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('usernameExists')" class="error">Name already exists</mat-error>
+            <mat-error *ngIf="submitForm.controls['username'].hasError('pattern')" class="error">Name must only contain alphanumeric characters</mat-error>
+          </mat-form-field>
+
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Profile Pictures
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="profile-pictures">
+                <div [class.selected-image]="selectedImage === 'water.jpg'" (click)="selectedImage = 'water.jpg'">
+                  <img src="{{serverURL}}water.jpg" alt="image1">
+                </div>
+                <div [class.selected-image]="selectedImage === 'stickman.jpg'" (click)="selectedImage = 'stickman.jpg'">
+                  <img src="{{serverURL}}stickman.jpg" alt="image2">
+                </div>
+                <div [class.selected-image]="selectedImage === 'flower.jpg'" (click)="selectedImage = 'flower.jpg'">
+                  <img src="{{serverURL}}flower.jpg" alt="image3">
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <button mat-raised-button type="submit" (click)="onSubmit()">
+            <span>Save</span>
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -33,13 +33,15 @@ async function gameCreate(
   supported_platform,
   supported_languages,
   price,
-  rate,
+  rates,
+  rating,
   dlc,
   main_game,
   image_p,
   image_s,
   video_link,
-  comments
+  comments,
+  date
 ) {
   const game = new Game({
     name: name,
@@ -48,13 +50,15 @@ async function gameCreate(
     supported_platform: supported_platform,
     supported_languages: supported_languages,
     price: price,
-    rate: rate,
+    rating: rating,
+    rates: rates,
     dlc: dlc,
     main_game: main_game,
     image_p: image_p,
     image_s: image_s,
     video_link: video_link,
-    comments: comments
+    comments: comments,
+    date: date
   });
   await game.save();
   games.push(game);
@@ -66,96 +70,105 @@ async function createGames() {
   await Promise.all([
     gameCreate(
       "The Last of Us Part I",
-      "Adventure",
+      "Aventura",
       "Numa civilização devastada, onde infetados e sobreviventes enrijecidos espalham o caos, Joel, um protagonista amargo, é contratado para tirar ilegalmente Ellie, uma rapariga de 14 anos, de uma zona de quarentena militarizada. Porém, o que começa por ser um trabalho simples depressa se transforma numa viagem brutal que os levará a percorrer o seu país.",
       ["Windows"],
-      ["ingles", "portugues", "frances", "alemao", "russo"],
+      ["Inglês", " Português", " Francês", " Alemão", " Russo"],
       60,
+      0,
       0,
       [],
       undefined,
       "the-last-of-us-part-main.jpg",
       ["the-last-of-us-part-s-1.jpg", "the-last-of-us-part-s-2.jpg"],
       "https://www.youtube.com/watch?v=CxVyuE2Nn_w&pp=ygUgdGhlIGxhc3Qgb2YgdXMgcGFydCBpIHBjIHRyYWlsZXI%3D",
-      []
-
+      [],
+      new Date()
     ),
     gameCreate(
       "Stranded: Alien Dawn",
-      "Simulation",
-      "Brave a new world in Stranded: Alien Dawn, a planet survival sim placing the fate of a small marooned group in your hands. Forge your story through compelling and immersive strategic gameplay as you make vital decisions to protect your survivors from starvation, disease, extreme weather and more. From basic camps to fortified bases, create a stronghold to defend the survivors from attacks by alien creatures that roam an expansive and deadly alien world. Experience an epic and unpredictable journey.",
-      ["Windows", "Linux"],
-      ["ingles", "portugues", "frances", "alemao", "russo"],
+      "Simulação",
+      "Alien Dawn é um jogo simulador de sobrevivência que combina construção de bases, gerenciamento de recursos e tower defense. Nele, o jogador lidera um grupo de astronautas presos em um planeta alienígena hostil, enfrentando ameaças de criaturas selvagens e condições climáticas imprevisíveis.",
+      ["Windows", " Linux"],
+      ["Inglês", " Português", " Francês", " Alemão", " Russo"],
       35,
+      0,
       0,
       [],
       undefined,
       "stranded-alien-dawn-main.jpg",
       ["stranded-alien-dawn-1.jpg", "stranded-alien-dawn-2.jpg"],
       "",
-      []
+      [],
+      new Date()
     ),
     gameCreate(
       "Football Manager 2023",
-      "Simulation",
+      "Simulação",
       "Junta-te à elite dos treinadores para escreveres os teus próprios cabeçalhos e conquistares o carinho dos adeptos enquanto vences todos os teus rivais no Football Manager 2023.",
-      ["Windows", "Linux", "MacOS"],
+      ["Windows", " Linux", " MacOS"],
       [
-        "ingles",
-        "portugues",
-        "frances",
-        "alemao",
-        "russo",
-        "italinano",
-        "espanhol",
+        "Inglês",
+        " Português",
+        " Francês",
+        " Alemão",
+        " Russo",
+        " Italiano",
+        " Espanhol",
       ],
       60,
+      0,
       0,
       [],
       undefined,
       "football-manager-2023-main.jpg",
       ["football-manager-2023-1.jpg", "football-manager-2023-2.jpg"],
       "https://www.youtube.com/watch?v=ISJxT7VLzYg&pp=ygUdRm9vdGJhbGwgTWFuYWdlciAyMDIzIHRyYWlsZXI%3D",
-      []
+      [],
+      new Date()
 
     ),
     gameCreate(
       "Planet Zoo",
       "Simulation",
-      "Build a world for wildlife in Planet Zoo. From the developers of Planet Coaster and Zoo Tycoon comes the ultimate zoo sim, featuring authentic living animals who think, feel and explore the world you create around them. Experience a globe-trotting campaign or let your imagination run wild in the freedom of Sandbox mode. Create unique habitats and vast landscapes, make big decisions and meaningful choices, and nurture your animals as you construct and manage the world’s wildest zoos.",
-      ["Windows", "Linux", "MacOS"],
+      "O Planet Zoo é um jogo de simulação de de zoológico dos desenvolvedores de Planet Coaster e Zoo Tycoon. O game está disponível para PC (via download na Steam) e permite que os jogadores construam seu próprio zoológico. Contudo, administrar funcionários, visitantes e animais ao mesmo tempo pode ser uma situação caótica.",
+      ["Windows", " Linux", " MacOS"],
       [
-        "ingles",
-        "portugues",
-        "frances",
-        "alemao",
-        "russo",
-        "italinano",
-        "espanhol",
+        "Inglês",
+        " Português",
+        " Francês",
+        " Alemão",
+        " Russo",
+        " Italiano",
+        " Espanhol",
       ],
       45,
+      0,
       0,
       [],
       undefined,
       "planet-zoo-main.jpg",
       ["planet-zoo-1.jpg", "planet-zoo-2.jpg"],
       "https://www.youtube.com/watch?v=gNg6-JVx_9M&pp=ygUSUGxhbmV0IFpvbyB0cmFpbGVy",
-      []
+      [],
+      new Date()
     ),
     gameCreate(
       "Afterimage",
       "Metroidvania",
       "Para além de possuir uma beleza sublime, o mundo de Engardin também está mergulhado em várias crises. Nas ruínas de Engardin podes encontrar muitos tesouros e segredos, mas os Corrompidos estão à espera das suas próximas presas e as armadilhas letais deixadas pelos antigos farão dos mais incautos as suas vítimas.",
-      ["Windows", "Linux", "MacOS"],
-      ["ingles", "portugues", "russo", "italinano", "espanhol"],
+      ["Windows", " Linux", " MacOS"],
+      ["Inglês", " Português", " Russo", " Italiano", " Espanhol"],
       25,
+      0,
       0,
       [],
       undefined,
       "afterimage-main.jpg",
       ["afterimage-1.jpg", "afterimage-2.jpg"],
       "https://www.youtube.com/watch?v=g6JD2i0nusc&pp=ygUXYWZ0ZXJpbWFnZS1tYWluIHRyYWlsZXI%3D",
-      []
+      [],
+      new Date()
     ),
   ]);
 }

@@ -2,10 +2,14 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  border-radius: 20px;
+
 }
 
 header {
   background-color: rgba(157, 64, 2, 0.363);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 h1 {
@@ -84,6 +88,18 @@ main {
   transition: width 0.3s ease-in-out;
 }
 
+.menu .sorting {
+    width: 20ex;
+    font-size: 15px;
+    transition: none;
+    margin-bottom: 2vw;
+}
+
+.menu .sorting:hover {
+  width: 20ex;
+  background-color: rgba(0, 0, 0, 0.276);
+}
+
 .menu button.active {
   color: #2c3e50;
   font-weight: bold;
@@ -138,3 +154,56 @@ main {
 #dashboardBut:hover {
   color: #9b7a25ac;
 }
+
+#perfil{
+  color: black;
+  text-decoration: none;
+
+}
+
+#perfil:hover{
+  color: rgb(121, 10, 10);
+}
+
+.cart {
+  position: relative;
+  right: 0;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 24px;
+}
+
+.cart mat-icon {
+  transform: scale(1.5);
+  margin-bottom: 5px;
+}
+
+.cart:hover{
+  color: rgb(121, 10, 10);
+}
+
+.cart ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px; 
+}
+
+#nameGame {
+  max-width: 400px;
+  width: auto;
+}
+
+
+  
+
+

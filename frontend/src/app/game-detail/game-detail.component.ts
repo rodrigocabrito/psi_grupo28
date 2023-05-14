@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 
 import { Game_detail } from '../games/game_detail';
 import { GameService } from '../game_service/game.service';
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-game-detail',
@@ -12,12 +14,16 @@ import { GameService } from '../game_service/game.service';
 })
 export class GameDetailComponent {
   game: Game_detail | undefined;
-  slideIndex = 2;
+  userId: string | null = sessionStorage.getItem('id');
   session : string = "";
-  url = "http://localhost:3000/images/";
+  slideIndex = 2;
+  url = "http://localhost:3078/images/";
   Confirm: any;
-  options= { title: 'Add to Wishlist', message: 'Queres adicionar a tua wishlist?', okText: "Sim", cancelText: "Não"};
+  options= { title: 'Adicionar à wishlist', message: 'Quer adicionar este jogo à sua wishlist?', okText: "Sim", cancelText: "Não"};
+  cartText = { title: 'Adicionar ao carrinho', message: 'Quer adicionar este jogo ao seu carrinho?', okText: "Sim", cancelText: "Não"};
   inf={title:"Informação", message: ""};
+  rate_options= { title: 'A tua opinião é importante!'};
+  rating = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,15 +39,6 @@ export class GameDetailComponent {
     this.getGame();
   }
 
-_close (confirmEl: Element | null) {
-        debugger;
-        if (confirmEl) {
-          confirmEl.classList.add('confirm--close');
-          const temp = confirmEl as HTMLElement;
-          temp.style.display = "none";
-        }
-          
-      }
   getGame(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.getGameDetail(id)
@@ -50,6 +47,16 @@ _close (confirmEl: Element | null) {
     );
   }
 
+  _close (confirmEl: Element | null) {
+    debugger;
+    if (confirmEl) {
+      confirmEl.classList.add('confirm--close');
+      const temp = confirmEl as HTMLElement;
+      temp.style.display = "none";
+    }
+      
+  }
+  
   plusSlides(n: number) :void{
     this.slideIndex += n;
     this.showSlides(this.slideIndex);
@@ -61,15 +68,14 @@ _close (confirmEl: Element | null) {
   }
 
   addWish(){
-    this.close("confirm");
     const id = this.route.snapshot.paramMap.get('id')!;
     this.GameService.addWishList(this.session, id)
     .subscribe(result =>{
       const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
       if (!result) {
-        this.inf={title:"Informação", message: "failed add to wishlist"};
+        this.inf={title:"Informação", message: "Erro ao adicionar jogo à wishlist ☹️"};
       }else{
-        this.inf={title:"Informação", message: "add to wishlist success"};
+        this.inf={title:"Informação", message: "Jogo adicionado à wishlist! 😄"};
       }
       temp.style.display = "flex";
       document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
@@ -102,5 +108,83 @@ _close (confirmEl: Element | null) {
     const slid = slides[this.slideIndex-1] as HTMLElement;
     slid.style.display = "block";  
     dots[this.slideIndex-1].className += " active";
+  }
+
+  addCart() {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.GameService.addCart(this.session, id)
+    .subscribe(result =>{
+      const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
+      if (!result) {
+        this.inf={title:"Informação", message: "Erro ao adicionar jogo ao carrinho ☹️"};
+      }else{
+        this.inf={title:"Informação", message: "Jogo adicionado ao carrinho! 😄"};
+      }
+      temp.style.display = "flex";
+      document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
+    });
+  }
+
+  confirmCart(){
+    const temp = document.getElementsByClassName("confirmCart")[0] as HTMLElement;
+    temp.style.display = "flex";
+    document.getElementsByClassName("confirmCart")[0].classList.remove('confirm--close');
+  }
+
+  confirmRate() {  
+    const temp = document.getElementsByClassName("confirmRate")[0] as HTMLElement;
+    temp.style.display = "flex";
+    document.getElementsByClassName("confirmRate")[0].classList.remove('confirm--close');
+  }
+
+  rate(){
+    this.close("confirmRate");
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    if (this.rating === 0) {
+      alert('Please select a rating.');
+    } else {
+
+      //not necessary for US
+      if(this.game) {
+        const inputField = document.getElementById('commentInput') as HTMLTextAreaElement;
+        const inputText = inputField.value;
+
+        this.GameService.addCommentGame(this.game.id, inputText)
+        .subscribe(result1 =>{
+
+          if(this.game) {
+            this.GameService.rateGame(this.game.id, this.rating)
+            .subscribe(result2 =>{
+
+              const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
+              if (!result1 && !result2) {
+                this.inf={title:"Informação", message: "Erro ao avaliar o jogo ☹️"};
+              }else{
+                this.inf={title:"Informação", message: "Jogo avaliado com sucesso! 😄"};
+              }
+              temp.style.display = "flex";
+              document.getElementsByClassName("inf")[0].classList.remove('confirm--close');
+            });
+          }
+        });
+      }
+    }
+  }
+
+  onStarClick(rate: number): void {
+    this.rating = rate;
+    const stars = document.querySelectorAll('.star');
+    stars.forEach((star, index) => {
+      if (index < this.rating) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
+
+  refreshPage() {
+    location.reload();
   }
 }

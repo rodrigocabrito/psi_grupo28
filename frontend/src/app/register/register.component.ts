@@ -42,10 +42,12 @@ export class RegisterComponent implements OnInit {
       this.user = user;
       if (this.user) {
         window.localStorage.setItem('session', JSON.stringify(this.user?.id));
-        this.router.navigate(['/dashboard', this.user.id]);
         if (this.user.id === '0') {
           alert('Username is already taken');
-        }else{this.router.navigate(['/dashboard', this.user.id]);}
+        }else{
+          this.router.navigate(['/dashboard', this.user.id]);
+          alert('Register completed successfully');
+        }
       }
     });
   

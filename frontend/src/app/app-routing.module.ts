@@ -9,6 +9,9 @@ import { RegisterComponent } from './register/register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -16,11 +19,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard/:id', component: DashboardComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'edit', component: EditProfileComponent },
   { path: 'user-profile/:id', component: UserProfileComponent},
   { path: 'detail/:id', component: UserDetailComponent },
   { path: 'users', component: UsersComponent },
   { path: 'game/:id', component: GameDetailComponent},
-  { path: 'wishlist', component: WishlistComponent}
+  { path: 'wishlist', component: WishlistComponent},
+  { path: 'cart/:id', component: CartComponent},
+  { path: 'checkout/:id', component: CheckoutComponent},
 ];
 
 @NgModule({
