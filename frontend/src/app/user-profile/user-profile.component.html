@@ -1,12 +1,14 @@
 <div class="profile">
     <div *ngIf="user">
         <div class="user-profile">
+          <button id="follow" (click)="addFollowing()">
+            Follow
+          </button>
             <div class="profile-header">
+
               <img src={{server_imageURL}}{{user.photo}} alt="User Profile Picture">
               <h2>{{user.name}}</h2>
-              <button id="follow" (click)="addFollowing()">
-                Follow
-              </button>
+              
               <p></p>
               <button mat-raised-button color="primary" type="submit" routerLink="/edit">Edit</button> 
             </div>

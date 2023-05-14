@@ -24,19 +24,20 @@
           </div>
           <div class="gamesList" [hidden]="hideGames">
             <ng-container *ngIf="games">
-              <button class = "sorting" (click) = "sortByName(games)">Sort by Name</button>
+              <button class = "sorting" *ngIf="clickedBeforeName==true"  (click) = "sortByName(games)">Sort by Name ⬅</button>
+              <button *ngIf="clickedBeforeName==false" class = "sorting" (click) = "sortByName(games)">Sort by Name ➡</button>
               <button class = "sorting" (click) = "sortByDate(games)">Sort by Date</button>
-              <ng-container *ngIf="games.length == 0;">
-                <p>Não tem nenhum jogo na sua biblioteca😶‍🌫️</p>
-              </ng-container>
               <ul>
                 <li *ngFor="let game of games">
-                  <img src="http://localhost:3078/images/{{game.image_p}}" alt="{{game.name}}" width="3em" height="3em">
+                  <img src="http://localhost:3078/images/{{game.image_p}}" alt="{{game.name}}" width="2em" height="2em">
                   <h3 id="nameGame">{{game.name}}</h3>
                   <h3>{{gameToDate(game)}}</h3>
                 </li>
               </ul>
             </ng-container>
+            <ng-container>
+              <p>Não tem nenhum jogo na sua biblioteca😶‍🌫️</p>
+            </ng-container> 
           </div>          
           <div class="followingList" [hidden]="hideFollowing">
             <ul *ngIf="following">
