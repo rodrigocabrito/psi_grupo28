@@ -223,7 +223,8 @@ exports.search = function(req, res, next){
 
         game.rates.push(req.body.rating);
 
-        const i = game.rates.length;
+        const i = game.rates.length - 1;
+
         const sum = game.rates.reduce((accumulator, currentValue) => accumulator + currentValue);
         const avg = sum / i;
         game.rating = Number(avg.toFixed(1));

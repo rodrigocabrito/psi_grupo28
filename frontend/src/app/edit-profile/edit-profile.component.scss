@@ -1,7 +1,9 @@
 .main-div {
-  height: 100vh;
+  height: auto;
+  width: auto;
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 }
 
 mat-card {
@@ -61,7 +63,7 @@ button {
   background-color: white !important;
 }
 .error{
-  color: red;
+  color: rgb(144, 0, 0);
   margin-bottom: 100px;
 }
 
@@ -93,4 +95,17 @@ input {
   width: 100%;
   min-height: 3em;
   margin-bottom: 10%;
+}
+
+.title {
+  color: rgb(121, 10, 10);
+}
+
+.listasList {
+  display: inline-block;
+  margin-left: 100px;
+}
+
+.listasList ul {
+  margin-inline-start: 23px;
 }

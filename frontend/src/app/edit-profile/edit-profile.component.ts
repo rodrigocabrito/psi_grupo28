@@ -75,7 +75,7 @@ export class EditProfileComponent {
         });
       }
     }
-    
+    this.c();
     
   }
 
@@ -97,5 +97,9 @@ export class EditProfileComponent {
   selectImageHandler(event: any, image: ProfilePic) {
     event.preventDefault();
     this.selectedImage = image.path;
+  }
+
+  c(): void{
+    alert('Perfil editado com sucesso!');
   }
 }

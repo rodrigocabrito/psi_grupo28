@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   hideFollowing = true;
   clickedBeforeDate = false;
   clickedBeforeName = false;
+  activeButton: string | undefined;
+
 
   constructor(private userService: UserService,private gameService: GameService,private route: ActivatedRoute) { }
 
@@ -39,6 +41,16 @@ export class DashboardComponent implements OnInit {
     console.log(this.id)
     this.getUser();
     this.getCart();
+
+    const listItems = document.querySelectorAll('.menu button');
+    listItems.forEach((item) => {
+      item.addEventListener('click', function () {
+        listItems.forEach((listItem) => {
+          listItem.classList.remove('active');
+        });
+        item.classList.add('active');
+      });
+    });
   }
 
   getFollowers(): void {
@@ -55,6 +67,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getGamesLibrary(this.id)
     .subscribe((games)=>{this.games = games;} );;
   }
+  
 
   getGamesLibraryWithCounts(): Game_library[] {
     const gameLibraryWithCounts: Game_library[] = [];
@@ -140,6 +153,6 @@ export class DashboardComponent implements OnInit {
   gameToDate(game: Game_library) {
     let dateNew = new Date(game.date);
     console.log(game.date);
-    return dateNew.getFullYear() + "-" + (dateNew.getMonth()+1) + "-" + dateNew.getDate() + " " + dateNew.getHours() + ":" + dateNew.getMinutes();
+    return dateNew.getFullYear() + "-" + (dateNew.getMonth()+1) + "-" + dateNew.getDate() + " (" + dateNew.getHours() + ":" + dateNew.getMinutes() + ")";
   }
 }

@@ -65,17 +65,16 @@ main {
   list-style: none;
   display: flex;
   flex-direction: row;
-  margin: 0;
   padding: 0;
   width: 100%;
   justify-content: center;
 }
 
-.menu li {
+.menu .menu2 li {
   margin-bottom: 0.5rem;
 }
 
-.menu button {
+.menu2 button {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -90,11 +89,11 @@ main {
 }
 
 @media (max-width: 768px) {
-  .menu {
+  .menu .menu2{
     flex-direction: column;
   }
   
-  .menu button {
+  .menu .menu2 button {
     margin-right: 0;
     margin-bottom: 1rem;
     width: 100%;
@@ -102,10 +101,11 @@ main {
 }
 
 .menu .sorting {
-    width: 20ex;
-    font-size: 15px;
-    transition: none;
-    margin-bottom: 2vw;
+  width: 20ex;
+  font-size: 15px;
+  transition: none;
+  margin-bottom: 2vw;
+  margin-left: 23px;
 }
 
 .menu .sorting:hover {
@@ -113,19 +113,22 @@ main {
   background-color: rgba(0, 0, 0, 0.276);
 }
 
-.menu button:active {
-  color: #2c3e50;
-  font-weight: bold;
+.menu .menu2 button:active {
+  transform: scale(0.90);
 }
 
-.menu button:hover {
-  background-color: rgba(0, 0, 0, 0.276);
+.active {
+  transform: scale(0.90);
+  box-shadow: 0px 0px 10px 0px rgb(121, 10, 10);
+}
+
+.menu .menu2 button:hover {
+  box-shadow: 0px 0px 10px 0px rgb(121, 10, 10);
 }
 
 .content {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 1rem;
 }
 
 .content li {
@@ -149,22 +152,6 @@ main {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   line-height: 1.2;
-}
-
-#dashboardBut {
-  position: absolute;
-  right: 20px;
-  top: 107px;
-  border-radius: 2px;
-  font-size: 1.5rem;
-  text-decoration: none;
-  text-align: center;
-  box-sizing: border-box;
-  color: black;
-}
-
-#dashboardBut:hover {
-  color: #9b7a25ac;
 }
 
 #perfil{
@@ -218,6 +205,23 @@ main {
 #msg{
   margin-left: 23px;
 }
-  
 
+.userNames {
+  display: block;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.listasButt button:hover {
+  box-shadow: 0px 0px 10px 0px rgb(121, 10, 10);
+}
+
+.listasButt button {
+  font-size: 20px;
+  background-color: rgba(157, 64, 2, 0.435);
+}
+
+.gameImage {
+  cursor: pointer;
+}
 

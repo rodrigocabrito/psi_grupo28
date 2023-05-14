@@ -109,7 +109,7 @@ exports.registerUser = async function (req, res, next) {
       if (err) { return next(err); }
       if (user.length === 0) {
         const user1 = new User({username: req.body.username, password: req.body.password, followers: [], following: [], games:[], wishlist:[],
-           photo:"https://cdn-icons-png.flaticon.com/128/808/808439.png", wallet:0});
+            cart:[], photo:"https://cdn-icons-png.flaticon.com/128/808/808439.png", wallet:0});
         const user2 = await user1.save();
         res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
       }else{
