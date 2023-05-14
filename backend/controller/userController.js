@@ -108,7 +108,7 @@ exports.registerUser = async function (req, res, next) {
     .exec(async function(err, user){
       if (err) { return next(err); }
       if (user.length === 0) {
-        const user1 = new User({username: req.body.username, password: req.body.password, followers: [], following: [], games:[], wishlist:[],cart:[],
+        const user1 = new User({username: req.body.username, password: req.body.password, followers: [], following: [], games:[], wishlist:[],
            photo:"https://cdn-icons-png.flaticon.com/128/808/808439.png", wallet:0});
         const user2 = await user1.save();
         res.send({id:user2._id ,username: user2.username, followers: user2.followers, following: user2.following})
@@ -126,9 +126,13 @@ exports.getFollowers = function (req, res, next){
       var err = new Error('User not found');
         err.status = 404;
     }
-    const l = []
-    console.log(user);
-    res.send(user.followers);
+    User.find({ _id: { $in: user.followers }}).exec(function (err1, users){
+      const l =[];
+      for (let index = 0; index < users.length; index++) {
+        l.push({id: users[index]._id, name: users[index].username, photo: users[index].photo}); 
+      }
+      res.send(l);
+    });
   });
 }
 
@@ -139,8 +143,13 @@ exports.getFollowing = function (req, res, next){
       var err = new Error('User not found');
         err.status = 404;
     }
-    const l = []
-    res.send(user.following);
+    User.find({ _id: { $in: user.following }}).exec(function (err1, users){
+      const l =[];
+      for (let index = 0; index < users.length; index++) {
+        l.push({id: users[index]._id, name: users[index].username, photo: users[index].photo}); 
+      }
+      res.send(l);
+    });
   });
 }
 
@@ -174,16 +183,13 @@ exports.getGamesLibrary = function (req, res, next){
     }
     for (let index = 0; index < user.games.length; index++) {
       Game.findById(user.games[index]).exec(function (err1, games){
-        if(games){
-          if (err1) {
-            return next(err1);
-          }
-            gamesList.push({id:games._id, name:games.name, image_p:games.image_p, date:games?.date});
-            if (index === user.games.length-1) {
-              res.send(gamesList);
-            }
+        if (err1) {
+          return next(err1);
         }
-        
+          gamesList.push({id:games._id, name:games.name, image_p:games.image_p, date:games?.date});
+          if (index === user.games.length-1) {
+            res.send(gamesList);
+          }
       }); 
       }
         
