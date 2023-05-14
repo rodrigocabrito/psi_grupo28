@@ -24,6 +24,7 @@ export class GameDetailComponent {
   rate_options= { title: 'A tua opinião é importante!'};
   rating = 0;
   got = false;
+  text= "Adicionar à wishlist";
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +40,7 @@ export class GameDetailComponent {
     }
     this.getGame();
     this.checkGot();
+    this.check();
   }
 
   getGame(): void {
@@ -49,11 +51,30 @@ export class GameDetailComponent {
     );
   }
 
+  check(): void{
+    const id = this.route.snapshot.paramMap.get('id')!;
+    if (this.session) {
+      this.GameService.getWishList(this.session)
+      .subscribe(games => {
+        for (let index = 0; index < games.length; index++) {
+          console.log(games[index].id);
+          console.log(id+"1")
+          if (games[index].id ===  id) {
+            this.text = "Adicionado";
+          } 
+          
+        }
+      })
+    }
+    
+  }
+
   checkGot(): void{
     const id = this.route.snapshot.paramMap.get('id')!;
     this.UserService.getGamesLibrary(this.session)
     .subscribe( games => {
       for(let index = 0; index < games.length; index++){
+        console.log(games[index].id)
         if (games[index].id === id) {
           this.got =true;
           break; 
@@ -89,6 +110,7 @@ export class GameDetailComponent {
       const temp = document.getElementsByClassName("inf")[0] as HTMLElement;
       if (!result) {
         this.inf={title:"Informação", message: "Erro ao adicionar jogo à wishlist ☹️"};
+        this.text = "Adicionado";
       }else{
         this.inf={title:"Informação", message: "Jogo adicionado à wishlist! 😄"};
       }
