@@ -7,8 +7,8 @@
               <h2>{{user.name}}</h2>
               
               <p></p>
-              <button *ngIf="visitorid == user.id" mat-raised-button color="primary" type="submit" routerLink="/edit">Editar perfil</button>
-              <button id="follow" *ngIf="visitorid != user.id" (click)="addFollowing()">Seguir</button> 
+              <button *ngIf="visitorid === user.id" mat-raised-button color="primary" type="submit" routerLink="/edit">Editar perfil</button>
+              <button id="follow" *ngIf="visitorid !== user.id" (click)="addFollowing()">Seguir</button> 
             </div>
             <hr>
             <div class="profile-container">
