@@ -119,6 +119,30 @@ exports.registerUser = async function (req, res, next) {
     })
 };
 
+exports.getFollowers = function (req, res, next){
+  User.findById(req.param.id)
+  .exec(function (err, user){
+    if (!user) {
+      var err = new Error('User not found');
+        err.status = 404;
+    }
+    const l = []
+    res.send(user.followers);
+  });
+}
+
+exports.getFollowing = function (req, res, next){
+  User.findById(req.param.id)
+  .exec(function (err, user){
+    if (!user) {
+      var err = new Error('User not found');
+        err.status = 404;
+    }
+    const l = []
+    res.send(user.following);
+  });
+}
+
 exports.follow = function (req, res, next){
   const userVisitor = User.findById(req.body.selfid);
   const userVisited = User.findById(req.body.otherid);
