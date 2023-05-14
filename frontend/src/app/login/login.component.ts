@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
         window.localStorage.setItem('session', JSON.stringify(this.user?.id));        
         if (this.user.id === '0') {
           alert('Username or password incorrect');
-        }else{this.router.navigate(['/dashboard', this.user.id]);
+        }else{this.router.navigate(['/dashboard', this.user.id]).then(() => {
+          location.reload();});
         }
       }
       

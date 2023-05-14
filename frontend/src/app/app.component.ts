@@ -21,6 +21,7 @@ export class AppComponent {
     if (session) {
       this.loginId = JSON.parse(session);
     }
+    console.log("this is  " + this.loginId)
     this.getCart();
   }
 
@@ -30,24 +31,50 @@ export class AppComponent {
   }
 
   getCart(): void{
-    this.gameService.getCart(this.loginId)
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      const loginId = JSON.parse(session);
+      this.gameService.getCart(loginId)
       .subscribe(cart => this.cart = cart);
+    } 
   }
+
 
   logout(): void{
     window.localStorage.removeItem('session');
     this.router.navigate(['']);
   }
 
-  getWishlist(): void {
-    this.router.navigate(['/wishlist',this.loginId]).then(() => {
+  routeCart(): void {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      const loginId = JSON.parse(session);
+      this.router.navigate(['/cart',loginId]).then(() => {
       location.reload();
     });
+    }
+    
+  }
+
+  getWishlist(): void {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      const loginId = JSON.parse(session);
+      this.router.navigate(['/wishlist',loginId]).then(() => {
+      location.reload();
+    });
+    }
+    
   }
 
   getProfile(): void {
-    this.router.navigate(['/user-profile',this.loginId]).then(() => {
+    const session = window.localStorage.getItem("session");
+    if (session) {
+      const loginId = JSON.parse(session);
+      this.router.navigate(['/user-profile',loginId]).then(() => {
       location.reload();
     });
+    }
+    
   }
 }
